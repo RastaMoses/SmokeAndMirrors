@@ -9,19 +9,25 @@ public class Switch : MonoBehaviour
     private bool _turnable;
 
     public List<GameObject> Switchables;
-    public GameObject ButtonIndicatorUI;
+    public GameObject Button;
+
+    private HoldButton _switchButton;
 
     private Color32 _offColour = Color.red;
     private Color32 _onColour = Color.green;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        _switchButton = Button.gameObject.GetComponent<HoldButton>();
+        _switchButton.SetKey(_buttonCode);
+
         foreach (GameObject switchable in Switchables)
         {
             switchable.GetComponent<SwitchCondition>().AddToTarget(1);
         }
-        ButtonIndicatorUI.SetActive(false);
+        Button.SetActive(false);
 
         SetVisualKeyForState();
     }
@@ -43,13 +49,13 @@ public class Switch : MonoBehaviour
     {
         if (_turnable)
         {
-            if (Input.GetKeyDown(_buttonCode))
+            if (_switchButton.CheckInput())
             {
                 _on = !_on;
                 //foreach switchable, notify 1 switch on/off
-                foreach(GameObject switchable in Switchables)
+                foreach (GameObject switchable in Switchables)
                 {
-                    if(_on)
+                    if (_on)
                         switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
                     else
                         switchable.GetComponent<SwitchCondition>().RemoveOneTowardsTarget();
@@ -65,8 +71,8 @@ public class Switch : MonoBehaviour
             return;
 
         //show button to use
-        ButtonIndicatorUI.SetActive(true);
-        //get key information 
+        Button.SetActive(true);
+        //check for input
         _turnable = true;
     }
 
@@ -76,8 +82,8 @@ public class Switch : MonoBehaviour
             return;
 
         //stop show button to use
-        ButtonIndicatorUI.SetActive(false);
-        //stop get key information 
+        Button.SetActive(false);
+        //stop check for input
         _turnable = false;
     }
 }

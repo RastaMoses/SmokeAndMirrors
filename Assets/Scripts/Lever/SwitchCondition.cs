@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwitchCondition : Condition
 {
-    public bool On;
+    public bool On { get; private set; }
 
     public SwitchCondition(int target, int start) : base (target, start)
     {
