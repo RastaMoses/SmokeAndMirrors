@@ -14,10 +14,6 @@ public class HoldButton : MonoBehaviour
     private Image _progressImage;
 
     private bool _takesInput = true;
-    public void SetKey(KeyCode key)
-    {
-        _key = key;
-    }
 
     private void Awake()
     {
@@ -26,9 +22,9 @@ public class HoldButton : MonoBehaviour
         _currentTime = 0;
     }
 
-    public bool CheckInput()
+    public bool CheckInput(string buttonName)
     {
-        if (Input.GetKey(_key) && _takesInput)
+        if (Input.GetButton(buttonName) && _takesInput)
         {
             _currentTime += Time.deltaTime;
 
@@ -44,7 +40,7 @@ public class HoldButton : MonoBehaviour
                 return true;
             }
         }
-        if (Input.GetKeyUp(_key))
+        if (Input.GetButtonUp(buttonName))
         {
             //input canceled
             _currentTime = 0;

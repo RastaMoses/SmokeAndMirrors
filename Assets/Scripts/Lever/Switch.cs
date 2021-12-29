@@ -5,8 +5,8 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     private bool _on;
-    private KeyCode _buttonCode = KeyCode.L;
     private bool _turnable;
+    private string _buttonKey = "Fire1";
 
     public List<GameObject> Switchables;
     public GameObject Button;
@@ -21,7 +21,6 @@ public class Switch : MonoBehaviour
     void Start()
     {
         _switchButton = Button.gameObject.GetComponent<HoldButton>();
-        _switchButton.SetKey(_buttonCode);
 
         foreach (GameObject switchable in Switchables)
         {
@@ -49,7 +48,7 @@ public class Switch : MonoBehaviour
     {
         if (_turnable)
         {
-            if (_switchButton.CheckInput())
+            if (_switchButton.CheckInput(_buttonKey))
             {
                 _on = !_on;
                 //foreach switchable, notify 1 switch on/off
