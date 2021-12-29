@@ -4,17 +4,28 @@ using UnityEngine;
 
 public abstract class Condition : MonoBehaviour
 {
+    [SerializeField] private bool _exact; //if the condition target has to be met exactly or if it only has to be reached (minimum)
+
     private int _start = 0;
     private int _actual;
     private int _target = 1;
-    protected bool fullfilled => _actual == _target;
+    protected bool fullfilled => _exact ? _actual == _target : _actual >= _target;
 
-    public Condition(int target, int start = 0)
+
+    private void Start()
+    {
+        InitializeValues();
+    }
+
+    virtual protected void InitializeValues(int target = 1, int start = 0)
     {
         _target = target;
         _start = start;
         _actual = start;
     }
+
+    protected abstract void OnFullfilled();
+    protected abstract void OnUnfullfilled();
 
     public void Reset()
     {
@@ -33,42 +44,35 @@ public abstract class Condition : MonoBehaviour
 
     public void AddOneTowardsTarget()
     {
-        bool wasFullfilled = false;
-        if (fullfilled)
-            wasFullfilled = true;
+        bool wasFullfilled = fullfilled;
 
         _actual++;
 
-        if (wasFullfilled)
+        if (wasFullfilled && !fullfilled)
         {
             OnUnfullfilled();
             return;
         }
 
-        if (fullfilled)
+        if (fullfilled && !wasFullfilled)
         {
             OnFullfilled();
         }
     }
 
-    protected abstract void OnFullfilled();
-    protected abstract void OnUnfullfilled();
-
     public void RemoveOneTowardsTarget()
     {
-        bool wasFullfilled = false;
-        if (fullfilled)
-            wasFullfilled = true;
+        bool wasFullfilled = fullfilled;
         
         _actual--;
 
-        if (wasFullfilled)
+        if (wasFullfilled && !fullfilled)
         {
             OnUnfullfilled();
             return;
         }
 
-        if (fullfilled)
+        if (fullfilled && !wasFullfilled)
         {
             OnFullfilled();
         }

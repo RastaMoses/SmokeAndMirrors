@@ -6,11 +6,6 @@ public class SwitchCondition : Condition
 {
     public bool On { get; private set; }
 
-    public SwitchCondition(int target, int start) : base (target, start)
-    {
-
-    }
-
     protected override void OnFullfilled()
     {
         On = true;

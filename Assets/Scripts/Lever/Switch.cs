@@ -22,10 +22,12 @@ public class Switch : MonoBehaviour
     {
         _switchButton = Button.gameObject.GetComponent<HoldButton>();
 
+        //this code adds the switch to the switchCondition and has to be taken out if 1 switch on is enough to have a light on:
         foreach (GameObject switchable in Switchables)
         {
             switchable.GetComponent<SwitchCondition>().AddToTarget(1);
         }
+
         Button.SetActive(false);
 
         SetVisualKeyForState();

@@ -5,13 +5,10 @@ using UnityEngine.UI;
 
 public class HoldButton : MonoBehaviour
 {
-    [SerializeField]
-    float _pressTime;
+    [SerializeField]  float _pressTime;
     float _currentTime = 0;
-    private KeyCode _key;
 
-    [SerializeField]
-    private Image _progressImage;
+    [SerializeField]  private Image _progressImage;
 
     private bool _takesInput = true;
 
@@ -29,8 +26,8 @@ public class HoldButton : MonoBehaviour
             _currentTime += Time.deltaTime;
 
             //update UI
-            float prct = _currentTime / _pressTime;
-            _progressImage.fillAmount = prct;
+            float progress = _currentTime / _pressTime;
+            _progressImage.fillAmount = progress;
 
             if(_currentTime >= _pressTime)
             {
