@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ShiniePlatform : Shinie
 {
-    [SerializeField] Color requiredColor;
-    public Color currentColor;
     [SerializeField] bool debugVisible;
     
     // Start is called before the first frame update
@@ -40,5 +38,27 @@ public class ShiniePlatform : Shinie
         debugVisible = true;
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<BoxCollider2D>().isTrigger = false;
+    }
+
+    public override void AddColor(Color color)
+    {
+        currentColor.r += color.r;
+        currentColor.g += color.g;
+        currentColor.b += color.b;
+
+        currentColor.r = Mathf.Clamp(currentColor.r, 0, 1);
+        currentColor.g = Mathf.Clamp(currentColor.g, 0, 1);
+        currentColor.b = Mathf.Clamp(currentColor.b, 0, 1);       
+    }
+
+    public override void SubtractColor(Color color)
+    {
+        currentColor.r -= color.r;
+        currentColor.g -= color.g;
+        currentColor.b -= color.b;
+
+        currentColor.r = Mathf.Clamp(currentColor.r, 0, 1);
+        currentColor.g = Mathf.Clamp(currentColor.g, 0, 1);
+        currentColor.b = Mathf.Clamp(currentColor.b, 0, 1);
     }
 }

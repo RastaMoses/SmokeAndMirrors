@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shiny
+  - Teleporter
+  - Light
+  - Fog
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -13,10 +17,10 @@ TagManager:
   - Water
   - UI
   - Shiny
-  - 
-  - 
-  - 
-  - 
+  - Teleporter
+  - Light
+  - Fog
+  - Mirror
   - 
   - 
   - 

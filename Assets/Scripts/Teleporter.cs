@@ -5,9 +5,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(EdgeCollider2D))]
-public class LightScript : MonoBehaviour
+public class Teleporter : MonoBehaviour
 {
-    [SerializeField] Color lightColor;
+    [SerializeField] public GameObject otherEnd;
+    [SerializeField] public bool teleporting;
+    public Color lightColor;
     List<RaycastHit2D> rch;
     [SerializeField] float lightRange;
     LineRenderer lr;
@@ -18,25 +20,35 @@ public class LightScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        teleporting = false;
         rch = new List<RaycastHit2D>();
         lr = GetComponent<LineRenderer>();
         ec = GetComponent<EdgeCollider2D>();
         results = new List<Collider2D>();
-        ec.SetPoints(new List<Vector2> { new Vector2(0, 0), new Vector2(lightRange, 0) });
+        ec.SetPoints(new List<Vector2> { new Vector2(0, 0), new Vector2(0, 0) });
     }
 
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(0, transform.position);
-
-        if (HitObject())
+        if (teleporting)
         {
-            UpdateObject(currentObject);
+            ec.SetPoints(new List<Vector2> { new Vector2(0, 0), new Vector2(lightRange, 0) });
+            lr.enabled = true;
+            lr.SetPosition(0, transform.position);
+            if (HitObject())
+            {
+                UpdateObject(currentObject);
+            }
+            else
+            {
+                RevertObject(currentObject);
+            }
         }
         else
         {
-            RevertObject(currentObject);
+            ec.SetPoints(new List<Vector2> { new Vector2(0, 0), new Vector2(0, 0) });
+            lr.enabled = false;
         }
 
     }
@@ -50,7 +62,7 @@ public class LightScript : MonoBehaviour
                 hit.GetComponent<Mirror>().ReflectOff();
             }
 
-            if (hit.tag == "Teleporter")
+            if (hit.tag == "Teleporter" && hit.gameObject != this.gameObject)
             {
                 hit.GetComponent<Teleporter>().otherEnd.GetComponent<Teleporter>().lightColor = Color.black;
                 hit.GetComponent<Teleporter>().otherEnd.GetComponent<Teleporter>().teleporting = false;
@@ -64,7 +76,6 @@ public class LightScript : MonoBehaviour
             currentObject = null;
         }
     }
-
     void UpdateObject(GameObject hit)
     {
         if (hit.tag == "Mirror")
@@ -72,7 +83,7 @@ public class LightScript : MonoBehaviour
             hit.GetComponent<Mirror>().ReflectOn(gameObject, lightColor);
         }
 
-        if (hit.tag == "Teleporter")
+        if (hit.tag == "Teleporter" && hit.gameObject != this.gameObject)
         {
             hit.GetComponent<Teleporter>().otherEnd.GetComponent<Teleporter>().lightColor = lightColor;
             hit.GetComponent<Teleporter>().otherEnd.GetComponent<Teleporter>().teleporting = true;
@@ -82,6 +93,25 @@ public class LightScript : MonoBehaviour
         {
             hit.GetComponent<Shinie>().AddColor(lightColor);
         }
+    }
+
+    EdgeCollider2D DetectCrossingEdges()
+    {
+        ec.OverlapCollider(contactFilter, results);
+        EdgeCollider2D overlapCollider = DetectEdgeCollider(results);
+        return overlapCollider;
+    }
+
+    EdgeCollider2D DetectEdgeCollider(List<Collider2D> results)
+    {
+        foreach (Collider2D col in results)
+        {
+            if (col.GetType() == typeof(EdgeCollider2D))
+            {
+                return (EdgeCollider2D)col;
+            }
+        }
+        return null;
     }
 
     Vector2 FindOverlap(EdgeCollider2D thisEdge, EdgeCollider2D thatEdge)
@@ -112,18 +142,6 @@ public class LightScript : MonoBehaviour
             float y = (a1 * c2 - a2 * c1) / det;
             return new Vector2(x, y);
         }
-    }
-
-    EdgeCollider2D DetectEdgeCollider(List<Collider2D> results)
-    {
-        foreach (Collider2D col in results)
-        {
-            if (col.GetType() == typeof(EdgeCollider2D))
-            {
-                return (EdgeCollider2D)col;
-            }
-        }
-        return null;
     }
 
     GameObject HitObject()
