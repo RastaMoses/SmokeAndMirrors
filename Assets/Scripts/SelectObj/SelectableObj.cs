@@ -2,37 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectableObj : MonoBehaviour
+public class SelectableObj: MonoBehaviour
 {
-    public float DotToPlayer;
-    public GameObject SelectionIndicator;
-    public bool Selected = false;
-
-    public float Det;
-    public float Angle;
+    [SerializeField] private GameObject _selectionIndicator;
+    public bool Selected { get; private set; } = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        SelectionIndicator.SetActive(false);
+        Selected = false;
+        _selectionIndicator.SetActive(false);
+    }
+
+    public float GetAngle(Transform trans)
+    {
+        Vector3 relative = trans.InverseTransformPoint(transform.position);
+        return Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
     }
 
     public void Select()
     {
         Selected = true;
-        SelectionIndicator.SetActive(true);
+        _selectionIndicator.SetActive(true);
     }
 
     public void DeSelect()
     {
         Selected = false;
-        SelectionIndicator.SetActive(false);
+        _selectionIndicator.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

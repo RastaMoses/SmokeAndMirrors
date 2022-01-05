@@ -191,8 +191,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba74449fc46158742acfeef51f381c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DotToPlayer: 0
-  SelectionIndicator: {fileID: 2918705633871649852}
-  Selected: 0
-  Det: 0
-  Angle: 0
+  _selectionIndicator: {fileID: 2918705633871649852}

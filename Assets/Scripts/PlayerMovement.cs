@@ -7,11 +7,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-    PlayerController pc;
+    PlayerController playerController;
+    private bool _isGrounded;
+
+    [SerializeField] Transform groundCheck;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        pc = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerController>();
     }
     // Start is called before the first frame update
     void Start()
@@ -22,14 +26,24 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xVelocity = Input.GetAxisRaw("Horizontal") * pc.speed;
-        float yVelocity = rb.velocity.y;
-        if (Input.GetButtonDown("Jump"))
-        {
-            yVelocity = pc.jumpForce;
+        if(Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))){
+            _isGrounded = true;
         }
+        else
+        {
+            _isGrounded = false;
+        }
+
+        float xVelocity = Input.GetAxisRaw("Horizontal") * playerController.speed;
+        float yVelocity = rb.velocity.y;
+        //jump
+        if (Input.GetButtonDown("Jump") && _isGrounded)
+        {
+            yVelocity = playerController.jumpForce;
+        }
+        //Fall
         if(Input.GetButtonUp("Jump") && rb.velocity.y > 0){
-            yVelocity -= pc.jumpForce*0.3f;
+            yVelocity -= playerController.jumpForce*0.3f;
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
     }
