@@ -17,7 +17,7 @@ public class SelectableObjController : MonoBehaviour
 
     Vector2 _rightStick = Vector2.zero;
     Vector2 _vectorSensibility = new Vector2(0.02f, 0.02f);
-    public float rotationSpeed; // only needed if rotating and not setting rotation directly
+    //public float rotationSpeed; // only needed if rotating and not setting rotation directly
 
 
     // Start is called before the first frame update
@@ -31,6 +31,10 @@ public class SelectableObjController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //do not check for selecting objects if there are no selectables
+        if (_allSelectableObjs.Count == 0)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Y))
         {
             if (InSelectionMode)
@@ -60,6 +64,8 @@ public class SelectableObjController : MonoBehaviour
 
         if (InSelectionMode)
         {
+           // if(_selectableObjs)
+
             //TODO cast "spellray" from player to selected obj
             Debug.DrawLine(Player.transform.position, _selectedObj.transform.position, Color.blue);
 
@@ -106,10 +112,14 @@ public class SelectableObjController : MonoBehaviour
 
     private void OnStartSelectMode()
     {
-        InSelectionMode = true;
-
         //Only visible objects are selectable
         _selectableObjs = _allSelectableObjs.Where(s => IsWithinBounds(new Rect(0, 0, 1, 1), Camera.WorldToViewportPoint(s.transform.position))).ToList();
+
+        //do not enter selection mode if there are no objs that can currently be selected
+        if (_selectableObjs.Count == 0)
+            return;
+
+        InSelectionMode = true;
 
         //order selectables in a circle
         _selectableObjsCenter = CalculateCentroid(_selectableObjs);

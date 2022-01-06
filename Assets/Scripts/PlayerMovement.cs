@@ -36,14 +36,18 @@ public class PlayerMovement : MonoBehaviour
 
         float xVelocity = Input.GetAxisRaw("Horizontal") * playerController.speed;
         float yVelocity = rb.velocity.y;
+
+        //TODO -maybe- no back movement while jumping
+
         //jump
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("X") && _isGrounded)
         {
             yVelocity = playerController.jumpForce;
         }
         //Fall
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0){
-            yVelocity -= playerController.jumpForce*0.3f;
+        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("X") && rb.velocity.y > 0)
+        {
+            yVelocity -= playerController.jumpForce * 0.3f;
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
     }
