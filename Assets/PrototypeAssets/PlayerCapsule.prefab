@@ -153,9 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe683ada1197d0dd8738c432715eaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 15
-  TakesInput: 0
+  speed: 7
+  jumpForce: 14
 --- !u!114 &2841053401173293806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef15fdfc08b9c6cfbb03181e54f5b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 2841053401383026477}
+  _groundCheck: {fileID: 2841053401383026477}
 --- !u!1 &2841053401383026476
 GameObject:
   m_ObjectHideFlags: 0

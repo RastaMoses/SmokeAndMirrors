@@ -18,6 +18,11 @@ public class SwitchTestBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetButtonDown("A"))
+        //{
+        //    Debug.Log(gameObject.name + ": "+ )
+        //}
+
         if(_switchCondition.On && !_stateOn)
         {
             GetComponent<SpriteRenderer>().color = Color.yellow;

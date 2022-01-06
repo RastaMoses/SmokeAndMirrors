@@ -6,13 +6,13 @@ public abstract class Condition : MonoBehaviour
 {
     [SerializeField] private bool _exact; //if the condition target has to be met exactly or if it only has to be reached (minimum)
 
-    private int _start = 0;
-    private int _actual;
-    private int _target = 1;
+    [SerializeField] private int _start = 0;
+    [SerializeField] private int _actual;
+    [SerializeField] private int _target = 1;
     protected bool fullfilled => _exact ? _actual == _target : _actual >= _target;
 
 
-    private void Start()
+    private void Awake()
     {
         InitializeValues();
     }

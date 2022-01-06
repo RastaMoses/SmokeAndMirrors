@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerController playerController;
     private bool _isGrounded;
 
-    [SerializeField] Transform groundCheck;
+    [SerializeField] private Transform _groundCheck;
 
     void Awake()
     {
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))){
+        if(Physics2D.Linecast(transform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))){
             _isGrounded = true;
         }
         else
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         float xVelocity = Input.GetAxisRaw("Horizontal") * playerController.speed;
         float yVelocity = rb.velocity.y;
 
-        //TODO -maybe- no back movement while jumping
+        //TODO -maybe- no movement direction change while jumping
 
         //jump
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("X") && _isGrounded)
