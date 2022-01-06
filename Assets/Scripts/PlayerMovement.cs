@@ -26,7 +26,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics2D.Linecast(transform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))){
+        if (!playerController.movementEnabled)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+        if(Physics2D.Linecast(transform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Rails")))
+        {
             _isGrounded = true;
         }
         else
@@ -40,14 +47,17 @@ public class PlayerMovement : MonoBehaviour
         //TODO -maybe- no movement direction change while jumping
 
         //jump
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("X") && _isGrounded)
+        if (playerController.jumpEnabled)
         {
-            yVelocity = playerController.jumpForce;
-        }
-        //Fall
-        if (Input.GetButtonUp("Jump") || Input.GetButtonUp("X") && rb.velocity.y > 0)
-        {
-            yVelocity -= playerController.jumpForce * 0.3f;
+            if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("X")) && _isGrounded)
+            {
+                yVelocity = playerController.jumpForce;
+            }
+            //Fall
+            if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && rb.velocity.y > 0)
+            {
+                yVelocity -= playerController.jumpForce * 0.3f;
+            }
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
     }

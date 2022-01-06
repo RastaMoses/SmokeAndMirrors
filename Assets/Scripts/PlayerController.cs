@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] public float speed;
     [SerializeField] public float jumpForce;
+    public bool jumpEnabled = true;
+    public bool movementEnabled = true;
 
     // Start is called before the first frame update
     void Start()
