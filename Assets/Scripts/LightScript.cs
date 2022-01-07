@@ -11,10 +11,14 @@ public class LightScript : MonoBehaviour
     RaycastHit2D rch;
     [SerializeField] float lightRange;
     GameObject currentObject, previousObject;
+    public bool swappable;
+    SwapController swap;
+
     // Start is called before the first frame update
     void Start()
     {
         lr = GetComponent<LineRenderer>();
+        swap = FindObjectOfType<SwapController>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,24 @@ public class LightScript : MonoBehaviour
             if (currentObject != null)
             {
                 RevertObject(currentObject);
+            }
+        }
+    }
+
+    void OnMouseOver()
+    {
+        if(tag == "Light" && swappable)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (swap.swaps[0] == null)
+                {
+                    swap.swaps[0] = this;
+                }
+                else
+                {
+                    swap.swaps[1] = this;
+                }
             }
         }
     }

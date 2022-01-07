@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 924684481013130248}
   - component: {fileID: 8618361342078618672}
   - component: {fileID: -8377099339381557454}
+  - component: {fileID: 6536261504623246507}
   m_Layer: 0
   m_Name: RotatableLight
   m_TagString: Light
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightColor: {r: 0, g: 0, b: 0, a: 1}
   lightRange: 10
+  swappable: 0
 --- !u!120 &8618361342078618672
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -213,3 +215,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6536261504623246507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924684481013130249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921e8a32b866e93daa75a2033c8a6da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

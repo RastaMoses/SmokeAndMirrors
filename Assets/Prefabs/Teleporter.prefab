@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8051579916573670088}
   - component: {fileID: 8051579916573670094}
   - component: {fileID: -4959445461314149787}
+  - component: {fileID: -1438237018752071758}
   m_Layer: 0
   m_Name: Teleporter
   m_TagString: Teleporter
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightColor: {r: 0, g: 0, b: 0, a: 1}
   lightRange: 10
+  swappable: 0
 --- !u!61 &8051579916573670094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -238,3 +240,15 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &-1438237018752071758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8051579916573670133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921e8a32b866e93daa75a2033c8a6da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
