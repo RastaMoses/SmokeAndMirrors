@@ -4,45 +4,39 @@ using UnityEngine;
 
 public class PushAndPull : MonoBehaviour
 {
-    public bool MovingPossible = true;
+    public Transform PullPushLeft;
+    public Transform PullPushRight;
 
-    public bool PullingOrPusing => _pulling || _pushing; //use to enable/disable jumping
-    private bool _pushing; //for animation purpose;
-    private bool _pulling; //for animation purpose;
+    private PlayerController _playerController;
+
+    private bool _pushing; //for logic and animation purpose
+    private bool _pulling; //for animation purpose
 
     private string _pushPullButton = "A";
 
-    [SerializeField] private Moveable _moveable;
-    [SerializeField] private bool _movingObj;
-
-    PlayerController playerController;
-
-    public Transform PullPushLeft;
-    public Transform PullPushRight;
+    private Moveable _moveable;
+    private bool _isMovingObj;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("mov3? " + _moveable == null);
         if (_moveable!= null)
         {
             if (Input.GetButton(_pushPullButton))
             {
-                //IF pull button pressed: ...
 
                 float xMovement = Input.GetAxisRaw("Horizontal");
                 if (xMovement != 0)
                 {
-
-                    //dont start moving obj until next to it
-                    if (_movingObj || !((PullPushLeft.transform.position.x > _moveable.RightEdge.x && PullPushRight.transform.position.x > _moveable.RightEdge.x) ||
-                        (PullPushLeft.transform.position.x < _moveable.LeftEdge.x && PullPushRight.transform.position.x < _moveable.LeftEdge.x)))
+                    //start moving obj but dont start moving obj until next to it
+                    if (_isMovingObj || !((PullPushLeft.transform.position.x > _moveable.rightEdge.x && PullPushRight.transform.position.x > _moveable.rightEdge.x) ||
+                        (PullPushLeft.transform.position.x < _moveable.leftEdge.x && PullPushRight.transform.position.x < _moveable.leftEdge.x)))
                         return;
 
                     Vector2 direction = transform.position - _moveable.transform.position;
@@ -66,29 +60,7 @@ public class PushAndPull : MonoBehaviour
                             _pushing = true;
                             _pulling = false;
                         }
-
-                        //if (PullPushRight.position.x <= _moveable.LeftEdge.x)
-                        //{
-                        //    _pulling = true;
-                        //    _pushing = false;
-                        //}
-                        ////pushing from right (to left)
-                        //else if (PullPushLeft.position.x >= _moveable.RightEdge.x)
-                        //{
-                        //    _pushing = true;
-                        //    _pulling = false;
-                        //}
-
-                        if (_moveable.moveLeft)
-                        {
-                            MovingPossible = true;
-                            StartDraggingObj(false);
-                        }
-                        else
-                        {
-                            MovingPossible = false;
-                            //EndDraggingObj();
-                        }
+                        StartDraggingObj(false);
                     }
                     //go right
                     else if (xMovement > 0)
@@ -105,46 +77,7 @@ public class PushAndPull : MonoBehaviour
                             _pulling = true;
                             _pushing = false;
                         }
-
-                        ////pushing from left (to right)
-                        //if (PullPushRight.position.x <= _moveable.LeftEdge.x)
-                        //{
-                        //    _pushing = true;
-                        //    _pulling = false;
-                        //}
-                        ////pulling from right (to right)
-                        //else if (PullPushRight.position.x >= _moveable.RightEdge.x)
-                        //{
-                        //    _pulling = true;
-                        //    _pushing = false;
-                        //}
-
-                        if (_moveable.moveRight)
-                        {
-                            MovingPossible = true;
-                            StartDraggingObj(true);
-                        }
-                        else
-                        {
-                            MovingPossible = false;
-                           // EndDraggingObj();
-                        }
-                    }
-                    if (MovingPossible)
-                    {
-                        if (playerController.movementEnabled)
-                            return;
-                        playerController.movementEnabled = true;
-                        Debug.Log("X set playr movement true");
-                    }
-                    else
-                    {
-                        if (!playerController.movementEnabled)
-                            return;
-                        playerController.movementEnabled = false;
-                        Debug.Log("X set playr movement false");
-
-                        EndDraggingObj();
+                        StartDraggingObj(true);
                     }
                 }
                 else
@@ -152,72 +85,39 @@ public class PushAndPull : MonoBehaviour
                     _pushing = false;
                     _pulling = false;
                 }
-                if (!MovingPossible)
-                {
-                    if (!playerController.movementEnabled)
-                        return;
-                    playerController.movementEnabled = false;
-                    Debug.Log("set playr movement false");
-                }
-                else
-                {
-                    if (playerController.movementEnabled)
-                        return;
-                    playerController.movementEnabled = true;
-                    Debug.Log("set playr movement true");
-                }
             }
             else if (Input.GetButtonUp(_pushPullButton))
             {
-                MovingPossible = true;
-                playerController.movementEnabled = true;
                 EndDraggingObj();
                 _pushing = false;
                 _pulling = false;
             }
-            //if (!MovingPossible || !_movingObj)
-            //{
-            //    _moveable.GetComponent<Rigidbody2D>().isKinematic = true;
-            //}
-
-
-
-
         }
-        //else
-        //{
-        //    MovingPossible = true;
-        //}
-
-        //playerController.movementEnabled = MovingPossible;
     }
 
 
     private void StartDraggingObj(bool right)
     {
-        if (_movingObj)
+        if (_isMovingObj)
             return;
 
-        //Debug.Log("start p");
+        _playerController.jumpEnabled = false;
 
+        _isMovingObj = true;
 
-        playerController.jumpEnabled = false;
-
-        _movingObj = true;
-
-
-        if (!((PullPushLeft.transform.position.x > _moveable.RightEdge.x && PullPushRight.transform.position.x > _moveable.RightEdge.x) ||
-    (PullPushLeft.transform.position.x < _moveable.LeftEdge.x && PullPushRight.transform.position.x < _moveable.LeftEdge.x)))
+        //try start moving obj
+        if (!((PullPushLeft.transform.position.x > _moveable.rightEdge.x && PullPushRight.transform.position.x > _moveable.rightEdge.x) ||
+        (PullPushLeft.transform.position.x < _moveable.leftEdge.x && PullPushRight.transform.position.x < _moveable.leftEdge.x)))
             return;
 
         Vector3 targetPos = Vector3.zero;
         if (right)
         {
-            targetPos = _pushing ? PullPushRight.position + _moveable.EdgeWidhtOffset : PullPushLeft.position - _moveable.EdgeWidhtOffset;
+            targetPos = _pushing ? PullPushRight.position + _moveable.edgeWidhtOffset : PullPushLeft.position - _moveable.edgeWidhtOffset;
         }
         else
         {
-            targetPos = _pushing ? PullPushLeft.position - _moveable.EdgeWidhtOffset : PullPushRight.position + _moveable.EdgeWidhtOffset;
+            targetPos = _pushing ? PullPushLeft.position - _moveable.edgeWidhtOffset : PullPushRight.position + _moveable.edgeWidhtOffset;
         }
 
         _moveable.transform.position = targetPos;
@@ -228,17 +128,13 @@ public class PushAndPull : MonoBehaviour
 
     private void EndDraggingObj()
     {
-       // Debug.Log("try end p");
-
-        if (!_movingObj)
+        if (!_isMovingObj)
             return;
 
-        //Debug.Log("end p");
-
-        playerController.jumpEnabled = true;
+        _playerController.jumpEnabled = true;
 
         _moveable.transform.parent = null;
-        _movingObj = false;
+        _isMovingObj = false;
 
         _moveable.Moving = false;
     }

@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public bool jumpEnabled = true;
     public bool movementEnabled = true;
 
+    //TODO don't allow interaction with an object if already interacting with one
+
     // Start is called before the first frame update
     void Start()
     {
