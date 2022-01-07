@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mirror
   - Shiny
+  - RailCollider
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Rails
-  - 
+  - Moveable
   - 
   - 
   - 

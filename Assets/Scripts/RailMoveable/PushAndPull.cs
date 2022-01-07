@@ -17,6 +17,9 @@ public class PushAndPull : MonoBehaviour
 
     PlayerController playerController;
 
+    public Transform PullPushLeft;
+    public Transform PullPushRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +36,14 @@ public class PushAndPull : MonoBehaviour
             {
                 //IF pull button pressed: ...
 
-
-
-
                 float xMovement = Input.GetAxisRaw("Horizontal");
                 if (xMovement != 0)
                 {
-                    //Vector3 direction = transform.position - _moveable.transform.position; 
-                    //float dist = direction.magnitude;
-                    //Vector3 pullDir = direction.normalized; // short blue arrow from crate to player
+
+                    //dont start moving obj until next to it
+                    if (_movingObj || !((PullPushLeft.transform.position.x > _moveable.RightEdge.x && PullPushRight.transform.position.x > _moveable.RightEdge.x) ||
+                        (PullPushLeft.transform.position.x < _moveable.LeftEdge.x && PullPushRight.transform.position.x < _moveable.LeftEdge.x)))
+                        return;
 
                     Vector2 direction = transform.position - _moveable.transform.position;
                     float distance = direction.magnitude;
@@ -49,15 +51,14 @@ public class PushAndPull : MonoBehaviour
 
                     float playerRelativePosToMoveable = simpleDirection.x;
 
-
                     //go left
                     if (xMovement < 0)
                     {
-                        //pulling from left (to left)
+                        //pulling from left(to left)
                         if (playerRelativePosToMoveable < 0)
                         {
                             _pulling = true;
-                            _pulling = false;
+                            _pushing = false;
                         }
                         //pushing from right (to left)
                         else if (playerRelativePosToMoveable > 0)
@@ -66,27 +67,27 @@ public class PushAndPull : MonoBehaviour
                             _pulling = false;
                         }
 
+                        //if (PullPushRight.position.x <= _moveable.LeftEdge.x)
+                        //{
+                        //    _pulling = true;
+                        //    _pushing = false;
+                        //}
+                        ////pushing from right (to left)
+                        //else if (PullPushLeft.position.x >= _moveable.RightEdge.x)
+                        //{
+                        //    _pushing = true;
+                        //    _pulling = false;
+                        //}
+
                         if (_moveable.moveLeft)
                         {
                             MovingPossible = true;
-                            StartDraggingObj();
-
-                            //float pullF = 10;
-                            //// for fun, pull a little bit more if further away:
-                            //// (so, random, optional junk):
-                            //float pullForDist = (distance - 3) / 2.0f;
-                            //if (pullForDist > 20) pullForDist = 20;
-                            //pullF += pullForDist;
-                            //// Now apply to pull force, using standard meters/sec converted
-                            ////    into meters/frame:
-                            ////_moveable.gameObject.GetComponent<Rigidbody>().velocity += new Vector3(simpleDirection.x, 0, 0) * (pullF * Time.deltaTime);
-                            //_moveable.gameObject.GetComponent<Rigidbody2D>().velocity += simpleDirection * (pullF * Time.deltaTime);
+                            StartDraggingObj(false);
                         }
                         else
                         {
-                            //_moveable.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
                             MovingPossible = false;
-                            EndDraggingObj();
+                            //EndDraggingObj();
                         }
                     }
                     //go right
@@ -105,34 +106,44 @@ public class PushAndPull : MonoBehaviour
                             _pushing = false;
                         }
 
+                        ////pushing from left (to right)
+                        //if (PullPushRight.position.x <= _moveable.LeftEdge.x)
+                        //{
+                        //    _pushing = true;
+                        //    _pulling = false;
+                        //}
+                        ////pulling from right (to right)
+                        //else if (PullPushRight.position.x >= _moveable.RightEdge.x)
+                        //{
+                        //    _pulling = true;
+                        //    _pushing = false;
+                        //}
+
                         if (_moveable.moveRight)
                         {
                             MovingPossible = true;
-                            StartDraggingObj();
+                            StartDraggingObj(true);
                         }
                         else
                         {
                             MovingPossible = false;
-                            EndDraggingObj();
+                           // EndDraggingObj();
                         }
                     }
                     if (MovingPossible)
                     {
-                        //_moveable.GetComponent<Rigidbody2D>().isKinematic= false;
-                        ////move
-                        //float pullF = 10;
-                        //// for fun, pull a little bit more if further away:
-                        //// (so, random, optional junk):
-                        //float pullForDist = (distance - 3) / 2.0f;
-                        //if (pullForDist > 20) pullForDist = 20;
-                        //pullF += pullForDist;
-                        //// Now apply to pull force, using standard meters/sec converted
-                        ////    into meters/frame:
-                        ////_moveable.gameObject.GetComponent<Rigidbody>().velocity += new Vector3(simpleDirection.x, 0, 0) * (pullF * Time.deltaTime);
-                        //_moveable.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2(simpleDirection.x, 0) * (pullF * Time.deltaTime);
+                        if (playerController.movementEnabled)
+                            return;
+                        playerController.movementEnabled = true;
+                        Debug.Log("X set playr movement true");
                     }
                     else
                     {
+                        if (!playerController.movementEnabled)
+                            return;
+                        playerController.movementEnabled = false;
+                        Debug.Log("X set playr movement false");
+
                         EndDraggingObj();
                     }
                 }
@@ -143,11 +154,17 @@ public class PushAndPull : MonoBehaviour
                 }
                 if (!MovingPossible)
                 {
+                    if (!playerController.movementEnabled)
+                        return;
                     playerController.movementEnabled = false;
+                    Debug.Log("set playr movement false");
                 }
                 else
                 {
+                    if (playerController.movementEnabled)
+                        return;
                     playerController.movementEnabled = true;
+                    Debug.Log("set playr movement true");
                 }
             }
             else if (Input.GetButtonUp(_pushPullButton))
@@ -176,35 +193,54 @@ public class PushAndPull : MonoBehaviour
     }
 
 
-    private void StartDraggingObj()
+    private void StartDraggingObj(bool right)
     {
         if (_movingObj)
             return;
 
-        Debug.Log("start p");
+        //Debug.Log("start p");
 
 
         playerController.jumpEnabled = false;
 
-        Debug.Log("mov1? " + _moveable == null);
+        _movingObj = true;
+
+
+        if (!((PullPushLeft.transform.position.x > _moveable.RightEdge.x && PullPushRight.transform.position.x > _moveable.RightEdge.x) ||
+    (PullPushLeft.transform.position.x < _moveable.LeftEdge.x && PullPushRight.transform.position.x < _moveable.LeftEdge.x)))
+            return;
+
+        Vector3 targetPos = Vector3.zero;
+        if (right)
+        {
+            targetPos = _pushing ? PullPushRight.position + _moveable.EdgeWidhtOffset : PullPushLeft.position - _moveable.EdgeWidhtOffset;
+        }
+        else
+        {
+            targetPos = _pushing ? PullPushLeft.position - _moveable.EdgeWidhtOffset : PullPushRight.position + _moveable.EdgeWidhtOffset;
+        }
+
+        _moveable.transform.position = targetPos;
         _moveable.transform.parent = transform;
 
-        _movingObj = true;
+        _moveable.Moving = true;
     }
 
     private void EndDraggingObj()
     {
-        Debug.Log("try end p");
+       // Debug.Log("try end p");
 
         if (!_movingObj)
             return;
 
-        Debug.Log("end p");
+        //Debug.Log("end p");
 
         playerController.jumpEnabled = true;
 
         _moveable.transform.parent = null;
         _movingObj = false;
+
+        _moveable.Moving = false;
     }
 
     public void SetMoveable(Moveable moveable, bool putAsMoveable)
