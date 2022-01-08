@@ -6,6 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] public float speed;
     [SerializeField] public float jumpForce;
+    public bool jumpEnabled = true;
+    public bool movementEnabled = true;
+
+    //TODO influence movement speed when pushing/pulling
+
+    //TODO don't allow interaction with an object if already interacting with one
+
     // Start is called before the first frame update
     void Start()
     {

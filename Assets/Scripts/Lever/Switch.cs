@@ -7,6 +7,7 @@ public class Switch : MonoBehaviour
     private bool _on;
     private bool _turnable;
     private string _buttonKey = "Fire1";
+    private string _gamePadbuttonKey = "A";
 
     public List<GameObject> Switchables;
     public GameObject Button;
@@ -50,7 +51,7 @@ public class Switch : MonoBehaviour
     {
         if (_turnable)
         {
-            if (_switchButton.CheckInput(_buttonKey))
+            if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
             {
                 _on = !_on;
                 //foreach switchable, notify 1 switch on/off
