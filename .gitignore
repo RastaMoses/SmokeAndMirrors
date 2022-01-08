@@ -9,6 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+#Ignore Assets in this folder
+/[Aa]ssets/[Gg]itignore/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
