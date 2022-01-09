@@ -31,6 +31,8 @@ public class Moveable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawLine(transform.position, leftEdge, Color.red);
+        Debug.DrawLine(transform.position, rightEdge, Color.blue);
         if (!_interactable)
             return;
 

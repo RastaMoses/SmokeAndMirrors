@@ -120,8 +120,8 @@ public class PushAndPull : MonoBehaviour
             targetPos = _pushing ? PullPushLeft.position - _moveable.edgeWidhtOffset : PullPushRight.position + _moveable.edgeWidhtOffset;
         }
 
-        _moveable.transform.position = targetPos;
-        _moveable.transform.parent = transform;
+        _moveable.transform.position = new Vector2(targetPos.x, _moveable.transform.position.y); //move the moveable to the X position where the player character's sprite and animation touch it
+        _moveable.transform.SetParent(transform, true);
 
         _moveable.Moving = true;
     }
