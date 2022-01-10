@@ -4,9 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Mirror
   - Shiny
   - RailCollider
+=======
+  - Shiny
+  - Teleporter
+  - Light
+  - Fog
+  - Mirror
+>>>>>>> PrezLights
   layers:
   - Default
   - TransparentFX
@@ -14,11 +22,19 @@ TagManager:
   - Ground
   - Water
   - UI
+<<<<<<< HEAD
   - Rails
   - Moveable
   - 
   - 
   - 
+=======
+  - Shiny
+  - Teleporter
+  - Light
+  - Fog
+  - Mirror
+>>>>>>> PrezLights
   - 
   - 
   - 
