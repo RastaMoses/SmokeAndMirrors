@@ -106,6 +106,7 @@ public class PushAndPull : MonoBehaviour
         _isMovingObj = true;
 
         //try start moving obj
+        //TODO put a little leeway in where the player is already in front of the obj but still starts pushing
         if (!((PullPushLeft.transform.position.x > _moveable.rightEdge.x && PullPushRight.transform.position.x > _moveable.rightEdge.x) ||
         (PullPushLeft.transform.position.x < _moveable.leftEdge.x && PullPushRight.transform.position.x < _moveable.leftEdge.x)))
             return;
@@ -120,8 +121,10 @@ public class PushAndPull : MonoBehaviour
             targetPos = _pushing ? PullPushLeft.position - _moveable.edgeWidhtOffset : PullPushRight.position + _moveable.edgeWidhtOffset;
         }
 
-        _moveable.transform.position = targetPos;
-        _moveable.transform.parent = transform;
+        _moveable.transform.position = new Vector2(targetPos.x, _moveable.transform.position.y); //move the moveable to the X position where the player character's sprite and animation touch it
+        _moveable.transform.SetParent(transform, true);
+
+        //TODO adjust player moving speed to simulate weight of moveable
 
         _moveable.Moving = true;
     }
