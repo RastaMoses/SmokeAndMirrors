@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     PlayerController playerController;
     private bool _isGrounded;
 
+    public float fallMultiplier; //0,3f
+
     [SerializeField] private Transform _groundCheck;
 
     void Awake()
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             //Fall
             if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && rb.velocity.y > 0)
             {
-                yVelocity -= playerController.jumpForce * 0.3f;
+                yVelocity -= playerController.jumpForce * fallMultiplier;
             }
         }
         rb.velocity = new Vector2(xVelocity, yVelocity);
