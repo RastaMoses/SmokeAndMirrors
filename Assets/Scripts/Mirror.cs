@@ -8,7 +8,7 @@ public class Mirror : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<LineRenderer>().enabled = true;
     }
 
     // Update is called once per frame
@@ -16,10 +16,12 @@ public class Mirror : MonoBehaviour
     {
         if (reflecting)
         {
+            GetComponent<LineRenderer>().enabled = true;
             GetComponent<LightScript>().enabled = true;
         }
         else
         {
+            GetComponent<LineRenderer>().enabled = false;
             GetComponent<LightScript>().enabled = false;
         }
     }

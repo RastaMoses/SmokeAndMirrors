@@ -9,6 +9,7 @@ public class Teleporter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        otherEnd.GetComponent<LineRenderer>().enabled = false;
         otherEnd.enabled = false;
     }
 
@@ -17,10 +18,12 @@ public class Teleporter : MonoBehaviour
     {
         if (teleporting)
         {
+            otherEnd.GetComponent<LineRenderer>().enabled = true;
             otherEnd.enabled = true;
         }
         else
         {
+            otherEnd.GetComponent<LineRenderer>().enabled = false;
             otherEnd.enabled = false;
         }
     }
