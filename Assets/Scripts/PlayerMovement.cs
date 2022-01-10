@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         float yVelocity = rb.velocity.y;
 
         //TODO -maybe- no movement direction change while jumping
+        //TODO do not dead stop left/right movement when in air
 
         //jump
         if (playerController.jumpEnabled)
