@@ -3,38 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< HEAD
-  - Mirror
-  - Shiny
-  - RailCollider
-=======
-  - Shiny
-  - Teleporter
-  - Light
-  - Fog
-  - Mirror
->>>>>>> PrezLights
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-<<<<<<< HEAD
-  - Rails
-  - Moveable
   - 
   - 
   - 
-=======
-  - Shiny
-  - Teleporter
-  - Light
-  - Fog
-  - Mirror
->>>>>>> PrezLights
+  - 
+  - 
   - 
   - 
   - 
