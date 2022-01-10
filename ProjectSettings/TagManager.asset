@@ -8,6 +8,7 @@ TagManager:
   - Mirror
   - Light
   - RailCollider
+  - Teleporter
   layers:
   - Default
   - TransparentFX
@@ -17,11 +18,11 @@ TagManager:
   - UI
   - Rails
   - Moveable
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Shiny
+  - Teleporter
+  - Light
+  - Fog
+  - Mirror
   - 
   - 
   - 

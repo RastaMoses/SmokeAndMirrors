@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8925480087557269149}
   - component: {fileID: 8925480087557269150}
   - component: {fileID: 8925480087557269145}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Teleporter
   m_TagString: Teleporter
   m_Icon: {fileID: 0}
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherEnd: {fileID: 0}
   teleporting: 1
+  lightColor: {r: 0, g: 0, b: 0, a: 0}
   lightRange: 5
   contactFilter:
     useTriggers: 1

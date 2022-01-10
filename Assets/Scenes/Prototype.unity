@@ -207,6 +207,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stagelight_Circle_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 2760935340566050809, guid: e50a9b89a5cc9a147874e7e046b05052, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760935340566050809, guid: e50a9b89a5cc9a147874e7e046b05052, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
     - target: {fileID: 3250192367641341251, guid: e50a9b89a5cc9a147874e7e046b05052, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -484,11 +492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1951257442430679171, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.09
+      value: -17.54
       objectReference: {fileID: 0}
     - target: {fileID: 1951257442430679171, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.72
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 1951257442430679171, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -541,6 +549,14 @@ PrefabInstance:
     - target: {fileID: 4784329160321357099, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344830029282934044, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344830029282934044, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
+      propertyPath: m_TagString
+      value: Mirror
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
@@ -766,6 +782,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stagelight_Circle_Green
       objectReference: {fileID: 0}
+    - target: {fileID: 121733996469280070, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 121733996469280070, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
     - target: {fileID: 791416101678581756, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -780,11 +804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791416101678581756, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.48
+      value: -16.32
       objectReference: {fileID: 0}
     - target: {fileID: 791416101678581756, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 791416101678581756, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1129,6 +1153,14 @@ PrefabInstance:
     - target: {fileID: 6118506821622523844, guid: b9370b9c69e13a74681bb15eb39b2f17, type: 3}
       propertyPath: m_Name
       value: Stagelight_Square_Green_Rotated
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118506821622523844, guid: b9370b9c69e13a74681bb15eb39b2f17, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118506821622523844, guid: b9370b9c69e13a74681bb15eb39b2f17, type: 3}
+      propertyPath: m_TagString
+      value: Light
       objectReference: {fileID: 0}
     - target: {fileID: 6891243165830692222, guid: b9370b9c69e13a74681bb15eb39b2f17, type: 3}
       propertyPath: m_RootOrder
@@ -1742,6 +1774,32 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+--- !u!61 &814792014
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814792007}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000009536743, y: 0.2582412}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 0.8667243}
+  m_EdgeRadius: 0
 --- !u!1001 &946838183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1752,6 +1810,14 @@ PrefabInstance:
     - target: {fileID: 7412914690026034949, guid: 38680434e80e0464ea0ac0a99e7c2cc6, type: 3}
       propertyPath: m_Name
       value: Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412914690026034949, guid: 38680434e80e0464ea0ac0a99e7c2cc6, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412914690026034949, guid: 38680434e80e0464ea0ac0a99e7c2cc6, type: 3}
+      propertyPath: m_TagString
+      value: Teleporter
       objectReference: {fileID: 0}
     - target: {fileID: 7895977889264733631, guid: 38680434e80e0464ea0ac0a99e7c2cc6, type: 3}
       propertyPath: m_RootOrder
@@ -2053,7 +2119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4260127221078864963, guid: 456413b6cd5e41943974de54f9179918, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.07
+      value: -2.72
       objectReference: {fileID: 0}
     - target: {fileID: 4260127221078864963, guid: 456413b6cd5e41943974de54f9179918, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2316,11 +2382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7697677163122921623, guid: 1ae0694287b942e1090fd04405997c13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2
+      value: -14.18
       objectReference: {fileID: 0}
     - target: {fileID: 7697677163122921623, guid: 1ae0694287b942e1090fd04405997c13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77
+      value: -2.11
       objectReference: {fileID: 0}
     - target: {fileID: 7697677163122921623, guid: 1ae0694287b942e1090fd04405997c13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2497,6 +2563,14 @@ PrefabInstance:
     - target: {fileID: 7179805152374009770, guid: f491a72677f9f1b4cb0e117b20863fa4, type: 3}
       propertyPath: m_Name
       value: Stagelight_Square_Red_Rotated
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179805152374009770, guid: f491a72677f9f1b4cb0e117b20863fa4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179805152374009770, guid: f491a72677f9f1b4cb0e117b20863fa4, type: 3}
+      propertyPath: m_TagString
+      value: Light
       objectReference: {fileID: 0}
     - target: {fileID: 7559320641123775760, guid: f491a72677f9f1b4cb0e117b20863fa4, type: 3}
       propertyPath: m_RootOrder
@@ -2846,6 +2920,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stagelight_Circle_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 1023642583938714073, guid: 91631b8aac942e849bb4f6a48d9019c6, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023642583938714073, guid: 91631b8aac942e849bb4f6a48d9019c6, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
     - target: {fileID: 6670424805896276953, guid: 91631b8aac942e849bb4f6a48d9019c6, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -3159,8 +3241,16 @@ PrefabInstance:
       value: Stagelight_Square_Blue_Rotated
       objectReference: {fileID: 0}
     - target: {fileID: 8488911639096179010, guid: bcb2ff3bc81295a488cb0605af996e85, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488911639096179010, guid: bcb2ff3bc81295a488cb0605af996e85, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488911639096179010, guid: bcb2ff3bc81295a488cb0605af996e85, type: 3}
+      propertyPath: m_TagString
+      value: Light
       objectReference: {fileID: 0}
     - target: {fileID: 9116829928144364536, guid: bcb2ff3bc81295a488cb0605af996e85, type: 3}
       propertyPath: m_RootOrder
@@ -3538,7 +3628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4260127221078864963, guid: 456413b6cd5e41943974de54f9179918, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.23
+      value: -6.01
       objectReference: {fileID: 0}
     - target: {fileID: 4260127221078864963, guid: 456413b6cd5e41943974de54f9179918, type: 3}
       propertyPath: m_LocalPosition.y

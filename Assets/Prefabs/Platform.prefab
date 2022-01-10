@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1585566142531452105}
   - component: {fileID: 1585566142531452111}
   - component: {fileID: 8037860087542861981}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Platform
   m_TagString: Shiny
   m_Icon: {fileID: 0}
