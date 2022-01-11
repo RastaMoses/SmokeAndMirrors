@@ -40,7 +40,8 @@ public class Mirror : MonoBehaviour
             lr.enabled = true;
             lr.SetPositions(new Vector3[] { reflectOrigin, reflectOrigin + reflectDirection * 5f });
             Debug.DrawLine(reflectOrigin, reflectOrigin + reflectDirection * 5f, Color.black);
-            ec.SetPoints(new List<Vector2> { new Vector2(-transform.position.x + reflectOrigin.x, -transform.position.y + reflectOrigin.y), new Vector2(-transform.position.x + (reflectOrigin + reflectDirection * 5f).x, -transform.position.y + (reflectOrigin + reflectDirection * 5f).y) });
+            ec.SetPoints(new List<Vector2> { transform.InverseTransformPoint(new Vector2(-transform.position.x + reflectOrigin.x, -transform.position.y + reflectOrigin.y)),
+                                             transform.InverseTransformPoint(new Vector2(-transform.position.x + (reflectOrigin + reflectDirection * lightRange).x, -transform.position.y + (reflectOrigin + reflectDirection * lightRange).y)) });
 
             if (HitObject())
             {
