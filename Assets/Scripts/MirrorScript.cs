@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class LightScript : MonoBehaviour
+public class MirrorScript : MonoBehaviour
 {
     LineRenderer lr;
     public Color lightColor;
@@ -42,7 +42,7 @@ public class LightScript : MonoBehaviour
             {
                 previousObject = currentObject;
             }
-
+            
             UpdateObject(hitObject);
         }
         else
@@ -54,33 +54,11 @@ public class LightScript : MonoBehaviour
         }
     }
 
-    void OnMouseOver()
-    {
-        if (tag == "Light" && swappable)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (swap.swaps[0] == null)
-                {
-                    swap.swaps[0] = this;
-                }
-                else
-                {
-                    swap.swaps[1] = this;
-                }
-            }
-        }
-    }
-
     private void RevertObject(GameObject obj)
     {
         if (obj.tag == "Platform")
         {
             obj.GetComponent<Platform>().currentColor = Color.black;
-            if (obj.name == "ToBeDestroyed")
-            {
-                Destroy(obj);
-            }
             return;
         }
         if (obj.tag == "Teleporter")
@@ -116,7 +94,7 @@ public class LightScript : MonoBehaviour
         }
         if (obj.tag == "Mirror" && obj != gameObject)
         {
-            obj.GetComponent<MirrorScript>().lightColor = lightColor;
+            obj.GetComponent<LightScript>().lightColor = lightColor;
             obj.GetComponent<Mirror>().reflecting = true;
             return;
         }
@@ -129,33 +107,25 @@ public class LightScript : MonoBehaviour
 
     private GameObject Hit()
     {
-        rch = Physics2D.Raycast(transform.position, transform.right * lightRange, lightRange, layer);
+        rch = Physics2D.Raycast(transform.position, transform.up * lightRange, lightRange, layer);
         if (rch)
         {
             if (rch.collider.tag == "Platform" && !rch.collider.GetComponent<Platform>().activated)
             {
-                lr.SetPosition(1, transform.position + transform.right * lightRange);
+                lr.SetPosition(1, transform.position + transform.up * lightRange);
             }
             else
             {
                 lr.SetPosition(1, rch.point);
             }
-            Debug.DrawLine(transform.position, transform.position + transform.right * lightRange, Color.red);
+            Debug.DrawLine(transform.position, transform.position + transform.up * lightRange, Color.red);
             return rch.collider.gameObject;
         }
         else
         {
-            lr.SetPosition(1, transform.position + transform.right * lightRange);
-            Debug.DrawLine(transform.position, transform.position + transform.right * lightRange, Color.black);
+            lr.SetPosition(1, transform.position + transform.up * lightRange);
+            Debug.DrawLine(transform.position, transform.position + transform.up * lightRange, Color.black);
             return null;
-        }
-    }
-
-    void OnDisable()
-    {
-        if (currentObject != null)
-        {
-            RevertObject(currentObject);
         }
     }
 }

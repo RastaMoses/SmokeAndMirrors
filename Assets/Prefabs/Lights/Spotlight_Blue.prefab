@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2824948995041975415}
-  m_Mesh: {fileID: 1764176827769415397, guid: b042ae813b2a4594b8981e32b9449e7e, type: 3}
+  m_Mesh: {fileID: 1764176827769415397, guid: 5cf00f315c713a8488d10746ad098741, type: 3}
 --- !u!23 &2249021358538841374
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -226,6 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightColor: {r: 0, g: 0, b: 1, a: 0.29411766}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
   lightRange: 40
   swappable: 0
 --- !u!1 &4267396026076437048
@@ -267,7 +270,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4267396026076437048}
-  m_Mesh: {fileID: 2917460100978685297, guid: b042ae813b2a4594b8981e32b9449e7e, type: 3}
+  m_Mesh: {fileID: 2917460100978685297, guid: 7b6fe70fbeaf6a341833b5b10a9d3c40, type: 3}
 --- !u!23 &2003087139485158249
 MeshRenderer:
   m_ObjectHideFlags: 0

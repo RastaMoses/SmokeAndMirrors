@@ -28,7 +28,7 @@ public class PushAndPull : MonoBehaviour
     {
         if (_moveable!= null)
         {
-            if (Input.GetButton(_pushPullButton))
+            if (Input.GetButton(_pushPullButton) || Input.GetKey(KeyCode.F))
             {
 
                 float xMovement = Input.GetAxisRaw("Horizontal");
@@ -86,7 +86,7 @@ public class PushAndPull : MonoBehaviour
                     _pulling = false;
                 }
             }
-            else if (Input.GetButtonUp(_pushPullButton))
+            else if (Input.GetButtonUp(_pushPullButton) || Input.GetKeyUp(KeyCode.F))
             {
                 EndDraggingObj();
                 _pushing = false;

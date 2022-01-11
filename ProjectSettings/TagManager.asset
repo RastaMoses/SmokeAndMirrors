@@ -9,6 +9,7 @@ TagManager:
   - Light
   - RailCollider
   - Teleporter
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Mirror
   - Player
   - Glass
-  - 
+  - Ground
   - 
   - 
   - 

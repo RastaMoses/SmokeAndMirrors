@@ -16,12 +16,12 @@ public class Mirror : MonoBehaviour
     {
         if (reflecting)
         {
-            GetComponent<LightScript>().enabled = true;
+            GetComponent<MirrorScript>().enabled = true;
             GetComponent<LineRenderer>().enabled = true;
         }
         else
         {
-            GetComponent<LightScript>().enabled = false;
+            GetComponent<MirrorScript>().enabled = false;
             GetComponent<LineRenderer>().enabled = false;
         }
     }
