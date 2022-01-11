@@ -139,11 +139,11 @@ public class LightScript : MonoBehaviour
             Vector2 bisectPoint = (transform.position + overlapCollider.transform.position) / 2;
             Vector2 bisectDirection = (overlapPoint - bisectPoint).normalized;
 
-            Debug.DrawLine(overlapPoint, overlapPoint + bisectDirection * 5f, Color.black);
+            Debug.DrawLine(overlapPoint, overlapPoint + bisectDirection * lightRange, Color.black);
 
             lr.positionCount = 3;
             lr.SetPosition(1, overlapPoint);
-            Physics2D.Raycast(overlapPoint, bisectDirection, contactFilter, rch, 5f);
+            Physics2D.Raycast(overlapPoint, bisectDirection, contactFilter, rch, lightRange);
             GameObject hitObject = FilterHitObject(rch);
             if (hitObject)
             {
@@ -152,14 +152,14 @@ public class LightScript : MonoBehaviour
             }
             else
             {
-                lr.SetPosition(2, overlapPoint + bisectDirection * 5f);
+                lr.SetPosition(2, overlapPoint + bisectDirection * lightRange);
                 return null;
             }
         }
         else
         {
             lr.positionCount = 2;
-            Physics2D.Raycast(transform.position, transform.right, contactFilter, rch, 5f);
+            Physics2D.Raycast(transform.position, transform.right, contactFilter, rch, lightRange);
             GameObject hitObject = FilterHitObject(rch);
 
             if (hitObject)

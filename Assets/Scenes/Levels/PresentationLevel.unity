@@ -578,6 +578,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2039890730}
     m_Modifications:
+    - target: {fileID: 814792011, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
+      propertyPath: lightRange
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1179823130443162169, guid: 797510d3421b8264997f7a15d004d9ac, type: 3}
       propertyPath: m_Name
       value: Mirror

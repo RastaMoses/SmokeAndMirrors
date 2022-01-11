@@ -38,8 +38,8 @@ public class Mirror : MonoBehaviour
         if (reflecting)
         {
             lr.enabled = true;
-            lr.SetPositions(new Vector3[] { reflectOrigin, reflectOrigin + reflectDirection * 5f });
-            Debug.DrawLine(reflectOrigin, reflectOrigin + reflectDirection * 5f, Color.black);
+            lr.SetPositions(new Vector3[] { reflectOrigin, reflectOrigin + reflectDirection * lightRange });
+            Debug.DrawLine(reflectOrigin, reflectOrigin + reflectDirection * lightRange, Color.black);
             ec.SetPoints(new List<Vector2> { transform.InverseTransformPoint(new Vector2(-transform.position.x + reflectOrigin.x, -transform.position.y + reflectOrigin.y)),
                                              transform.InverseTransformPoint(new Vector2(-transform.position.x + (reflectOrigin + reflectDirection * lightRange).x, -transform.position.y + (reflectOrigin + reflectDirection * lightRange).y)) });
 
@@ -117,11 +117,11 @@ public class Mirror : MonoBehaviour
             Vector2 bisectPoint = (transform.position + overlapCollider.transform.position) / 2;
             Vector2 bisectDirection = (overlapPoint - bisectPoint).normalized;
 
-            Debug.DrawLine(overlapPoint, overlapPoint + bisectDirection * 5f, Color.black);
+            Debug.DrawLine(overlapPoint, overlapPoint + bisectDirection * lightRange, Color.black);
 
             lr.positionCount = 3;
             lr.SetPosition(1, overlapPoint);
-            Physics2D.Raycast(overlapPoint, bisectDirection, contactFilter, rch, 5f);
+            Physics2D.Raycast(overlapPoint, bisectDirection, contactFilter, rch, lightRange);
             GameObject hitObject = FilterHitObject(rch);
             if (hitObject)
             {
@@ -130,14 +130,14 @@ public class Mirror : MonoBehaviour
             }
             else
             {
-                lr.SetPosition(2, overlapPoint + bisectDirection * 5f);
+                lr.SetPosition(2, overlapPoint + bisectDirection * lightRange);
                 return null;
             }
         }
         else
         {
             lr.positionCount = 2;
-            Physics2D.Raycast(reflectOrigin, reflectDirection, contactFilter, rch, 5f);
+            Physics2D.Raycast(reflectOrigin, reflectDirection, contactFilter, rch, lightRange);
             GameObject hitObject = FilterHitObject(rch);
 
             if (hitObject)
@@ -147,7 +147,7 @@ public class Mirror : MonoBehaviour
             }
             else
             {
-                lr.SetPosition(1, reflectOrigin + reflectDirection * 5f);
+                lr.SetPosition(1, reflectOrigin + reflectDirection * lightRange);
                 return null;
             }
         }
