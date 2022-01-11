@@ -4,9 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Mirror
   - Shiny
   - RailCollider
+=======
+  - Light
+  - Teleporter
+  - Mirror
+  - Platform
+>>>>>>> NewEnvProto
   layers:
   - Default
   - TransparentFX
