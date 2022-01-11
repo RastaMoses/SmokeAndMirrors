@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7633128103519900056}
   - component: {fileID: 6791861463529414205}
   - component: {fileID: 8765550022688582391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform_Truss_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

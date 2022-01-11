@@ -11,7 +11,7 @@ public class ShiniePlatform : Shinie
     void Start()
     {
         MakeInvisible();
-        GetComponent<SpriteRenderer>().color = requiredColor;
+        //GetComponent<SpriteRenderer>().color = requiredColor;
         currentColor = Color.black;
     }
 
@@ -30,13 +30,13 @@ public class ShiniePlatform : Shinie
 
     public override void MakeInvisible(){
         debugVisible = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     public override void MakeVisible(){
         debugVisible = true;
-        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<MeshRenderer>().enabled = true;
         GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
