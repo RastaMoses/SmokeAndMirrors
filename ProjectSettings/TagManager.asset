@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Light
-  - Platform
-  - Teleporter
+  - Shiny
   - Mirror
+  - Light
+  - RailCollider
+  - Teleporter
   layers:
   - Default
   - TransparentFX
@@ -15,15 +16,15 @@ TagManager:
   - 
   - Water
   - UI
-  - Light
+  - Rails
+  - Moveable
+  - Shiny
   - Teleporter
+  - Light
+  - Fog
   - Mirror
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Glass
   - 
   - 
   - 

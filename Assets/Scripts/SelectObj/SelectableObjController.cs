@@ -64,8 +64,6 @@ public class SelectableObjController : MonoBehaviour
 
         if (InSelectionMode)
         {
-           // if(_selectableObjs)
-
             //TODO cast "spellray" from player to selected obj
             Debug.DrawLine(Player.transform.position, _selectedObj.transform.position, Color.blue);
 
@@ -81,14 +79,13 @@ public class SelectableObjController : MonoBehaviour
                 //selectedObj.transform.rotation = Quaternion.RotateTowards(selectedObj.transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
 
                 //alt: direct rotation without rotation movement
-                _selectedObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, target);
-
+                _selectedObj.transform.rotation = Quaternion.FromToRotation(Vector3.right, target);
             }
 
             if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Left Bumper"))
             {
                 _selectedObj.DeSelect();
-                //select obj direction back
+                //select obj direction counter clockwise
                 int nextIndex = _selectableObjs.IndexOf(_selectedObj) - 1;
                 if (nextIndex < 0)
                     nextIndex = _selectableObjs.Count - 1;
@@ -98,7 +95,7 @@ public class SelectableObjController : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("Right Bumper"))
             {
                 _selectedObj.DeSelect();
-                //select obj direction forth
+                //select obj direction clockwise
                 int nextIndex = _selectableObjs.IndexOf(_selectedObj) + 1;
                 if (nextIndex >= _selectableObjs.Count)
                     nextIndex = 0;
