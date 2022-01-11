@@ -4,26 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Mirror
-  - Shiny
-  - RailCollider
-=======
   - Light
+  - Platform
   - Teleporter
   - Mirror
-  - Platform
->>>>>>> NewEnvProto
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Rails
-  - Moveable
-  - 
+  - Light
+  - Teleporter
+  - Mirror
   - 
   - 
   - 

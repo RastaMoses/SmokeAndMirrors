@@ -24,7 +24,7 @@ public class LightScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<SpriteRenderer>().color = lightColor;
+        // GetComponent<SpriteRenderer>().color = lightColor;
         lr.startColor = lightColor;
         lr.endColor = lightColor;
         lr.SetPosition(0, transform.position);
@@ -37,6 +37,11 @@ public class LightScript : MonoBehaviour
                 RevertObject(previousObject);
                 previousObject = currentObject;
             }
+            else
+            {
+                previousObject = currentObject;
+            }
+            
             UpdateObject(hitObject);
         }
         else
@@ -81,7 +86,6 @@ public class LightScript : MonoBehaviour
         }
         if (obj.tag == "Mirror")
         {
-            obj.GetComponent<LightScript>().lightColor = Color.white;
             obj.GetComponent<Mirror>().reflecting = false;
             return;
         }
@@ -99,13 +103,13 @@ public class LightScript : MonoBehaviour
             obj.GetComponent<Platform>().AddColor(lightColor);
             return;
         }
-        if (obj.tag == "Teleporter")
+        if (obj.tag == "Teleporter" && obj != gameObject)
         {
             obj.GetComponent<Teleporter>().otherEnd.lightColor = lightColor;
             obj.GetComponent<Teleporter>().teleporting = true;
             return;
         }
-        if (obj.tag == "Mirror")
+        if (obj.tag == "Mirror" && obj != gameObject)
         {
             obj.GetComponent<LightScript>().lightColor = lightColor;
             obj.GetComponent<Mirror>().reflecting = true;
