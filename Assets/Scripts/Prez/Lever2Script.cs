@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Lever2Script : MonoBehaviour
 {
+    [SerializeField] Material leverOnMat;
+    [SerializeField] Material leverOffMat;
     public bool leverSwitch;
     public GameObject teleporter;
     public GameObject enableObj;
@@ -20,13 +22,22 @@ public class Lever2Script : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0,0,leverSwitch ? -130 : -40);
         teleporter.transform.rotation = rotation;
 
-        enableObj.active = leverSwitch;
+        enableObj.GetComponent<LightScript>().enabled = leverSwitch;
+        enableObj.GetComponent<LineRenderer>().enabled = leverSwitch;
         if (Vector2.Distance(player.position, transform.position) < 2f)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 leverSwitch = !leverSwitch;
             }
+        }
+        if (leverSwitch)
+        {
+            GetComponent<MeshRenderer>().material = leverOnMat;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material = leverOffMat;
         }
     }
 }

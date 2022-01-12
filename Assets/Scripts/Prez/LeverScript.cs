@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LeverScript : MonoBehaviour
 {
+    [SerializeField] Material leverOnMat;
+    [SerializeField] Material leverOffMat;
     public List<GameObject> objs;
     public List<MouseRotate> mr;
     public Transform player;
@@ -31,6 +33,14 @@ public class LeverScript : MonoBehaviour
             {
                 obj.SetActive(leverSwitch);
             }
+        }
+        if (leverSwitch)
+        {
+            GetComponent<MeshRenderer>().material = leverOnMat;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material = leverOffMat;
         }
 
         foreach (MouseRotate m in mr)
