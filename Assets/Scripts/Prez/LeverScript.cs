@@ -11,7 +11,7 @@ public class LeverScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        leverSwitch = false;
     }
 
     // Update is called once per frame
@@ -19,7 +19,18 @@ public class LeverScript : MonoBehaviour
     {
         foreach (GameObject obj in objs)
         {
-            obj.SetActive(leverSwitch);
+            if (obj.GetComponent<LightScript>())
+            {
+
+                obj.GetComponent<LightScript>().enabled = leverSwitch;
+
+                obj.GetComponent<LineRenderer>().enabled = leverSwitch;
+
+            }
+            else
+            {
+                obj.SetActive(leverSwitch);
+            }
         }
 
         foreach (MouseRotate m in mr)
@@ -31,7 +42,7 @@ public class LeverScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                leverSwitch = !leverSwitch;
+                leverSwitch = true;
             }
         }
     }
