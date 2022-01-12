@@ -17,7 +17,7 @@ public class Lever2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Quaternion rotation = Quaternion.Euler(0,0,leverSwitch ? 225 : 135);
+        Quaternion rotation = Quaternion.Euler(0,0,leverSwitch ? -40 : 49);
         teleporter.transform.rotation = rotation;
 
         enableObj.active = leverSwitch;
