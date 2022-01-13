@@ -482,6 +482,14 @@ PrefabInstance:
       value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 2841053401173293802, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841053401173293802, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841053401173293802, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
       propertyPath: m_Size.x
       value: 1.2147619
       objectReference: {fileID: 0}
