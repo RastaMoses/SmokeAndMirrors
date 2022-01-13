@@ -99,6 +99,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Animations()
     {
+        if (rb.velocity.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isFalling",isFalling);
     }
