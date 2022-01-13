@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 yVelocity = playerController.jumpForce;
                 animator.SetTrigger("jump");
-                isFalling = false;
+                
             }
             //Fall
             if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && rb.velocity.y > 0)
