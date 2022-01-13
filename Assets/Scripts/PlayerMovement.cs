@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isGrounded;
     bool isMoving;
     bool isFalling;
+    bool leverPulling;
 
     //Cached Component Reference
     Rigidbody2D rb;
@@ -37,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerController.movementEnabled)
+        if (!playerController.movementEnabled || leverPulling)
         {
             rb.velocity = Vector2.zero;
             return;
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 yVelocity = playerController.jumpForce;
                 animator.SetTrigger("jump");
+                isFalling = false;
             }
             //Fall
             if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && rb.velocity.y > 0)
@@ -103,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else
+        if(rb.velocity.x > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
@@ -111,4 +113,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isFalling",isFalling);
     }
 
+
+    public void SetLeverPulling()
+    {
+        animator.SetTrigger("lever");
+        leverPulling = true;
+    }
+
+    public void StopLeverPulling()
+    {
+        Debug.Log("Stop Lever Pulling");
+        leverPulling = false;
+    }
 }

@@ -39,6 +39,7 @@ public class Switch : MonoBehaviour
         if (_on)
         {
             GetComponent<SpriteRenderer>().color = _onColour;
+            
         }
         else
         {
@@ -53,6 +54,8 @@ public class Switch : MonoBehaviour
         {
             if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
             {
+                //Animation Set Trigger
+                FindObjectOfType<PlayerMovement>().SetLeverPulling();
                 _on = !_on;
                 //foreach switchable, notify 1 switch on/off
                 foreach (GameObject switchable in Switchables)
