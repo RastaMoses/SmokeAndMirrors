@@ -634,6 +634,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCapsule
       objectReference: {fileID: 0}
+    - target: {fileID: 2841053401173293806, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
+      propertyPath: jumpDelay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2841053401383026476, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
       propertyPath: m_Icon
       value: 
