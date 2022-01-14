@@ -6,16 +6,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Configure Params
+    [SerializeField] private Transform _groundCheck;
+    [SerializeField] float jumpDelay = 0.1f;
+
+    //State
+    private bool _isGrounded;
+    bool isMoving;
+    bool isFalling;
+    bool leverPulling;
+    bool hasJumped; //Checks if player is waiting on jump delay
+
+    float temporaryJumpForce; //used for shorter jumps during jumpdelay
+    float yVelocity;
+    float xVelocity;
+
+    //Cached Component Reference
     Rigidbody2D rb;
     PlayerController playerController;
-    private bool _isGrounded;
+    Animator animator;
 
-    [SerializeField] private Transform _groundCheck;
+
+
+
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
+        
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -26,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerController.movementEnabled)
+        if (!playerController.movementEnabled || leverPulling)
         {
             rb.velocity = Vector2.zero;
             return;
@@ -41,24 +62,96 @@ public class PlayerMovement : MonoBehaviour
             _isGrounded = false;
         }
 
-        float xVelocity = Input.GetAxisRaw("Horizontal") * playerController.speed;
-        float yVelocity = rb.velocity.y;
+        xVelocity = Input.GetAxisRaw("Horizontal") * playerController.speed;
+        if(rb.velocity.x != 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+        if (!hasJumped)
+        {
+            yVelocity = rb.velocity.y;
+        }
 
         //TODO -maybe- no movement direction change while jumping
 
         //jump
         if (playerController.jumpEnabled)
         {
-            if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("X")) && _isGrounded)
+            if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("X")) && _isGrounded && !hasJumped)
             {
-                yVelocity = playerController.jumpForce;
+                hasJumped = true;
+                animator.SetTrigger("jump");
+                StartCoroutine(JumpDelay());
+                
             }
             //Fall
-            if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && rb.velocity.y > 0)
+            //Slows down jump during jump delay
+            if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && hasJumped)
             {
-                yVelocity -= playerController.jumpForce * 0.3f;
+                temporaryJumpForce = playerController.jumpForce * 0.3f;
+            }
+            //slows down jump after liftoff
+            if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && yVelocity > 0)
+            {
+                yVelocity = playerController.jumpForce * 0.3f;
             }
         }
+        
         rb.velocity = new Vector2(xVelocity, yVelocity);
+
+        
+        if (rb.velocity.y < 0.1f && rb.velocity.y > -0.1f && _isGrounded && !hasJumped)
+        {
+            isFalling = false;
+        }
+        else
+        {
+            isFalling = true;
+        }
+        Animations();
+    }
+
+
+    private void Animations()
+    {
+        if (rb.velocity.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        if(rb.velocity.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isFalling",isFalling);
+    }
+
+
+    public void SetLeverPulling()
+    {
+        animator.SetTrigger("lever");
+        leverPulling = true;
+    }
+
+    public void StopLeverPulling()
+    {
+        Debug.Log("Stop Lever Pulling");
+        leverPulling = false;
+    }
+
+    IEnumerator JumpDelay()
+    {
+        //Needed for animation and better feeling
+        yield return new WaitForSeconds(jumpDelay);
+        yVelocity = playerController.jumpForce;
+        yVelocity -= temporaryJumpForce;
+        rb.velocity = new Vector2(xVelocity, yVelocity);
+        hasJumped = false;
+        temporaryJumpForce = 0;
+        
     }
 }
