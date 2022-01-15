@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     PlayerController playerController;
     Animator animator;
-
+    SFX sfx;
 
 
 
@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
+        sfx = GetComponent<SFX>();
         
         
     }
@@ -133,18 +134,23 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetLeverPulling()
     {
+        //SFX
+        
+
         animator.SetTrigger("lever");
         leverPulling = true;
     }
 
     public void StopLeverPulling()
     {
-        Debug.Log("Stop Lever Pulling");
         leverPulling = false;
     }
 
     IEnumerator JumpDelay()
     {
+        //SFX
+        sfx.Jump();
+
         //Needed for animation and better feeling
         yield return new WaitForSeconds(jumpDelay);
         yVelocity = playerController.jumpForce;
@@ -153,5 +159,14 @@ public class PlayerMovement : MonoBehaviour
         hasJumped = false;
         temporaryJumpForce = 0;
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Plays Landing Sound if landing
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && !_isGrounded)
+        {
+            sfx.Landing();
+        }
     }
 }
