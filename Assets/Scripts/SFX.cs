@@ -8,6 +8,7 @@ public class SFX : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] List<AudioClip> footsteps;
+    [SerializeField] [Range(0, 1f)] float footstepsVolume = 0.06f;
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip magicMode;
     [SerializeField] AudioClip landing;
@@ -15,6 +16,7 @@ public class SFX : MonoBehaviour
     [Header("Interactables")]
     [SerializeField] AudioClip lever;
     [SerializeField] AudioClip rails;
+    [SerializeField] float railsFadeTime = 0.2f;
     [SerializeField] AudioClip railsEndHit;
     [SerializeField] AudioClip shinies;
 
@@ -22,6 +24,7 @@ public class SFX : MonoBehaviour
     [SerializeField] AudioClip lightsOn;
     [SerializeField] AudioClip lightsOff;
     [SerializeField] AudioClip rotating;
+    [SerializeField] float rotatingFadeTime = 0.2f;
     [SerializeField] AudioClip selectBulb;
     [SerializeField] AudioClip switchBulb;
 
@@ -29,14 +32,18 @@ public class SFX : MonoBehaviour
 
     bool pausedRails;
     bool pausedRotating;
+    float startVolume;
 
 
     //Cached Component Configure
     AudioSource audioSource;
+    Coroutine railsCoroutine;
+    Coroutine rotatingCoroutine;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        startVolume = audioSource.volume;
     }
 
 
@@ -44,7 +51,7 @@ public class SFX : MonoBehaviour
     public void Footsteps()
     {
         AudioClip clip = footsteps[Random.Range(0,footsteps.Count -1)];
-        audioSource.PlayOneShot(clip);
+        audioSource.PlayOneShot(clip, footstepsVolume);
     }
 
     public void Jump()
@@ -76,10 +83,30 @@ public class SFX : MonoBehaviour
         {
             audioSource.clip = rails;
         }
-        audioSource.Play();
+        if (!audioSource.isPlaying)
+        {
+            railsCoroutine = StartCoroutine(RailsFadeIn());
+            audioSource.Play();
+        }
     }
+
+    IEnumerator RailsFadeIn()
+    {
+        float currentTime = 0;
+        float start = 0;
+
+        while(currentTime < railsFadeTime)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, startVolume, currentTime / railsFadeTime);
+            yield return null;
+        }
+        yield break;
+    }
+
     public void PauseRails()
     {
+        StopCoroutine(railsCoroutine);
         audioSource.Pause();
         pausedRails = true;
     }
@@ -116,10 +143,28 @@ public class SFX : MonoBehaviour
         {
             audioSource.clip = rotating;
         }
-        audioSource.Play();
+        if (!audioSource.isPlaying)
+        {
+            rotatingCoroutine = StartCoroutine(RotatingFadeIn());
+            audioSource.Play();
+        }
+    }
+    IEnumerator RotatingFadeIn()
+    {
+        float currentTime = 0;
+        float start = 0;
+
+        while (currentTime < rotatingFadeTime)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, startVolume, currentTime / rotatingFadeTime);
+            yield return null;
+        }
+        yield break;
     }
     public void PauseRotating()
     {
+        StopCoroutine(rotatingCoroutine);
         audioSource.Pause();
         pausedRotating = true;
     }
