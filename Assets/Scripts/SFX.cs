@@ -46,6 +46,7 @@ public class SFX : MonoBehaviour
         startVolume = audioSource.volume;
     }
 
+    
 
     #region Player
     public void Footsteps()
