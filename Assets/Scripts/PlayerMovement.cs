@@ -168,5 +168,10 @@ public class PlayerMovement : MonoBehaviour
         {
             sfx.Landing();
         }
+
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            playerController.Respawn();
+        }
     }
 }
