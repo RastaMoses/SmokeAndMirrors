@@ -19,10 +19,15 @@ public class SceneLoader : MonoBehaviour
     {
         Debug.Log("Load Next Scene");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        //StartCoroutine(LoadLevelTransition(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    public void LoadLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
+    }
+
+    IEnumerator LoadLevelTransition(int levelIndex)
     {
         transition.SetTrigger("Start");
 
