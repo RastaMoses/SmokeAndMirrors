@@ -52,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2d00193037d89f84291cc0bcd3369873, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -80,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_321e6c40972443d1badcd927fb66beeb: 1
+    - Vector1_321e6c40972443d1badcd927fb66beeb: 10
     - Vector1_db8086705b0145bebd87079f65abf9d5: 2
     - Vector1_e16db36df9e543d99bc0e255244cda2e: 3
     - _AlphaClip: 0
@@ -111,10 +111,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_443a9237d9174930aaafc0c79d20f952: {r: 0.764151, g: 0.19103771, b: 0.19103771, a: 0.4627451}
-    - Color_bd6f6b7f352c41ee9d2ab16a7d6458e1: {r: 0.8207547, g: 0.70073867, b: 0.70073867, a: 0.46666667}
-    - Color_ea5a6bc41c1d4b3e9071bb75ff1e974f: {r: 1, g: 0, b: 0, a: 1}
-    - Color_ef32cd73493942b9a4f45d9c364f1b84: {r: 4, g: 0, b: 0, a: 1}
+    - Color_443a9237d9174930aaafc0c79d20f952: {r: 0, g: 0, b: 1, a: 1}
+    - Color_bd6f6b7f352c41ee9d2ab16a7d6458e1: {r: 0.2236116, g: 0.47491795, b: 0.6320754, a: 1}
+    - Color_ea5a6bc41c1d4b3e9071bb75ff1e974f: {r: 0.5795657, g: 0.72219914, b: 4, a: 1}
+    - Color_ef32cd73493942b9a4f45d9c364f1b84: {r: 0.008588377, g: 0, b: 3.4339623, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -8,6 +8,9 @@
         },
         {
             "m_Id": "95ea2a2a8ffc450a9b814d4870c974f5"
+        },
+        {
+            "m_Id": "6fbabe5a3c804c2584eec58f8b8245b8"
         }
     ],
     "m_Keywords": [],
@@ -1300,6 +1303,29 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.NormalTS"
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "6fbabe5a3c804c2584eec58f8b8245b8",
+    "m_Guid": {
+        "m_GuidSerialized": "4b53c707-535f-4be0-824b-843836d1be88"
+    },
+    "m_Name": "Transparency",
+    "m_DefaultReferenceName": "Vector1_6fbabe5a3c804c2584eec58f8b8245b8",
+    "m_OverrideReferenceName": "_Transparency",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.10000000149011612,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
