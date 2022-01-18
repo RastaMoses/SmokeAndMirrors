@@ -420,7 +420,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "fn",
     "m_FunctionSource": "",
-    "m_FunctionBody": "Out = refract(normalize(View), normalize(Normal), IOR);"
+    "m_FunctionBody": "Out = refract(normalize(View), \nnormalize(Normal), IOR);"
 }
 
 {
