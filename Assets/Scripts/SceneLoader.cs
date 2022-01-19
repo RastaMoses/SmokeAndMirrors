@@ -22,7 +22,7 @@ public class SceneLoader : MonoBehaviour
         //StartCoroutine(LoadLevelTransition(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    public void LoadLevel(int levelIndex)
+    static public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
     }
@@ -36,21 +36,14 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
-    public void LoadMainMenu()
+    static public void LoadMainMenu()
     {
-
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
-    public void QuitGame()
+    static public void QuitGame()
     {
         Application.Quit();
-      
-
-    }
-    void Update()
-    {
-        
     }
 }

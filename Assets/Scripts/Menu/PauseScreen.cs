@@ -6,12 +6,17 @@ public class PauseScreen : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseScreen;
 
-    string pauseButtonKey;
+    private string _pauseButtonKey = "Start";
+
+    void Start()
+    {
+        _pauseScreen.SetActive(false);
+    }
 
     void Update()
     {
         //check for input to pause
-        if (Input.GetButtonDown(pauseButtonKey))
+        if (Input.GetButtonDown(_pauseButtonKey))
         {
             if (StateManager.GamePaused)
                 return;
@@ -24,7 +29,13 @@ public class PauseScreen : MonoBehaviour
 
     public void Unpause()
     {
-        _pauseScreen.SetActive(false);
         StateManager.Pause();
+        _pauseScreen.SetActive(false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Debug.Log("return to main");
+        //SceneLoader.LoadMainMenu();
     }
 }

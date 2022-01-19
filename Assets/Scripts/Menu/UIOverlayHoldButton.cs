@@ -31,6 +31,11 @@ public class UIOverlayHoldButton : MonoBehaviour, IPointerDownHandler, IPointerU
         _currentTime = 0;
     }
 
+    private void OnEnable()
+    {
+        Reset();
+    }
+
     void Update()
     {
         if (!Interactable)
