@@ -47,7 +47,7 @@ public class ChildLight : LightScript
                         childLight = new GameObject("Teleporter Child");
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
                         childLight.GetComponent<ChildLight>().lightColor = lightColor;
                         childLight.GetComponent<ChildLight>().lightMaterial = lightMaterial;
@@ -56,7 +56,7 @@ public class ChildLight : LightScript
                     else
                     {
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
                 }
                 if (rch.collider.tag == "Platform")
