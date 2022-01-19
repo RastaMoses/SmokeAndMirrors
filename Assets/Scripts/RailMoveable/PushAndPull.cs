@@ -17,6 +17,9 @@ public class PushAndPull : MonoBehaviour
     private Moveable _moveable;
     private bool _isMovingObj;
 
+    //State
+    float xMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +34,15 @@ public class PushAndPull : MonoBehaviour
             if (Input.GetButton(_pushPullButton))
             {
 
-                float xMovement = Input.GetAxisRaw("Horizontal");
+                xMovement = Input.GetAxisRaw("Horizontal");
                 if (xMovement != 0)
                 {
+                    if (_isMovingObj)
+                    {
+                        //SFX Start
+                        _moveable.gameObject.GetComponent<SFX>().PlayRails();
+                    }
+
                     //start moving obj but dont start moving obj until next to it
                     if (_isMovingObj || !((PullPushLeft.transform.position.x > _moveable.rightEdge.x && PullPushRight.transform.position.x > _moveable.rightEdge.x) ||
                         (PullPushLeft.transform.position.x < _moveable.leftEdge.x && PullPushRight.transform.position.x < _moveable.leftEdge.x)))
@@ -84,6 +93,10 @@ public class PushAndPull : MonoBehaviour
                 {
                     _pushing = false;
                     _pulling = false;
+                    
+                    //SFX Stop
+                    _moveable.gameObject.GetComponent<SFX>().PauseRails();
+                    
                 }
             }
             else if (Input.GetButtonUp(_pushPullButton))
@@ -127,6 +140,13 @@ public class PushAndPull : MonoBehaviour
         //TODO adjust player moving speed to simulate weight of moveable
 
         _moveable.Moving = true;
+
+        if (xMovement != 0)
+        {
+            //SFX Start
+            _moveable.gameObject.GetComponent<SFX>().PlayRails();
+        }
+        
     }
 
     private void EndDraggingObj()
@@ -140,6 +160,9 @@ public class PushAndPull : MonoBehaviour
         _isMovingObj = false;
 
         _moveable.Moving = false;
+
+        //SFX Stop
+        _moveable.gameObject.GetComponent<SFX>().PauseRails();
     }
 
     public void SetMoveable(Moveable moveable, bool putAsMoveable)

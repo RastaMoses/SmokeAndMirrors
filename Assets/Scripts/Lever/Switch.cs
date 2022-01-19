@@ -18,6 +18,13 @@ public class Switch : MonoBehaviour
     private Color32 _onColour = Color.green;
 
 
+    //Cached Comp Configuration
+    SFX sfx;
+    private void Awake()
+    {
+        sfx = GetComponent<SFX>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +46,7 @@ public class Switch : MonoBehaviour
         if (_on)
         {
             GetComponent<SpriteRenderer>().color = _onColour;
+            
         }
         else
         {
@@ -53,6 +61,9 @@ public class Switch : MonoBehaviour
         {
             if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
             {
+                //Animation Set Trigger
+                FindObjectOfType<PlayerMovement>().SetLeverPulling();
+                sfx.Lever();
                 _on = !_on;
                 //foreach switchable, notify 1 switch on/off
                 foreach (GameObject switchable in Switchables)
