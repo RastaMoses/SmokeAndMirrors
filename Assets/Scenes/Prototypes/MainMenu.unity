@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 85103954}
   - component: {fileID: 85103955}
+  - component: {fileID: 85103956}
   m_Layer: 5
   m_Name: NGOptionButton
   m_TagString: Untagged
@@ -174,6 +175,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pressTime: 4
+  _progressImage: {fileID: 1772457239}
+--- !u!114 &85103956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85103953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848258050a8e9a24599d7036a0387144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonKey: Y
+  _pressTime: 4
+  IgnoresGamePause: 0
+  Interactable: 1
+  _onButtonInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922296382}
+        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _progressImage: {fileID: 1772457239}
 --- !u!1 &108934759
 GameObject:
@@ -720,10 +753,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 285455394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90cad36d741adb54abbf355400299123, type: 3}
+  m_Script: {fileID: 11500000, guid: 848258050a8e9a24599d7036a0387144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonKey: A
   _pressTime: 2
+  IgnoresGamePause: 0
+  Interactable: 1
+  _onButtonInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922296382}
+        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _progressImage: {fileID: 1196321948}
 --- !u!1 &326586276
 GameObject:
@@ -1032,10 +1083,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 522478802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90cad36d741adb54abbf355400299123, type: 3}
+  m_Script: {fileID: 11500000, guid: 848258050a8e9a24599d7036a0387144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonKey: A
   _pressTime: 2
+  IgnoresGamePause: 0
+  Interactable: 1
+  _onButtonInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922296382}
+        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
+        m_MethodName: EnterGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _progressImage: {fileID: 915022214}
 --- !u!224 &522478804
 RectTransform:
@@ -1334,9 +1403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848258050a8e9a24599d7036a0387144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IgnoresGamePause: 1
   _buttonKey: A
   _pressTime: 2
+  IgnoresGamePause: 1
+  Interactable: 1
   _onButtonInput:
     m_PersistentCalls:
       m_Calls:
@@ -1353,7 +1423,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _progressImage: {fileID: 1276737805}
-  Interactable: 1
 --- !u!1 &870694687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 870694689}
   - component: {fileID: 870694688}
-  - component: {fileID: 870694690}
+  - component: {fileID: 870694691}
   m_Layer: 0
   m_Name: TriggerZoneExit
   m_TagString: Untagged
@@ -1414,7 +1483,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &870694690
+--- !u!114 &870694691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1423,26 +1492,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 870694687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498f31fa452ecd048bf23bfc6797d12b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b0e1f1a761241a44ba16bf96b4cad8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Spotlight: {fileID: 1302877068}
-  OptionButton: {fileID: 285455396}
-  OnTriggerOption:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922296382}
-        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
-        m_MethodName: ExitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  OptionButton:
+  - {fileID: 285455396}
 --- !u!1 &915022213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,42 +2777,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1852152948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e97ed47ae4b5b24cb9a6955bfa9a052, type: 3}
+  m_Script: {fileID: 11500000, guid: a49bdf938cf32b742a1581eaef6bc40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Spotlight: {fileID: 240698053}
   OptionButton:
   - {fileID: 522478803}
-  - {fileID: 85103955}
-  OnTriggerOption:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922296382}
-        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
-        m_MethodName: EnterGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922296382}
-        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  - {fileID: 85103956}
 --- !u!61 &1852152950
 BoxCollider2D:
   m_ObjectHideFlags: 0

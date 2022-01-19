@@ -7,18 +7,19 @@ using UnityEngine.UI;
 
 public class UIOverlayHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private bool IgnoresGamePause;
-
     [SerializeField] private string _buttonKey;
 
     [SerializeField] private float _pressTime;
     private float _currentTime = 0;
 
+    [SerializeField] private bool IgnoresGamePause;
+    public bool Interactable = true;
+
     [SerializeField] private UnityEvent _onButtonInput;
 
     [SerializeField] private Image _progressImage;
 
-    public bool Interactable = true;
+
 
     private bool _takesInput = true;
     private bool _mousePress = false;
