@@ -7,17 +7,10 @@ public class StateManager : MonoBehaviour
     public static bool GamePaused { get; private set; }
 
     public static PlayerController _playerController;
- 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         _playerController = FindObjectOfType<PlayerController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public static void Pause()

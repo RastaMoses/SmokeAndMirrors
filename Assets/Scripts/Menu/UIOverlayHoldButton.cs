@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIOverlayHoldButton : MonoBehaviour
+public class UIOverlayHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private bool IgnoresGamePause;
 
@@ -17,9 +18,10 @@ public class UIOverlayHoldButton : MonoBehaviour
 
     [SerializeField] private Image _progressImage;
 
-    private bool _takesInput = true;
-
     public bool Interactable = true;
+
+    private bool _takesInput = true;
+    private bool _mousePress = false;
 
     private void Awake()
     {
@@ -42,29 +44,57 @@ public class UIOverlayHoldButton : MonoBehaviour
 
     private bool CheckInput(string buttonName)
     {
-        if (Input.GetButton(buttonName) && _takesInput)
+        if ((_mousePress || Input.GetButton(buttonName)) && _takesInput)
         {
-            _currentTime += IgnoresGamePause? Time.unscaledDeltaTime : Time.deltaTime;
-
-            //update UI
-            float progress = _currentTime / _pressTime;
-            _progressImage.fillAmount = progress;
-
-            if (_currentTime >= _pressTime)
-            {
-                _takesInput = false;
-                _progressImage.fillAmount = 1;
-                //input completed
-                return true;
-            }
+            return ProgressInput();
         }
         if (Input.GetButtonUp(buttonName))
         {
-            //input canceled
-            _currentTime = 0;
-            _progressImage.fillAmount = 0;
-            _takesInput = true;
+            Reset();
         }
         return false;
+    }
+
+    private bool ProgressInput()
+    {
+        _currentTime += IgnoresGamePause ? Time.unscaledDeltaTime : Time.deltaTime;
+
+        //update UI
+        float progress = _currentTime / _pressTime;
+        _progressImage.fillAmount = progress;
+
+        if (_currentTime >= _pressTime)
+        {
+            _takesInput = false;
+            _progressImage.fillAmount = 1;
+            //input completed
+            return true;
+        }
+        return false;
+    }
+
+    private void Reset()
+    {
+        //input canceled
+        _currentTime = 0;
+        _progressImage.fillAmount = 0;
+        _takesInput = true;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            _mousePress = true;
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            _mousePress = false;
+            Reset();
+        }
     }
 }
