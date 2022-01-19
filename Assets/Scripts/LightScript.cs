@@ -10,6 +10,7 @@ public class LightScript : MonoBehaviour
     public GameObject childLight;
     public LightScript spouseLight;
     public bool isParent;
+    public Color lightColor;
 
     protected RaycastHit2D rch;
 
@@ -33,7 +34,7 @@ public class LightScript : MonoBehaviour
             rch = Physics2D.Raycast(transform.position, direction, lightRange);
             if (rch)
             {
-                Debug.DrawLine(transform.position, rch.point);
+                Debug.DrawLine(transform.position, rch.point, lightColor);
                 if (rch.collider.tag == "Mirror")
                 {
                     if (childLight == null)
@@ -43,6 +44,7 @@ public class LightScript : MonoBehaviour
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
                         childLight.GetComponent<ChildLight>().direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
+                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
                         childLight.transform.parent = rch.collider.transform;
                     }
                     else
@@ -60,6 +62,7 @@ public class LightScript : MonoBehaviour
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
                         childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
+                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
                         childLight.transform.parent = rch.collider.transform;
                     }
                     else
@@ -75,7 +78,7 @@ public class LightScript : MonoBehaviour
             }
             else
             {
-                Debug.DrawLine(transform.position, transform.position + direction * lightRange);
+                Debug.DrawLine(transform.position, transform.position + direction * lightRange, lightColor);
                 if (childLight != null)
                 {
                     FindObjectOfType<LightController>().lights.Remove(childLight.GetComponent<LightScript>());
@@ -86,7 +89,7 @@ public class LightScript : MonoBehaviour
         }
         else
         {
-            Debug.DrawLine(transform.position, childLight.transform.position);
+            Debug.DrawLine(transform.position, childLight.transform.position, lightColor);
         }
     }
 }

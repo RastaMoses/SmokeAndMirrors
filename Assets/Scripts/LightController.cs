@@ -167,6 +167,7 @@ public class LightController : MonoBehaviour
                 m.childLight.AddComponent<ChildLight>();
                 m.childLight.GetComponent<ChildLight>().direction = direction;
                 m.childLight.GetComponent<ChildLight>().lightRange = m.lightRange;
+                m.childLight.GetComponent<ChildLight>().lightColor = F.AddColor(m,n);
 
                 LightScript l = m.childLight.GetComponent<ChildLight>();
                 if (!lights.Contains(l))
