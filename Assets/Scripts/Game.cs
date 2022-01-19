@@ -12,6 +12,12 @@ public class Game : MonoBehaviour
     {
         sceneLoader = GetComponent<SceneLoader>();
     }
+    private void Start()
+    {
+        //Set Player Startposition
+        FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -19,6 +25,7 @@ public class Game : MonoBehaviour
         
     }
 
+    
     public void LevelComplete()
     {
         sceneLoader.LoadNextLevel();

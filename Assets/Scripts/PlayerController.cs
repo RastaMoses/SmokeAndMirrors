@@ -37,10 +37,25 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void Goal()
+    {
+        movementEnabled = false;
+        game.LevelComplete();
+    }
+
 
 
     public void Respawn()
     {
         transform.position = game.respawnPoint.position;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            Goal();
+        }
     }
 }
