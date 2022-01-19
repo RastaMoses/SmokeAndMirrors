@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class OptionTrigger : MonoBehaviour
+public class MenuOptionTrigger : MonoBehaviour
 {
     public GameObject Spotlight;
     public HoldButton OptionButton;
+
+    public UnityEvent OnTriggerOption;
 
     private bool _interactable;
     private string _gamePadbuttonKey = "A";
@@ -13,8 +16,7 @@ public class OptionTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Spotlight.SetActive(false);
-        OptionButton.gameObject.SetActive(false);
+        SetInteractable(false);
     }
 
     // Update is called once per frame
@@ -24,8 +26,8 @@ public class OptionTrigger : MonoBehaviour
         {
             if (OptionButton.CheckInput(_gamePadbuttonKey))
             {
-                //trigger option
-                //make lambda function here?
+                if (OnTriggerOption != null)
+                    OnTriggerOption.Invoke();
             }
         }
     }
@@ -35,9 +37,7 @@ public class OptionTrigger : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
-        Spotlight.SetActive(true);
-        OptionButton.gameObject.SetActive(true);
-        _interactable = true;
+        SetInteractable(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -45,8 +45,13 @@ public class OptionTrigger : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
-        Spotlight.SetActive(false);
-        OptionButton.gameObject.SetActive(false);
-        _interactable = false;
+        SetInteractable(false);
+    }
+
+    private void SetInteractable(bool interactable)
+    {
+        Spotlight.SetActive(interactable);
+        OptionButton.gameObject.SetActive(interactable);
+        _interactable = interactable;
     }
 }
