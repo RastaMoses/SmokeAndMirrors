@@ -28,8 +28,15 @@ public class Moveable : MonoBehaviour
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 
         //Vector3 position = meshRenderer.transform.position + Vector3.up * 2f;
-        edgeWidhtOffset = new Vector3(meshRenderer.bounds.extents.x,0,0);
-        //edgeWidhtOffset = -(transform.right * (transform.localScale.x / 2f) * -1f);
+        if (meshRenderer != null)
+        {
+            edgeWidhtOffset = new Vector3(meshRenderer.bounds.extents.x, 0, 0);
+        }
+        else
+        {
+            edgeWidhtOffset = -(transform.right * (transform.localScale.x / 2f) * -1f);
+        }
+        
     }
 
     // Update is called once per frame
