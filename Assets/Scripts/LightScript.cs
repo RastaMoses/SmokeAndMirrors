@@ -110,4 +110,17 @@ public class LightScript : MonoBehaviour
             lr.SetPosition(1, childLight.transform.position);
         }
     }
+
+    void OnMouseDown()
+    {
+        LightController lc = FindObjectOfType<LightController>();
+        if (lc.swapLights[0] == null)
+        {
+            lc.swapLights[0] = this;
+        }
+        else
+        {
+            lc.swapLights[1] = this;
+        }
+    }
 }

@@ -82,4 +82,6 @@ public class ChildLight : LightScript
             lr.SetPosition(1, childLight.transform.position);
         }
     }
+
+    
 }
