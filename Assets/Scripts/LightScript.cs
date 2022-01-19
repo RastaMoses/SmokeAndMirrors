@@ -39,7 +39,7 @@ public class LightScript : MonoBehaviour
         lr.endWidth = 0.24f;
 
         lr.SetPosition(0, transform.position);
-        direction = transform.right;
+        direction = transform.up;
 
         if (!isParent)
         {
@@ -75,7 +75,7 @@ public class LightScript : MonoBehaviour
                         childLight = new GameObject("Teleporter Child");
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
                         childLight.GetComponent<ChildLight>().lightColor = lightColor;
                         childLight.GetComponent<ChildLight>().lightMaterial = lightMaterial;
@@ -84,7 +84,7 @@ public class LightScript : MonoBehaviour
                     else
                     {
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
                 }
                 if (rch.collider.tag == "Platform")
