@@ -11,7 +11,7 @@ public class ChildLight : LightScript
             rch = Physics2D.Raycast(transform.position, direction, lightRange);
             if (rch)
             {
-                Debug.DrawLine(transform.position, rch.point);
+                Debug.DrawLine(transform.position, rch.point, lightColor);
                 if (rch.collider.tag == "Mirror")
                 {
                     if (childLight == null)
@@ -21,6 +21,7 @@ public class ChildLight : LightScript
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
                         childLight.GetComponent<ChildLight>().direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
+                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
                         childLight.transform.parent = rch.collider.transform;
                     }
                     else
@@ -38,6 +39,7 @@ public class ChildLight : LightScript
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
                         childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
+                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
                         childLight.transform.parent = rch.collider.transform;
                     }
                     else
@@ -48,12 +50,12 @@ public class ChildLight : LightScript
                 }
                 if (rch.collider.tag == "Platform")
                 {
-                    
+
                 }
             }
             else
             {
-                Debug.DrawLine(transform.position, transform.position + direction * lightRange);
+                Debug.DrawLine(transform.position, transform.position + direction * lightRange, lightColor);
                 if (childLight != null)
                 {
                     FindObjectOfType<LightController>().lights.Remove(childLight.GetComponent<LightScript>());
@@ -64,7 +66,7 @@ public class ChildLight : LightScript
         }
         else
         {
-            Debug.DrawLine(transform.position, childLight.transform.position);
+            Debug.DrawLine(transform.position, childLight.transform.position, lightColor);
         }
     }
 }

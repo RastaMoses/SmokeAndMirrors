@@ -106,4 +106,14 @@ public class F
 
         return isIntersecting;
     }
+
+    public static Color AddColor(LightScript m, LightScript n)
+    {
+        Color a = m.lightColor;
+        Color b = n.lightColor;
+
+        Color c = new Color(a.r + b.r, a.g + b.g, a.b + b.b, 255);
+
+        return c;
+    }
 }
