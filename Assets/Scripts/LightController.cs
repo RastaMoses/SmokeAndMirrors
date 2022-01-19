@@ -127,6 +127,8 @@ public class LightController : MonoBehaviour
 
             m.childLight.GetComponent<ChildLight>().direction = direction;
             m.childLight.GetComponent<ChildLight>().lightRange = m.lightRange;
+            m.childLight.GetComponent<ChildLight>().lightMaterial = m.lightMaterial;
+
         }
     }
 
@@ -168,7 +170,7 @@ public class LightController : MonoBehaviour
                 m.childLight.GetComponent<ChildLight>().direction = direction;
                 m.childLight.GetComponent<ChildLight>().lightRange = m.lightRange;
                 m.childLight.GetComponent<ChildLight>().lightColor = F.AddColor(m,n);
-
+                m.childLight.GetComponent<ChildLight>().lightMaterial = m.lightMaterial;
                 LightScript l = m.childLight.GetComponent<ChildLight>();
                 if (!lights.Contains(l))
                 {
