@@ -70,7 +70,7 @@ public class L : MonoBehaviour
                         childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
                     }
                 }
-                if (rch.collider.tag == "Teleporter")
+                else if (rch.collider.tag == "Teleporter")
                 {
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
@@ -92,7 +92,7 @@ public class L : MonoBehaviour
                         childLight.direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
                 }
-                if (rch.collider.tag == "ShinyParent")
+                else if (rch.collider.tag == "ShinyParent")
                 {
                     if (shinyObj != rch.collider.gameObject)
                     {
@@ -112,6 +112,10 @@ public class L : MonoBehaviour
                     {
                         lr.SetPosition(1, transform.position + direction * lightRange);
                     }
+                }
+                else
+                {
+                    lr.SetPosition(1, transform.position + direction * lightRange);
                 }
             }
             else
