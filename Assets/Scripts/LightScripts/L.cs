@@ -15,7 +15,7 @@ public class L : MonoBehaviour
     public Color lightColor;
     public Material lightMaterial;
     GameObject shinyObj;
-    RaycastHit2D rch;
+    public RaycastHit2D rch;
 
     void Awake()
     {
@@ -160,5 +160,10 @@ public class L : MonoBehaviour
     void OnDisable()
     {
         lr.enabled = false;
+        if (shinyObj != null)
+        {
+            shinyObj.GetComponent<ShinyParent>().MassDeact();
+            shinyObj = null;
+        }
     }
 }
