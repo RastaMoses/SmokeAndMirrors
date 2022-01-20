@@ -30,7 +30,7 @@ public class LC : MonoBehaviour
 
                 L n = ls[j];
 
-                if (H.IsIntersecting(m, n) && !m.isParent && !n.isParent && !m.rch && !n.rch)
+                if (H.IsIntersecting(m, n) && !m.isParent && !n.isParent)
                 {
                     Wedding(m, n);
                 }

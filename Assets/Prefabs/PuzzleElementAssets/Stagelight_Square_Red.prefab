@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  lightRange: 0
+  lightRange: 20
   spouseLight: {fileID: 0}
   childLight: {fileID: 0}
   isParent: 0
@@ -330,9 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exact: 0
-  _start: 0
-  _actual: 0
-  _target: 1
+  on: 0
 --- !u!114 &6416169129838629734
 MonoBehaviour:
   m_ObjectHideFlags: 0
