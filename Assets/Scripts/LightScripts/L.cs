@@ -155,6 +155,7 @@ public class L : MonoBehaviour
     void OnEnable()
     {
         lr.enabled = true;
+        isParent = false;
     }
 
     void OnDisable()
