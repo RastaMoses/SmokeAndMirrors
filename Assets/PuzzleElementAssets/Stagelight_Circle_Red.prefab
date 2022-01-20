@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8004322137017402461}
   - component: {fileID: 774184606696077138}
   - component: {fileID: 917116682}
-  - component: {fileID: 917116681}
+  - component: {fileID: 770516121}
   m_Layer: 0
   m_Name: Bulb
   m_TagString: Untagged
@@ -309,7 +309,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &917116681
+--- !u!114 &770516121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,16 +318,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3655913455444719163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9358a4001dcb71b83db484a19e3a23, type: 3}
+  m_Script: {fileID: 11500000, guid: c49072df4b10a9d758a41f2672e16f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
   lightRange: 10
-  childLight: {fileID: 0}
   spouseLight: {fileID: 0}
+  childLight: {fileID: 0}
   isParent: 0
-  lightColor: {r: 1, g: 0, b: 0, a: 1}
+  isChild: 0
   lr: {fileID: 0}
+  lightColor: {r: 1, g: 0, b: 0, a: 1}
   lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &4327653470644451508
 GameObject:

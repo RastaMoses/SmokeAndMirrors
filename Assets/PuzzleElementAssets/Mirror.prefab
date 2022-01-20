@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4774679943105734321}
   - component: {fileID: 4717517343965665543}
   - component: {fileID: 1963076348007288291}
+  - component: {fileID: 923872225}
   m_Layer: 0
   m_Name: Stand
   m_TagString: Untagged
@@ -113,6 +114,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!61 &923872225
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766934204535493880}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.29065818}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5479479, y: 1.4019803}
+  m_EdgeRadius: 0
 --- !u!1 &7344830029282934044
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,8 +151,7 @@ GameObject:
   - component: {fileID: 4784329160321357099}
   - component: {fileID: 7303229832595800913}
   - component: {fileID: 350603899963213034}
-  - component: {fileID: 1001202774}
-  - component: {fileID: 1001202773}
+  - component: {fileID: 1658723278}
   m_Layer: 7
   m_Name: Mirror 1
   m_TagString: Mirror
@@ -196,8 +222,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!68 &1001202774
-EdgeCollider2D:
+--- !u!60 &1658723278
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -207,33 +233,22 @@ EdgeCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.65, y: 0.2582412}
-  - {x: 0.65, y: 0.2582412}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!251 &1001202773
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344830029282934044}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
+    m_Paths:
+    - - {x: -0.007229912, y: 0.7130279}
+      - {x: -0.3362117, y: 0.6326251}
+      - {x: -0.49051216, y: 0.5421536}
+      - {x: 0.4977422, y: 0.5421537}
+      - {x: 0.30006164, y: 0.6470854}
