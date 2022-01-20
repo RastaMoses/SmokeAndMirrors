@@ -14,6 +14,7 @@ public class L : MonoBehaviour
     public LineRenderer lr;
     public Color lightColor;
     public Material lightMaterial;
+    GameObject shinyObj;
     RaycastHit2D rch;
 
     void Awake()
@@ -91,10 +92,19 @@ public class L : MonoBehaviour
                         childLight.direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
                 }
+                if(rch.collider.tag == "ShinyParent")
+                {
+                    if (shinyObj != rch.collider.gameObject)
+                    {
+                        //Deact Shiny
+                        shinyObj = rch.collider.gameObject;
+                    }
+                }
             }
             else
             {
                 lr.SetPosition(1, transform.position + direction * lightRange);
+                
                 if (childLight != null)
                 {
                     FindObjectOfType<LC>().ls.Remove(childLight);
@@ -108,8 +118,15 @@ public class L : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void OnMouseDown()
     {
-        
+        if (FindObjectOfType<LC>().swapCon[0] == null)
+        {
+            FindObjectOfType<LC>().swapCon[0] = this;
+        }
+        else
+        {
+            FindObjectOfType<LC>().swapCon[1] = this;
+        }
     }
 }

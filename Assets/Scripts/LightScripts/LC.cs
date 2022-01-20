@@ -7,10 +7,12 @@ using System.Linq;
 public class LC : MonoBehaviour
 {
     public List<L> ls;
+    public L[] swapCon;
     // Start is called before the first frame update
     void Start()
     {
         ls = FindObjectsOfType<L>().ToList();
+        swapCon = new L[2];
     }
 
     // Update is called once per frame
@@ -45,17 +47,34 @@ public class LC : MonoBehaviour
 
                 if (H.IsIntersecting(m, n) && m.isParent && !n.isParent)
                 {
-                    Vector2 o = H.O(m, n);
-                    Vector2 d = H.Bi(m.transform.position, n.transform.position, o);
-
-                    if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.childLight.transform.position))
-                    {
-                        L l = m.spouseLight;
-                        Divorce(m,l);
-                        Wedding(m,n);
-                    }
+                    Affair(m, n);
                 }
             }
+        }
+
+        if (swapCon[1] != null)
+        {
+            Color a = swapCon[0].lightColor;
+            Color b = swapCon[1].lightColor;
+
+            swapCon[0].lightColor = b;
+            swapCon[1].lightColor = a;
+
+            swapCon[0] = null;
+            swapCon[1] = null;
+        }
+    }
+
+    private void Affair(L m, L n)
+    {
+        Vector2 o = H.O(m, n);
+        Vector2 d = H.Bi(m.transform.position, n.transform.position, o);
+
+        if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.childLight.transform.position))
+        {
+            L l = m.spouseLight;
+            Divorce(m, l);
+            Wedding(m, n);
         }
     }
 
