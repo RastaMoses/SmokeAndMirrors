@@ -111,9 +111,9 @@ public class SelectableObjController : MonoBehaviour
 
         }
 
-        //Animation
-        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetBool("magicMode", InSelectionMode);
 
+        //Movement disable on magic mode
+        /*
         if (InSelectionMode)
         {
             FindObjectOfType<PlayerController>().movementEnabled = false;
@@ -123,6 +123,7 @@ public class SelectableObjController : MonoBehaviour
 
             FindObjectOfType<PlayerController>().movementEnabled = true;
         }
+        */
     }
 
 
@@ -136,6 +137,10 @@ public class SelectableObjController : MonoBehaviour
             return;
 
         InSelectionMode = true;
+
+        //Animation
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetTrigger("magicMode");
+
 
         //order selectables in a circle
         _selectableObjsCenter = CalculateCentroid(_selectableObjs);
