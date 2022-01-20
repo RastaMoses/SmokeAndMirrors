@@ -19,10 +19,10 @@ public class UIOverlayHoldButton : MonoBehaviour, IPointerDownHandler, IPointerU
 
     [SerializeField] private Image _progressImage;
 
-
-
     private bool _takesInput = true;
     private bool _mousePress = false;
+
+    private bool _processingInputFeedback = false;
 
     private void Awake()
     {
@@ -44,8 +44,19 @@ public class UIOverlayHoldButton : MonoBehaviour, IPointerDownHandler, IPointerU
         if (CheckInput(_buttonKey))
         {
             if (_onButtonInput != null)
-                _onButtonInput.Invoke();
+                StartCoroutine(ReceivedCompleteInput());
         }
+    }
+
+    IEnumerator ReceivedCompleteInput()
+    {
+        //prolong the visual feedback of input completion before actually invoking the function the button triggers
+        _processingInputFeedback = true;
+        yield return new WaitForSecondsRealtime(0.1f);
+        _progressImage.fillAmount = 0;
+        yield return new WaitForSecondsRealtime(0.1f);
+        _processingInputFeedback = false;
+        _onButtonInput.Invoke();
     }
 
     private bool CheckInput(string buttonName)
@@ -81,6 +92,8 @@ public class UIOverlayHoldButton : MonoBehaviour, IPointerDownHandler, IPointerU
 
     private void Reset()
     {
+        if (_processingInputFeedback)
+            return;
         //input canceled
         _currentTime = 0;
         _progressImage.fillAmount = 0;
