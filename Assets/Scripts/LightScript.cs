@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
 public class LightScript : MonoBehaviour
 {
     public Vector3 direction;
@@ -10,12 +11,17 @@ public class LightScript : MonoBehaviour
     public GameObject childLight;
     public LightScript spouseLight;
     public bool isParent;
+    public Color lightColor;
+    public LineRenderer lr;
+    public Material lightMaterial;
 
     protected RaycastHit2D rch;
 
     void Awake()
     {
         isParent = false;
+        lr = GetComponent<LineRenderer>();
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -26,16 +32,24 @@ public class LightScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = transform.right;
+        lr.startColor = lightColor;
+        lr.endColor = lightColor;
+        lr.material = lightMaterial;
+        lr.startWidth = 0.24f;
+        lr.endWidth = 0.24f;
+
+        lr.SetPosition(0, transform.position);
+        direction = transform.up;
 
         if (!isParent)
         {
             rch = Physics2D.Raycast(transform.position, direction, lightRange);
             if (rch)
             {
-                Debug.DrawLine(transform.position, rch.point);
+                Debug.DrawLine(transform.position, rch.point, lightColor);
                 if (rch.collider.tag == "Mirror")
                 {
+                    lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
                         childLight = new GameObject("Mirror Child");
@@ -43,6 +57,8 @@ public class LightScript : MonoBehaviour
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
                         childLight.GetComponent<ChildLight>().direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
+                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
+                        childLight.GetComponent<ChildLight>().lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
                     }
                     else
@@ -53,19 +69,22 @@ public class LightScript : MonoBehaviour
                 }
                 if (rch.collider.tag == "Teleporter")
                 {
+                    lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
                         childLight = new GameObject("Teleporter Child");
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
                         FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                         childLight.GetComponent<ChildLight>().lightRange = lightRange;
+                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
+                        childLight.GetComponent<ChildLight>().lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
                     }
                     else
                     {
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
                 }
                 if (rch.collider.tag == "Platform")
@@ -75,7 +94,8 @@ public class LightScript : MonoBehaviour
             }
             else
             {
-                Debug.DrawLine(transform.position, transform.position + direction * lightRange);
+                Debug.DrawLine(transform.position, transform.position + direction * lightRange, lightColor);
+                lr.SetPosition(1, transform.position + direction * lightRange);
                 if (childLight != null)
                 {
                     FindObjectOfType<LightController>().lights.Remove(childLight.GetComponent<LightScript>());
@@ -86,7 +106,21 @@ public class LightScript : MonoBehaviour
         }
         else
         {
-            Debug.DrawLine(transform.position, childLight.transform.position);
+            Debug.DrawLine(transform.position, childLight.transform.position, lightColor);
+            lr.SetPosition(1, childLight.transform.position);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        LightController lc = FindObjectOfType<LightController>();
+        if (lc.swapLights[0] == null)
+        {
+            lc.swapLights[0] = this;
+        }
+        else
+        {
+            lc.swapLights[1] = this;
         }
     }
 }

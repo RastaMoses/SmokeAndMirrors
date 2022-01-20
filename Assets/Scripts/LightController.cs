@@ -6,10 +6,14 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     public List<LightScript> lights;
+    public LightScript[] swapLights;
     // Start is called before the first frame update
     void Start()
     {
         lights = FindObjectsOfType<LightScript>().ToList();
+        swapLights = new LightScript[2];
+        swapLights[0] = null;
+        swapLights[1] = null;
     }
 
     // Update is called once per frame
@@ -33,6 +37,19 @@ public class LightController : MonoBehaviour
                 Divorce(m, n);
                 Affair(m, n);
             }
+        }
+
+        if (swapLights[0] != null && swapLights[1] != null)
+        {
+            Color a = swapLights[0].lightColor;
+            Color b = swapLights[1].lightColor;
+
+            swapLights[0].lightColor = b;            
+            swapLights[1].lightColor = a;
+            
+            swapLights[0] = null;
+            swapLights[1] = null;
+
         }
     }
 
@@ -127,6 +144,8 @@ public class LightController : MonoBehaviour
 
             m.childLight.GetComponent<ChildLight>().direction = direction;
             m.childLight.GetComponent<ChildLight>().lightRange = m.lightRange;
+            m.childLight.GetComponent<ChildLight>().lightMaterial = m.lightMaterial;
+
         }
     }
 
@@ -167,7 +186,8 @@ public class LightController : MonoBehaviour
                 m.childLight.AddComponent<ChildLight>();
                 m.childLight.GetComponent<ChildLight>().direction = direction;
                 m.childLight.GetComponent<ChildLight>().lightRange = m.lightRange;
-
+                m.childLight.GetComponent<ChildLight>().lightColor = F.AddColor(m,n);
+                m.childLight.GetComponent<ChildLight>().lightMaterial = m.lightMaterial;
                 LightScript l = m.childLight.GetComponent<ChildLight>();
                 if (!lights.Contains(l))
                 {
@@ -176,4 +196,6 @@ public class LightController : MonoBehaviour
             }
         }
     }
+
+    
 }
