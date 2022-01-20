@@ -18,12 +18,12 @@ public class SwitchTestBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_switchCondition.On && !_stateOn)
+        if(_switchCondition.on && !_stateOn)
         {
             GetComponent<SpriteRenderer>().color = Color.yellow;
             _stateOn = true;
         }
-        if (!_switchCondition.On && _stateOn)
+        if (!_switchCondition.on && _stateOn)
         {
             GetComponent<SpriteRenderer>().color = _startColor;
             _stateOn = false;
