@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class LightScript : MonoBehaviour
+public class L : MonoBehaviour
 {
     public Vector3 direction;
     public float lightRange;
-    public GameObject childLight;
-    public LightScript spouseLight;
+    public L spouseLight;
+    public L childLight;
     public bool isParent;
-    public Color lightColor;
+    public bool isChild;
     public LineRenderer lr;
+    public Color lightColor;
     public Material lightMaterial;
-
-    protected RaycastHit2D rch;
+    RaycastHit2D rch;
 
     void Awake()
     {
         isParent = false;
+        isChild = false;
+
         lr = GetComponent<LineRenderer>();
-        
     }
     // Start is called before the first frame update
     void Start()
@@ -38,33 +38,35 @@ public class LightScript : MonoBehaviour
         lr.startWidth = 0.24f;
         lr.endWidth = 0.24f;
 
+        if (!isChild) direction = transform.up;
+
         lr.SetPosition(0, transform.position);
-        direction = transform.right;
 
         if (!isParent)
         {
             rch = Physics2D.Raycast(transform.position, direction, lightRange);
             if (rch)
             {
-                Debug.DrawLine(transform.position, rch.point, lightColor);
                 if (rch.collider.tag == "Mirror")
                 {
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
-                        childLight = new GameObject("Mirror Child");
+                        GameObject g = new GameObject("Mirror Child");
+                        childLight = g.AddComponent<L>();
                         childLight.transform.position = rch.point;
-                        FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
-                        childLight.GetComponent<ChildLight>().direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
-                        childLight.GetComponent<ChildLight>().lightRange = lightRange;
-                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
-                        childLight.GetComponent<ChildLight>().lightMaterial = lightMaterial;
+                        childLight.isChild = true;
+                        childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
+                        childLight.lightRange = lightRange;
+                        childLight.lightColor = lightColor;
+                        childLight.lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
+                        FindObjectOfType<LC>().ls.Add(childLight);
                     }
                     else
                     {
                         childLight.transform.position = rch.point;
-                        childLight.GetComponent<ChildLight>().direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
+                        childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
                     }
                 }
                 if (rch.collider.tag == "Teleporter")
@@ -72,42 +74,42 @@ public class LightScript : MonoBehaviour
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
-                        childLight = new GameObject("Teleporter Child");
+                        GameObject g = new GameObject("Teleporter Child");
+                        childLight = g.AddComponent<L>();
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
-                        FindObjectOfType<LightController>().lights.Add(childLight.AddComponent<ChildLight>());
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
-                        childLight.GetComponent<ChildLight>().lightRange = lightRange;
-                        childLight.GetComponent<ChildLight>().lightColor = lightColor;
-                        childLight.GetComponent<ChildLight>().lightMaterial = lightMaterial;
+                        childLight.isChild = true;
+                        childLight.direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
+                        childLight.lightRange = lightRange;
+                        childLight.lightColor = lightColor;
+                        childLight.lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
+                        FindObjectOfType<LC>().ls.Add(childLight);
                     }
                     else
                     {
                         childLight.transform.position = rch.collider.GetComponent<Teleporter>().otherSide.transform.position;
-                        childLight.GetComponent<ChildLight>().direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.right;
+                        childLight.direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
-                }
-                if (rch.collider.tag == "Platform")
-                {
-                    
                 }
             }
             else
             {
-                Debug.DrawLine(transform.position, transform.position + direction * lightRange, lightColor);
                 lr.SetPosition(1, transform.position + direction * lightRange);
                 if (childLight != null)
                 {
-                    FindObjectOfType<LightController>().lights.Remove(childLight.GetComponent<LightScript>());
-                    Destroy(childLight);
-                    childLight = null;
+                    FindObjectOfType<LC>().ls.Remove(childLight);
+                    Destroy(childLight.gameObject);
                 }
             }
         }
         else
         {
-            Debug.DrawLine(transform.position, childLight.transform.position, lightColor);
             lr.SetPosition(1, childLight.transform.position);
         }
+    }
+
+    void OnDestroy()
+    {
+        
     }
 }

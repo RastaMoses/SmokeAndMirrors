@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class F
+public class H
 {
-    public static Vector2 FindBisection(Vector2 originOne, Vector2 originTwo, Vector2 overlap)
+    public static Vector2 Bi(Vector2 originOne, Vector2 originTwo, Vector2 overlap)
     {
         Vector2 a = overlap - originOne;
         Vector2 b = overlap - originTwo;
@@ -13,7 +12,7 @@ public class F
         return (b.magnitude * a + a.magnitude * b).normalized;
     }
 
-    public static Vector2 GetOverlap(LightScript m, LightScript n)
+    public static Vector2 O(L m, L n)
     {
         Vector2 a = m.transform.position;
         Vector2 b = m.transform.position + m.direction * m.lightRange;
@@ -66,7 +65,7 @@ public class F
         return output;
     }
 
-    public static bool IsIntersecting(LightScript m, LightScript n, bool shouldIncludeEndPoints = false)
+    public static bool IsIntersecting(L m, L n, bool shouldIncludeEndPoints = false)
     {
         Vector2 a = m.transform.position;
         Vector2 b = m.transform.position + m.direction * m.lightRange;
@@ -107,7 +106,7 @@ public class F
         return isIntersecting;
     }
 
-    public static Color AddColor(LightScript m, LightScript n)
+    public static Color AddColor(L m, L n)
     {
         Color a = m.lightColor;
         Color b = n.lightColor;
