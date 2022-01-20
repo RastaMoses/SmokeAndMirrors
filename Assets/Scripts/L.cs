@@ -92,19 +92,36 @@ public class L : MonoBehaviour
                         childLight.direction = rch.collider.GetComponent<Teleporter>().otherSide.transform.up;
                     }
                 }
-                if(rch.collider.tag == "ShinyParent")
+                if (rch.collider.tag == "ShinyParent")
                 {
                     if (shinyObj != rch.collider.gameObject)
                     {
-                        //Deact Shiny
+                        if (shinyObj != null)
+                        {
+                            shinyObj.GetComponent<ShinyParent>().MassDeact();
+                        }
                         shinyObj = rch.collider.gameObject;
+                    }
+
+                    if (shinyObj.GetComponent<ShinyParent>().actColor == lightColor)
+                    {
+                        shinyObj.GetComponent<ShinyParent>().MassAct();
+                        lr.SetPosition(1, rch.point);
+                    }
+                    else
+                    {
+                        lr.SetPosition(1, transform.position + direction * lightRange);
                     }
                 }
             }
             else
             {
                 lr.SetPosition(1, transform.position + direction * lightRange);
-                
+                if (shinyObj != null)
+                {
+                    shinyObj.GetComponent<ShinyParent>().MassDeact();
+                    shinyObj = null;
+                }
                 if (childLight != null)
                 {
                     FindObjectOfType<LC>().ls.Remove(childLight);
@@ -114,6 +131,7 @@ public class L : MonoBehaviour
         }
         else
         {
+
             lr.SetPosition(1, childLight.transform.position);
         }
     }

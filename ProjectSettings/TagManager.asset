@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mirror
   - Teleporter
+  - ShinyParent
   layers:
   - Default
   - TransparentFX
