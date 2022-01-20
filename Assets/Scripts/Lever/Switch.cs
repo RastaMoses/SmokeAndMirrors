@@ -35,8 +35,6 @@ public class Switch : MonoBehaviour
         {
             if (_on)
                 switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
-            else
-                switchable.GetComponent<SwitchCondition>().RemoveOneTowardsTarget();
         }
         /*
         //this code adds the switch to the switchCondition and has to be taken out if 1 switch on is enough to have a light on:
@@ -55,11 +53,15 @@ public class Switch : MonoBehaviour
     {
         if (_on)
         {
+            //turn the switch handle on the "On" side
+
             //GetComponent<MeshRenderer>().color = _onColour;
             
         }
         else
         {
+            //turn the switch handle on the "off" side
+
             //GetComponent<MeshRenderer>().color = _offColour;
         }
     }

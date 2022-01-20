@@ -6,15 +6,17 @@ public class LightLever : MonoBehaviour
 {
     public bool b;
     L l;
+    private SwitchCondition _switchCondition;
 
     private void Start()
     {
         l = GetComponent<L>();
+        _switchCondition = GetComponent<SwitchCondition>();
     }
 
     void Update()
     {
-        b = GetComponent<SwitchCondition>().on;
+        b = _switchCondition.on;
         l.enabled = b;
     }
 
