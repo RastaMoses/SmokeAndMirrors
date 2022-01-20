@@ -78,8 +78,6 @@ public class PlayerMovement : MonoBehaviour
             yVelocity = rb.velocity.y;
         }
 
-        //TODO -maybe- no movement direction change while jumping
-
         //jump
         if (playerController.jumpEnabled)
         {

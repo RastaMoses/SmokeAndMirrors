@@ -25,12 +25,25 @@ public class Moveable : MonoBehaviour
         _buttonUI.SetActive(false);
         _startPos = transform.position;
 
-        edgeWidhtOffset = -(transform.right * (transform.localScale.x / 2f) * -1f);
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+
+        //Vector3 position = meshRenderer.transform.position + Vector3.up * 2f;
+        if (meshRenderer != null)
+        {
+            edgeWidhtOffset = new Vector3(meshRenderer.bounds.extents.x, 0, 0);
+        }
+        else
+        {
+            edgeWidhtOffset = -(transform.right * (transform.localScale.x / 2f) * -1f);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawLine(transform.position, leftEdge, Color.red);
+        Debug.DrawLine(transform.position, rightEdge, Color.blue);
         if (!_interactable)
             return;
 
