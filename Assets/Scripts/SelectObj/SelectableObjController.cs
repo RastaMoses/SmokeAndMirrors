@@ -64,6 +64,7 @@ public class SelectableObjController : MonoBehaviour
 
         if (InSelectionMode)
         {
+
            // if(_selectableObjs)
 
             //TODO cast "spellray" from player to selected obj
@@ -106,6 +107,21 @@ public class SelectableObjController : MonoBehaviour
                 _selectedObj.Select();
             }
 
+            
+
+        }
+
+        //Animation
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetBool("magicMode", InSelectionMode);
+
+        if (InSelectionMode)
+        {
+            FindObjectOfType<PlayerController>().movementEnabled = false;
+        }
+        else
+        {
+
+            FindObjectOfType<PlayerController>().movementEnabled = true;
         }
     }
 

@@ -9,8 +9,10 @@ public class PushAndPull : MonoBehaviour
 
     private PlayerController _playerController;
 
-    private bool _pushing; //for logic and animation purpose
-    private bool _pulling; //for animation purpose
+    public bool _pushing; //for logic and animation purpose
+    public bool _pulling; //for animation purpose
+    //[SerializeField] bool flippedSprite; //Serialized for Debug Purposes
+
 
     private string _pushPullButton = "A";
 
@@ -39,8 +41,7 @@ public class PushAndPull : MonoBehaviour
                 {
                     if (_isMovingObj)
                     {
-                        //SFX Start
-                        _moveable.gameObject.GetComponent<SFX>().PlayRails();
+                        StartAnimation();
                     }
 
                     //start moving obj but dont start moving obj until next to it
@@ -93,10 +94,9 @@ public class PushAndPull : MonoBehaviour
                 {
                     _pushing = false;
                     _pulling = false;
-                    
-                    //SFX Stop
-                    _moveable.gameObject.GetComponent<SFX>().PauseRails();
-                    
+
+                    StopAnimation();
+
                 }
             }
             else if (Input.GetButtonUp(_pushPullButton))
@@ -106,6 +106,9 @@ public class PushAndPull : MonoBehaviour
                 _pulling = false;
             }
         }
+
+        
+        
     }
 
 
@@ -140,8 +143,7 @@ public class PushAndPull : MonoBehaviour
 
         if (xMovement != 0)
         {
-            //SFX Start
-            _moveable.gameObject.GetComponent<SFX>().PlayRails();
+            StartAnimation();
         }
         
     }
@@ -158,8 +160,8 @@ public class PushAndPull : MonoBehaviour
 
         _moveable.Moving = false;
 
-        //SFX Stop
-        _moveable.gameObject.GetComponent<SFX>().PauseRails();
+        StopAnimation();
+
     }
 
     public void SetMoveable(Moveable moveable, bool putAsMoveable)
@@ -170,4 +172,32 @@ public class PushAndPull : MonoBehaviour
         if (!putAsMoveable && _moveable == moveable)
             _moveable = null;
     }
+
+
+    void StartAnimation()
+    {
+        //SFX Start
+        _moveable.gameObject.GetComponent<SFX>().PlayRails();
+        //Animation
+        GetComponent<Animator>().SetBool("isPushing", true);
+        GetComponent<PlayerMovement>().flipSprite = false;
+        if (_moveable.transform.position.x > transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    void StopAnimation()
+    {
+        //SFX Stop
+        _moveable.gameObject.GetComponent<SFX>().PauseRails();
+        //Animation Stop
+        GetComponent<Animator>().SetBool("isPushing", false);
+        GetComponent<PlayerMovement>().flipSprite = true;
+    }
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - RailCollider
   - Teleporter
   - Death
+  - Goal
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     bool isFalling;
     bool leverPulling;
     bool hasJumped; //Checks if player is waiting on jump delay
+    public bool flipSprite;
 
     float temporaryJumpForce; //used for shorter jumps during jumpdelay
     float yVelocity;
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        flipSprite = true;
     }
 
     // Update is called once per frame
@@ -119,14 +120,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Animations()
     {
-        if (rb.velocity.x < 0)
+        if (flipSprite)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            if (rb.velocity.x < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if (rb.velocity.x > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
-        if(rb.velocity.x > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
+        
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isFalling",isFalling);
     }
