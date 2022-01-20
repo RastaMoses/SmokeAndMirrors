@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         xVelocity = Input.GetAxisRaw("Horizontal") * playerController.speed;
-        if(rb.velocity.x != 0)
+        if(rb.velocity.x > 0.1f || rb.velocity.x < -0.1f)
         {
             isMoving = true;
         }

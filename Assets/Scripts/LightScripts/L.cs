@@ -151,4 +151,14 @@ public class L : MonoBehaviour
             FindObjectOfType<LC>().swapCon[1] = this;
         }
     }
+
+    void OnEnable()
+    {
+        lr.enabled = true;
+    }
+
+    void OnDisable()
+    {
+        lr.enabled = false;
+    }
 }
