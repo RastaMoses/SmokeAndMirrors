@@ -30,7 +30,7 @@ public class LC : MonoBehaviour
 
                 L n = ls[j];
 
-                if (H.IsIntersecting(m, n) && !m.isParent && !n.isParent && !m.rch && !n.rch)
+                if (H.IsIntersecting(m, n) && !m.isParent && !n.isParent)
                 {
                     Wedding(m, n);
                 }
@@ -69,19 +69,27 @@ public class LC : MonoBehaviour
     {
         Vector2 o = H.O(m, n);
         Vector2 d = H.Bi(m.transform.position, n.transform.position, o);
-
-        if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.childLight.transform.position))
+        if (m.spouseLight != null)
         {
-            L l = m.spouseLight;
-            Divorce(m, l);
-            Wedding(m, n);
+            if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.childLight.transform.position))
+            {
+                Divorce(m, m.spouseLight);
+                Wedding(m, n);
+            }
+        }
+        else
+        {
+            if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.rch.collider.transform.position))
+            {
+                Wedding(m, n);
+            }
         }
     }
 
     private void Divorce(L m, L n)
     {
-        KillChildren(n);
         KillChildren(m);
+        KillChildren(n);
 
         m.childLight = null;
         n.childLight = null;
