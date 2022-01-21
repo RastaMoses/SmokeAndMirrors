@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250192367641341251, guid: e50a9b89a5cc9a147874e7e046b05052, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24453068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3250192367641341251, guid: e50a9b89a5cc9a147874e7e046b05052, type: 3}
       propertyPath: m_LocalRotation.w
@@ -395,6 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ls: []
+  swapCon: []
 --- !u!4 &927647583
 Transform:
   m_ObjectHideFlags: 0
@@ -487,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 396146536885588835, guid: 91631b8aac942e849bb4f6a48d9019c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.20945644
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 396146536885588835, guid: 91631b8aac942e849bb4f6a48d9019c6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -662,7 +663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288708816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: -1.08, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -907,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791416101678581756, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1926508
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 791416101678581756, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
       propertyPath: m_LocalRotation.w
