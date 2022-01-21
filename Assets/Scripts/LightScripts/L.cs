@@ -17,6 +17,7 @@ public class L : MonoBehaviour
     public Material lightMaterial;
     GameObject shinyObj;
     public RaycastHit2D rch;
+    public LayerMask lm;
 
     void Awake()
     {
@@ -46,7 +47,7 @@ public class L : MonoBehaviour
 
         if (spouseLight == null)
         {
-            rch = Physics2D.Raycast(transform.position, direction, lightRange);
+            rch = Physics2D.Raycast(transform.position, direction, lightRange, lm);
             if (rch)
             {
                 if (rch.collider.tag == "Mirror")
@@ -97,7 +98,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "ShinyParent")
                 {
-                    isParent = false;
+                    isParent = true;
                     if (shinyObj != rch.collider.gameObject)
                     {
                         if (shinyObj != null)
@@ -171,6 +172,12 @@ public class L : MonoBehaviour
 
     void OnDisable()
     {
+        if (shinyObj != null)
+        {
+            shinyObj.GetComponent<ShinyParent>().MassDeact();
+            shinyObj = null;
+        }
         lr.enabled = false;
+
     }
 }

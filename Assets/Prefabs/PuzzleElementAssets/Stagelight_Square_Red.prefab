@@ -181,6 +181,9 @@ MonoBehaviour:
   lr: {fileID: 0}
   lightColor: {r: 1, g: 0, b: 0, a: 1}
   lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 3592
 --- !u!1 &7729190108137318439
 GameObject:
   m_ObjectHideFlags: 0

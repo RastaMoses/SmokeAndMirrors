@@ -35,7 +35,7 @@ public class LC : MonoBehaviour
                     Wedding(m, n);
                 }
 
-                if (H.IsIntersecting(m, n) && m.isParent && n.isParent && m.childLight == n.childLight)
+                if (H.IsIntersecting(m, n) && m.isParent && n.isParent && m.spouseLight == n && n.spouseLight == m)
                 {
                     MarriedLife(m, n);
                 }

@@ -149,11 +149,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void SetLeverPulling()
+    public void SetLeverPulling(float leverPos)
     {
-        //SFX
         
-
+        if (transform.position.x < leverPos)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
         animator.SetTrigger("lever");
         leverPulling = true;
     }

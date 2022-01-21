@@ -11,6 +11,7 @@ TagManager:
   - ShinyParent
   - Death
   - Goal
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -21,11 +22,11 @@ TagManager:
   - Rails
   - Moveable
   - Player
-  - 
-  - 
+  - Shiny
+  - Objects
   - Smoke
   - Boundaries
-  - 
+  - Glass
   - 
   - 
   - 
