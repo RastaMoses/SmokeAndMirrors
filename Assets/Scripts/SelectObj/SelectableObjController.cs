@@ -64,6 +64,7 @@ public class SelectableObjController : MonoBehaviour
 
         if (InSelectionMode)
         {
+
            // if(_selectableObjs)
 
             //TODO cast "spellray" from player to selected obj
@@ -106,7 +107,23 @@ public class SelectableObjController : MonoBehaviour
                 _selectedObj.Select();
             }
 
+            
+
         }
+
+
+        //Movement disable on magic mode
+        /*
+        if (InSelectionMode)
+        {
+            FindObjectOfType<PlayerController>().movementEnabled = false;
+        }
+        else
+        {
+
+            FindObjectOfType<PlayerController>().movementEnabled = true;
+        }
+        */
     }
 
 
@@ -120,6 +137,10 @@ public class SelectableObjController : MonoBehaviour
             return;
 
         InSelectionMode = true;
+
+        //Animation
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetTrigger("magicMode");
+
 
         //order selectables in a circle
         _selectableObjsCenter = CalculateCentroid(_selectableObjs);

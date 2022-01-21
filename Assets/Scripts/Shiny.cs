@@ -30,12 +30,12 @@ public class Shiny : MonoBehaviour
     public void Visibilize()
     {
         mr.material = vis;
-        col.isTrigger = true;
+        col.isTrigger = false;
     }
 
     public void Invisibilize()
     {
         mr.material = invis;
-        col.isTrigger = false;
+        col.isTrigger = true;
     }
 }

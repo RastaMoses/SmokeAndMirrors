@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
+    [SerializeField] bool startState;
     private bool _on;
     private bool _turnable;
     private string _buttonKey = "Fire1";
@@ -29,12 +30,19 @@ public class Switch : MonoBehaviour
     void Start()
     {
         _switchButton = Button.gameObject.GetComponent<HoldButton>();
-
+        _on = startState;
+        foreach (GameObject switchable in Switchables)
+        {
+            if (_on)
+                switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+        }
+        /*
         //this code adds the switch to the switchCondition and has to be taken out if 1 switch on is enough to have a light on:
         foreach (GameObject switchable in Switchables)
         {
             switchable.GetComponent<SwitchCondition>().AddToTarget(1);
         }
+        */
 
         Button.SetActive(false);
 
@@ -45,12 +53,16 @@ public class Switch : MonoBehaviour
     {
         if (_on)
         {
-            GetComponent<SpriteRenderer>().color = _onColour;
+            //turn the switch handle on the "On" side
+
+            //GetComponent<MeshRenderer>().color = _onColour;
             
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = _offColour;
+            //turn the switch handle on the "off" side
+
+            //GetComponent<MeshRenderer>().color = _offColour;
         }
     }
 

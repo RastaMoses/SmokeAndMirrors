@@ -10,8 +10,11 @@ public class SFX : MonoBehaviour
     [SerializeField] List<AudioClip> footsteps;
     [SerializeField] [Range(0, 1f)] float footstepsVolume = 0.06f;
     [SerializeField] AudioClip jump;
+    [SerializeField] [Range(0, 1f)] float jumpVolume = 0.06f;
     [SerializeField] AudioClip magicMode;
+    [SerializeField] [Range(0, 1f)] float magicVolume = 0.06f;
     [SerializeField] AudioClip landing;
+    [SerializeField] [Range(0, 1f)] float landingVolume = 0.06f;
 
     [Header("Interactables")]
     [SerializeField] AudioClip lever;
@@ -58,16 +61,19 @@ public class SFX : MonoBehaviour
     public void Jump()
     {
         audioSource.clip = jump;
+        audioSource.volume = jumpVolume;
         audioSource.Play();
     }
     public void MagicMode()
     {
         audioSource.clip = magicMode;
+        audioSource.volume = magicVolume;
         audioSource.Play();
     }
     public void Landing()
     {
         audioSource.clip = landing;
+        audioSource.volume = landingVolume;
         audioSource.Play();
     }
     #endregion
@@ -107,7 +113,10 @@ public class SFX : MonoBehaviour
 
     public void PauseRails()
     {
-        StopCoroutine(railsCoroutine);
+        if (railsCoroutine != null)
+        {
+            StopCoroutine(railsCoroutine);
+        }
         audioSource.Pause();
         pausedRails = true;
     }
