@@ -21,6 +21,7 @@ public class LC : MonoBehaviour
         for (int i = 0; i < ls.Count; i++)
         {
             L m = ls[i];
+            
             for (int j = 0; j < ls.Count; j++)
             {
                 if (i == j)
@@ -30,7 +31,7 @@ public class LC : MonoBehaviour
 
                 L n = ls[j];
 
-                if (H.IsIntersecting(m, n) && !m.isParent && !n.isParent)
+                if (H.IsIntersecting(m, n) && !m.isParent && !n.isParent && !m.tm && !n.tm)
                 {
                     Wedding(m, n);
                 }

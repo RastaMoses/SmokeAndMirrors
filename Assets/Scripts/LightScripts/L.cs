@@ -11,6 +11,7 @@ public class L : MonoBehaviour
     public L childLight;
     public bool isParent;
     public bool isChild;
+    public bool tm;
     public LineRenderer lr;
     public Color lightColor;
     public Material lightMaterial;
@@ -23,6 +24,8 @@ public class L : MonoBehaviour
         isChild = false;
 
         lr = GetComponent<LineRenderer>();
+
+        tm = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,7 @@ public class L : MonoBehaviour
             {
                 if (rch.collider.tag == "Mirror")
                 {
+                    tm = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
@@ -72,6 +76,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "Teleporter")
                 {
+                    tm = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
@@ -94,6 +99,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "ShinyParent")
                 {
+                    tm = false;
                     if (shinyObj != rch.collider.gameObject)
                     {
                         if (shinyObj != null)
@@ -115,11 +121,25 @@ public class L : MonoBehaviour
                 }
                 else
                 {
+                    tm = false;
                     lr.SetPosition(1, transform.position + direction * lightRange);
+                    if (shinyObj != null)
+                    {
+                        shinyObj.GetComponent<ShinyParent>().MassDeact();
+                        shinyObj = null;
+                    }
+                    if (childLight != null)
+                    {
+                        FindObjectOfType<LC>().ls.Remove(childLight);
+                        Destroy(childLight.gameObject);
+                        childLight = null;
+                    }
                 }
             }
             else
             {
+                print("me here");
+                tm = false;
                 lr.SetPosition(1, transform.position + direction * lightRange);
                 if (shinyObj != null)
                 {
@@ -130,12 +150,12 @@ public class L : MonoBehaviour
                 {
                     FindObjectOfType<LC>().ls.Remove(childLight);
                     Destroy(childLight.gameObject);
+                    childLight = null;
                 }
             }
         }
         else
         {
-
             lr.SetPosition(1, childLight.transform.position);
         }
     }
