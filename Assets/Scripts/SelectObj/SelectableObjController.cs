@@ -15,10 +15,6 @@ public class SelectableObjController : MonoBehaviour
     private SelectableObj _selectedObj;
     private Vector3 _selectableObjsCenter = Vector3.zero;
 
-    Vector2 _rightStick = Vector2.zero;
-    Vector2 _vectorSensibility = new Vector2(0.02f, 0.02f);
-    //public float rotationSpeed; // only needed if rotating and not setting rotation directly
-
 
     // Start is called before the first frame update
     void Start()
@@ -69,21 +65,7 @@ public class SelectableObjController : MonoBehaviour
             //TODO cast "spellray" from player to selected obj
             Debug.DrawLine(_player.transform.position, _selectedObj.transform.position, Color.blue);
 
-            float ry = Input.GetAxis("Right Stick Y");
-            float rx = Input.GetAxis("Right Stick X");
-            _rightStick = new Vector2(rx, -ry);
-            //Rotate selected obj on input from right stick
-            if (!VectorAproxEqual(Vector2.zero, _rightStick, _vectorSensibility))
-            {
-                Vector3 target = new Vector3(_rightStick.x, _rightStick.y, 0);
-                //alt: rotation with movement towards direction
-                //Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, target);
-                //selectedObj.transform.rotation = Quaternion.RotateTowards(selectedObj.transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-
-                //alt: direct rotation without rotation movement
-                _selectedObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, target);
-
-            }
+            _selectedObj.ProcessInput();
 
             if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Left Bumper"))
             {
@@ -109,20 +91,6 @@ public class SelectableObjController : MonoBehaviour
             
 
         }
-
-
-        //Movement disable on magic mode
-        /*
-        if (InSelectionMode)
-        {
-            FindObjectOfType<PlayerController>().movementEnabled = false;
-        }
-        else
-        {
-
-            FindObjectOfType<PlayerController>().movementEnabled = true;
-        }
-        */
     }
 
 
@@ -183,7 +151,7 @@ public class SelectableObjController : MonoBehaviour
         return centroid;
     }
 
-    bool VectorAproxEqual(Vector2 vector1, Vector2 vector2, Vector2 sensibility)
+    public static bool VectorAproxEqual(Vector2 vector1, Vector2 vector2, Vector2 sensibility)
     {
         if (vector1.x <= vector2.x + sensibility.x && vector1.y <= vector2.y + sensibility.y &&
             vector1.x >= vector2.x - sensibility.y && vector1.y >= vector2.y - sensibility.y)

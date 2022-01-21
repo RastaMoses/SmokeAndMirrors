@@ -150,10 +150,6 @@ public class L : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
-    {
-        AddToSwap();
-    }
 
     public void AddToSwap()
     {
