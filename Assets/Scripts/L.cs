@@ -11,11 +11,12 @@ public class L : MonoBehaviour
     public L childLight;
     public bool isParent;
     public bool isChild;
+    public bool tm;
     public LineRenderer lr;
     public Color lightColor;
     public Material lightMaterial;
     GameObject shinyObj;
-    RaycastHit2D rch;
+    public RaycastHit2D rch;
 
     void Awake()
     {
@@ -43,13 +44,14 @@ public class L : MonoBehaviour
 
         lr.SetPosition(0, transform.position);
 
-        if (!isParent)
+        if (spouseLight == null)
         {
             rch = Physics2D.Raycast(transform.position, direction, lightRange);
             if (rch)
             {
                 if (rch.collider.tag == "Mirror")
                 {
+                    isParent = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
@@ -72,6 +74,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "Teleporter")
                 {
+                    isParent = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
@@ -94,6 +97,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "ShinyParent")
                 {
+                    isParent = false;
                     if (shinyObj != rch.collider.gameObject)
                     {
                         if (shinyObj != null)
@@ -115,6 +119,7 @@ public class L : MonoBehaviour
                 }
                 else
                 {
+                    isParent = false;
                     lr.SetPosition(1, transform.position + direction * lightRange);
                 }
             }
@@ -128,8 +133,10 @@ public class L : MonoBehaviour
                 }
                 if (childLight != null)
                 {
+                    isParent = false;
                     FindObjectOfType<LC>().ls.Remove(childLight);
                     Destroy(childLight.gameObject);
+                    childLight = null;
                 }
             }
         }
