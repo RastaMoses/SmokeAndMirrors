@@ -56,9 +56,18 @@ public class LC : MonoBehaviour
         {
             Color a = swapCon[0].lightColor;
             Color b = swapCon[1].lightColor;
-
             swapCon[0].lightColor = b;
             swapCon[1].lightColor = a;
+            
+            Material c = swapCon[0].transform.Find("Bulb").GetComponent<MeshRenderer>().material;
+            Material d = swapCon[1].transform.Find("Bulb").GetComponent<MeshRenderer>().material;
+            swapCon[0].transform.Find("Bulb").GetComponent<MeshRenderer>().material = d;        
+            swapCon[1].transform.Find("Bulb").GetComponent<MeshRenderer>().material = c;
+
+            Mesh e = swapCon[0].transform.Find("Housing").GetComponent<MeshFilter>().mesh;
+            Mesh f = swapCon[1].transform.Find("Housing").GetComponent<MeshFilter>().mesh;
+            swapCon[0].transform.Find("Housing").GetComponent<MeshFilter>().mesh = f;
+            swapCon[1].transform.Find("Housing").GetComponent<MeshFilter>().mesh = e;
 
             swapCon[0] = null;
             swapCon[1] = null;
