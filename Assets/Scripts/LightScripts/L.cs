@@ -149,6 +149,11 @@ public class L : MonoBehaviour
 
     void OnMouseDown()
     {
+        AddToSwap();
+    }
+
+    public void AddToSwap()
+    {
         if (FindObjectOfType<LC>().swapCon[0] == null)
         {
             FindObjectOfType<LC>().swapCon[0] = this;
