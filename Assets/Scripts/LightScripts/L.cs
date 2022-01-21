@@ -24,8 +24,6 @@ public class L : MonoBehaviour
         isChild = false;
 
         lr = GetComponent<LineRenderer>();
-
-        tm = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -46,14 +44,14 @@ public class L : MonoBehaviour
 
         lr.SetPosition(0, transform.position);
 
-        if (!isParent)
+        if (spouseLight == null)
         {
             rch = Physics2D.Raycast(transform.position, direction, lightRange);
             if (rch)
             {
                 if (rch.collider.tag == "Mirror")
                 {
-                    tm = true;
+                    isParent = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
@@ -76,7 +74,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "Teleporter")
                 {
-                    tm = true;
+                    isParent = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
                     {
@@ -99,7 +97,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "ShinyParent")
                 {
-                    tm = false;
+                    isParent = false;
                     if (shinyObj != rch.collider.gameObject)
                     {
                         if (shinyObj != null)
@@ -121,25 +119,12 @@ public class L : MonoBehaviour
                 }
                 else
                 {
-                    tm = false;
+                    isParent = false;
                     lr.SetPosition(1, transform.position + direction * lightRange);
-                    if (shinyObj != null)
-                    {
-                        shinyObj.GetComponent<ShinyParent>().MassDeact();
-                        shinyObj = null;
-                    }
-                    if (childLight != null)
-                    {
-                        FindObjectOfType<LC>().ls.Remove(childLight);
-                        Destroy(childLight.gameObject);
-                        childLight = null;
-                    }
                 }
             }
             else
             {
-                print("me here");
-                tm = false;
                 lr.SetPosition(1, transform.position + direction * lightRange);
                 if (shinyObj != null)
                 {
@@ -148,6 +133,7 @@ public class L : MonoBehaviour
                 }
                 if (childLight != null)
                 {
+                    isParent = false;
                     FindObjectOfType<LC>().ls.Remove(childLight);
                     Destroy(childLight.gameObject);
                     childLight = null;
@@ -156,6 +142,7 @@ public class L : MonoBehaviour
         }
         else
         {
+
             lr.SetPosition(1, childLight.transform.position);
         }
     }
@@ -175,16 +162,10 @@ public class L : MonoBehaviour
     void OnEnable()
     {
         lr.enabled = true;
-        isParent = false;
     }
 
     void OnDisable()
     {
         lr.enabled = false;
-        if (shinyObj != null)
-        {
-            shinyObj.GetComponent<ShinyParent>().MassDeact();
-            shinyObj = null;
-        }
     }
 }
