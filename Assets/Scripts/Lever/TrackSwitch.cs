@@ -4,69 +4,91 @@ using UnityEngine;
 
 public class TrackSwitch : MonoBehaviour
 {
+    [SerializeField] private bool _onAtStart;
     private bool _on; //on is "right", off "left"
     private bool _turnable;
     private string _buttonKey = "Fire1";
     private string _gamePadbuttonKey = "A";
 
-    public List<GameObject> LeftTrackSwitchables;
-    public List<GameObject> RightTrackSwitchables;
+    [SerializeField] private List<SwitchCondition> _leftTrackSwitchables;
+    [SerializeField] private List<SwitchCondition> _rightTrackSwitchables;
 
-    public GameObject Button;
+    [SerializeField] private HoldButton _switchButton;
 
-    private HoldButton _switchButton;
+    [SerializeField] private GameObject _handle;
+    private Vector3 _handleTargetRotation = new Vector3(0, 0, 30);
+    private float _turnSpeed = 150;
 
-    private Color32 _offColour = Color.blue;
-    private Color32 _onColour = Color.cyan;
+    //Cached Comp Configuration
+    SFX sfx;
+
+    private void Awake()
+    {
+        sfx = GetComponent<SFX>();
+    }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _switchButton = Button.gameObject.GetComponent<HoldButton>();
+        _on = _onAtStart;
 
-        //this code adds the switch to the switchCondition and has to be taken out if 1 switch on is enough to have a light on:
-        foreach (GameObject switchable in LeftTrackSwitchables)
-        {
-            switchable.GetComponent<SwitchCondition>().AddToTarget(1);
-        }
-        foreach (GameObject switchable in RightTrackSwitchables)
-        {
-            switchable.GetComponent<SwitchCondition>().AddToTarget(1);
-        }
-
-        //turn "right" side on
         if (_on)
         {
-            foreach (GameObject switchable in RightTrackSwitchables)
+            //turn "right" side on
+            foreach (SwitchCondition switchable in _rightTrackSwitchables)
             {
-                switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+                switchable.AddOneTowardsTarget();
             }
         }
-        //turn "left" side on
         else
         {
-            foreach (GameObject switchable in LeftTrackSwitchables)
+            //turn "left" side on
+            foreach (SwitchCondition switchable in _leftTrackSwitchables)
             {
-                switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+                switchable.AddOneTowardsTarget();
             }
         }
 
-        Button.SetActive(false);
+        _switchButton.gameObject.SetActive(false);
 
-        SetVisualKeyForState();
+        SetVisualKeyForState(true);
     }
 
-    private void SetVisualKeyForState()
+    private void SetVisualKeyForState(bool immediate = false)
     {
-        if (_on)
+        if (immediate)
         {
-            GetComponent<SpriteRenderer>().color = _onColour;
+            _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = _offColour;
+            StartCoroutine(TurnHandleAnimation());
         }
+    }
+
+    IEnumerator TurnHandleAnimation()
+    {
+        yield return new WaitForSeconds(0.4f); //wait until animation is at the handle pulling/pushing point
+        if (_on)
+        {
+            while (_handle.transform.rotation != Quaternion.Euler(_handleTargetRotation))
+            {
+                //turn the switch handle on the "On" side
+                _handle.transform.rotation = Quaternion.RotateTowards(_handle.transform.rotation, Quaternion.Euler(_handleTargetRotation), _turnSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (_handle.transform.rotation != Quaternion.Euler(-_handleTargetRotation))
+            {
+                //turn the switch handle on the "Off" side
+                _handle.transform.rotation = Quaternion.RotateTowards(_handle.transform.rotation, Quaternion.Euler(-_handleTargetRotation), _turnSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
     }
 
     // Update is called once per frame
@@ -76,29 +98,33 @@ public class TrackSwitch : MonoBehaviour
         {
             if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
             {
+                //Animation Set Trigger
+                FindObjectOfType<PlayerMovement>().SetLeverPulling();
+                sfx.Lever();
+
                 _on = !_on;
                 //turn "right" side on and "left" off
                 if (_on)
                 {
-                    foreach (GameObject switchable in RightTrackSwitchables)
+                    foreach (SwitchCondition switchable in _rightTrackSwitchables)
                     {
-                        switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+                        switchable.AddOneTowardsTarget();
                     }
-                    foreach (GameObject switchable in LeftTrackSwitchables)
+                    foreach (SwitchCondition switchable in _leftTrackSwitchables)
                     {
-                        switchable.GetComponent<SwitchCondition>().RemoveOneTowardsTarget();
+                        switchable.RemoveOneTowardsTarget();
                     }
                 }
                 //turn "left" side on and "right" off
                 else
                 {
-                    foreach (GameObject switchable in LeftTrackSwitchables)
+                    foreach (SwitchCondition switchable in _leftTrackSwitchables)
                     {
-                        switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+                        switchable.AddOneTowardsTarget();
                     }
-                    foreach (GameObject switchable in RightTrackSwitchables)
+                    foreach (SwitchCondition switchable in _rightTrackSwitchables)
                     {
-                        switchable.GetComponent<SwitchCondition>().RemoveOneTowardsTarget();
+                        switchable.RemoveOneTowardsTarget();
                     }
                 }
                 SetVisualKeyForState();
@@ -112,7 +138,7 @@ public class TrackSwitch : MonoBehaviour
             return;
 
         //show button to use
-        Button.SetActive(true);
+        _switchButton.gameObject.SetActive(true);
         //check for input
         _turnable = true;
     }
@@ -123,7 +149,7 @@ public class TrackSwitch : MonoBehaviour
             return;
 
         //stop show button to use
-        Button.SetActive(false);
+        _switchButton.gameObject.SetActive(false);
         //stop check for input
         _turnable = false;
     }

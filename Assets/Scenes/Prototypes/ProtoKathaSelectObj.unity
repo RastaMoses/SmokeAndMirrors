@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -463,11 +463,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &747015553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2841053401173293805, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
-  m_PrefabInstance: {fileID: 2841053401500874604}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &905197575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -909,11 +904,11 @@ PrefabInstance:
     - target: {fileID: 754151688443362357, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
       propertyPath: Camera
       value: 
-      objectReference: {fileID: 316078657}
+      objectReference: {fileID: 0}
     - target: {fileID: 754151688443362357, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 747015553}
+      objectReference: {fileID: 0}
     - target: {fileID: 754151688443362359, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
       propertyPath: m_Name
       value: SelectableObjController

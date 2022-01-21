@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class SelectableObjController : MonoBehaviour
 {
-    public Camera Camera;
-    public GameObject Player;
+    private Camera _camera;
+    private GameObject _player;
 
     private List<SelectableObj> _allSelectableObjs;
     private List<SelectableObj> _selectableObjs = new List<SelectableObj>();
 
-    public bool InSelectionMode = false;
+    private bool _inSelectionMode = false;
     private SelectableObj _selectedObj;
     private Vector3 _selectableObjsCenter = Vector3.zero;
 
@@ -23,6 +23,8 @@ public class SelectableObjController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _camera = Camera.main;
+        _player = GameObject.FindGameObjectWithTag("Player");
         var selectables = GameObject.FindObjectsOfType(typeof(SelectableObj)) as SelectableObj[];
         _allSelectableObjs = selectables.ToList();
     }
@@ -37,7 +39,7 @@ public class SelectableObjController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (InSelectionMode)
+            if (_inSelectionMode)
             {
                 OnEndSelectMode();
             }
@@ -49,26 +51,23 @@ public class SelectableObjController : MonoBehaviour
 
         if(Input.GetAxis("Left Trigger") != 0)
         {
-            if (!InSelectionMode)
+            if (!_inSelectionMode)
             {
                 OnStartSelectMode();
             }
         }
         else
         {
-            if (InSelectionMode)
+            if (_inSelectionMode)
             {
                 OnEndSelectMode();
             }
         }
 
-        if (InSelectionMode)
+        if (_inSelectionMode)
         {
-
-           // if(_selectableObjs)
-
             //TODO cast "spellray" from player to selected obj
-            Debug.DrawLine(Player.transform.position, _selectedObj.transform.position, Color.blue);
+            Debug.DrawLine(_player.transform.position, _selectedObj.transform.position, Color.blue);
 
             float ry = Input.GetAxis("Right Stick Y");
             float rx = Input.GetAxis("Right Stick X");
@@ -130,13 +129,13 @@ public class SelectableObjController : MonoBehaviour
     private void OnStartSelectMode()
     {
         //Only visible objects are selectable
-        _selectableObjs = _allSelectableObjs.Where(s => IsWithinBounds(new Rect(0, 0, 1, 1), Camera.WorldToViewportPoint(s.transform.position))).ToList();
+        _selectableObjs = _allSelectableObjs.Where(s => IsWithinBounds(new Rect(0, 0, 1, 1), _camera.WorldToViewportPoint(s.transform.position))).ToList();
 
         //do not enter selection mode if there are no objs that can currently be selected
         if (_selectableObjs.Count == 0)
             return;
 
-        InSelectionMode = true;
+        _inSelectionMode = true;
 
         //Animation
         FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetTrigger("magicMode");
@@ -152,7 +151,7 @@ public class SelectableObjController : MonoBehaviour
         SelectableObj closestObj = null;
         foreach(SelectableObj selectableObj in _selectableObjs)
         {
-            if(closestObj == null || (closestObj != null && Vector2.Distance(Player.transform.position, selectableObj.transform.position) < Vector2.Distance(Player.transform.position, closestObj.transform.position)))
+            if(closestObj == null || (closestObj != null && Vector2.Distance(_player.transform.position, selectableObj.transform.position) < Vector2.Distance(_player.transform.position, closestObj.transform.position)))
             {
                 closestObj = selectableObj;
             }
@@ -163,7 +162,7 @@ public class SelectableObjController : MonoBehaviour
 
     private void OnEndSelectMode()
     {
-        InSelectionMode = false;
+        _inSelectionMode = false;
         _selectedObj.DeSelect();
         _selectedObj = null;
     }

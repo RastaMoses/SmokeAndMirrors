@@ -62,8 +62,6 @@ public abstract class Condition : MonoBehaviour
 
     public void RemoveOneTowardsTarget()
     {
-        Debug.Log("remove");
-
         bool wasFullfilled = fullfilled;
         
         _actual--;
