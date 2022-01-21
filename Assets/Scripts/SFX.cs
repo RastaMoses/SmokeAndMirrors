@@ -60,6 +60,10 @@ public class SFX : MonoBehaviour
 
     public void Jump()
     {
+        if (jump == null)
+        {
+            return;
+        }
         audioSource.clip = jump;
         audioSource.volume = jumpVolume;
         audioSource.Play();
@@ -72,6 +76,10 @@ public class SFX : MonoBehaviour
     }
     public void Landing()
     {
+        if (landing == null)
+        {
+            return;
+        }
         audioSource.clip = landing;
         audioSource.volume = landingVolume;
         audioSource.Play();

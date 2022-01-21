@@ -70,7 +70,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2841053401173293803}
   - component: {fileID: 2841053401173293802}
-  - component: {fileID: 1146689522}
   - component: {fileID: 2841053401173293801}
   - component: {fileID: 2841053401173293800}
   - component: {fileID: 2841053401173293807}
@@ -142,7 +141,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5071563641634004584, guid: 18a984faa1f43f74ebfc124d3bcaf91b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -154,22 +153,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &1146689522
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2841053401173293805}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.042817354}
-  m_Size: {x: 1, y: 1.9143653}
-  m_Direction: 0
 --- !u!70 &2841053401173293801
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -221,6 +204,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   jumpForce: 14.4
+  jumpDelay: 0.1
+  ladderSpeed: 4.08
+  ladderDownSpeed: 2.21
   jumpEnabled: 1
   movementEnabled: 1
 --- !u!114 &2841053401173293806
@@ -236,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCheck: {fileID: 2841053401383026477}
-  jumpDelay: 0.1
+  flipSprite: 0
 --- !u!114 &62242279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PullPushLeft: {fileID: 556958306}
   PullPushRight: {fileID: 304207561}
+  _pushing: 0
+  _pulling: 0
 --- !u!82 &2116398189
 AudioSource:
   m_ObjectHideFlags: 0
@@ -386,11 +374,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 40ceaa252026ac24f92a3efeac37701e, type: 3}
   footstepsVolume: 0.047
   jump: {fileID: 8300000, guid: 090747247b322f64dbd1d83148e02a66, type: 3}
-  jumpVolume: 0.362
+  jumpVolume: 0.356
   magicMode: {fileID: 8300000, guid: 45d012d97320062409165597ab5cc4aa, type: 3}
   magicVolume: 0.668
-  landing: {fileID: 8300000, guid: 21c937577f7d51e42a260165f7c48b64, type: 3}
-  landingVolume: 0.232
+  landing: {fileID: 8300000, guid: c5eebb7ae0930c54fa77e50dc243aece, type: 3}
+  landingVolume: 0.499
   lever: {fileID: 8300000, guid: 91d26447c380a9347b6d2858e85d47bb, type: 3}
   rails: {fileID: 8300000, guid: fd79c372fb376dc4d9348a9ce00c5949, type: 3}
   railsFadeTime: 0.2

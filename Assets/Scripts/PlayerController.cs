@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     //Config Params
     [SerializeField] public float speed;
     [SerializeField] public float jumpForce;
+    [SerializeField] public float jumpDelay = 0.1f;
+    [SerializeField] public float ladderSpeed;
+    [SerializeField] public float ladderDownSpeed;
+
 
     //State
     public bool jumpEnabled = true;
