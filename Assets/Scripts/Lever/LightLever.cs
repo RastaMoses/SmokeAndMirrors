@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class LightLever : MonoBehaviour
 {
-    public bool b;
-    L l;
+    private bool _enabled;
+    private L _light;
     private SwitchCondition _switchCondition;
 
     private void Start()
     {
-        l = GetComponent<L>();
+        _light = GetComponent<L>();
         _switchCondition = GetComponent<SwitchCondition>();
     }
 
     void Update()
     {
-        b = _switchCondition.on;
-        l.enabled = b;
+        _enabled = _switchCondition.on;
+        _light.enabled = _enabled;
     }
 
 }

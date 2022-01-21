@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    [SerializeField] bool startState;
+    [SerializeField] private bool _onAtStart;
     private bool _on;
     private bool _turnable;
     private string _buttonKey = "Fire1";
     private string _gamePadbuttonKey = "A";
 
-    public List<GameObject> Switchables;
-    public GameObject Button;
+    [SerializeField] private List<SwitchCondition> _switchables;
+    [SerializeField] HoldButton _switchButton;
 
-    private HoldButton _switchButton;
-
-    private Color32 _offColour = Color.red;
-    private Color32 _onColour = Color.green;
-
+    [SerializeField] private GameObject _handle;
+    private Vector3 _handleTargetRotation = new Vector3(0,0,30);
+    private float _turnSpeed = 150;
 
     //Cached Comp Configuration
     SFX sfx;
+
     private void Awake()
     {
         sfx = GetComponent<SFX>();
@@ -29,40 +28,50 @@ public class Switch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _switchButton = Button.gameObject.GetComponent<HoldButton>();
-        _on = startState;
-        foreach (GameObject switchable in Switchables)
+        _on = _onAtStart;
+        foreach (SwitchCondition switchable in _switchables)
         {
             if (_on)
-                switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+                switchable.AddOneTowardsTarget();
         }
-        /*
-        //this code adds the switch to the switchCondition and has to be taken out if 1 switch on is enough to have a light on:
-        foreach (GameObject switchable in Switchables)
-        {
-            switchable.GetComponent<SwitchCondition>().AddToTarget(1);
-        }
-        */
 
-        Button.SetActive(false);
+        _switchButton.gameObject.SetActive(false);
 
-        SetVisualKeyForState();
+        SetVisualKeyForState(true);
     }
 
-    private void SetVisualKeyForState()
+    private void SetVisualKeyForState(bool immediate = false)
     {
-        if (_on)
+        if (immediate)
         {
-            //turn the switch handle on the "On" side
-
-            //GetComponent<MeshRenderer>().color = _onColour;
-            
+            _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
         }
         else
         {
-            //turn the switch handle on the "off" side
+            StartCoroutine(TurnHandleAnimation());
+        }
+    }
 
-            //GetComponent<MeshRenderer>().color = _offColour;
+    IEnumerator TurnHandleAnimation()
+    {
+        yield return new WaitForSeconds(0.4f); //wait until animation is at the handle pulling/pushing point
+        if (_on)
+        {
+            while (_handle.transform.rotation != Quaternion.Euler(_handleTargetRotation))
+            {
+                //turn the switch handle on the "On" side
+                _handle.transform.rotation = Quaternion.RotateTowards(_handle.transform.rotation, Quaternion.Euler(_handleTargetRotation), _turnSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (_handle.transform.rotation != Quaternion.Euler(-_handleTargetRotation))
+            {
+                //turn the switch handle on the "Off" side
+                _handle.transform.rotation = Quaternion.RotateTowards(_handle.transform.rotation, Quaternion.Euler(-_handleTargetRotation), _turnSpeed * Time.deltaTime);
+                yield return null;
+            }
         }
     }
 
@@ -76,14 +85,15 @@ public class Switch : MonoBehaviour
                 //Animation Set Trigger
                 FindObjectOfType<PlayerMovement>().SetLeverPulling();
                 sfx.Lever();
+
                 _on = !_on;
                 //foreach switchable, notify 1 switch on/off
-                foreach (GameObject switchable in Switchables)
+                foreach (SwitchCondition switchable in _switchables)
                 {
                     if (_on)
-                        switchable.GetComponent<SwitchCondition>().AddOneTowardsTarget();
+                        switchable.AddOneTowardsTarget();
                     else
-                        switchable.GetComponent<SwitchCondition>().RemoveOneTowardsTarget();
+                        switchable.RemoveOneTowardsTarget();
                 }
                 SetVisualKeyForState();
             }
@@ -96,7 +106,7 @@ public class Switch : MonoBehaviour
             return;
 
         //show button to use
-        Button.SetActive(true);
+        _switchButton.gameObject.SetActive(true);
         //check for input
         _turnable = true;
     }
@@ -107,7 +117,7 @@ public class Switch : MonoBehaviour
             return;
 
         //stop show button to use
-        Button.SetActive(false);
+        _switchButton.gameObject.SetActive(false);
         //stop check for input
         _turnable = false;
     }
