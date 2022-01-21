@@ -8,12 +8,12 @@ public class PlayerMovement : MonoBehaviour
 {
     //Configure Params
     [SerializeField] private Transform _groundCheck;
-    [SerializeField] float jumpDelay = 0.1f;
 
     //State
     private bool _isGrounded;
     bool isMoving;
     bool isFalling;
+    bool onLadder;
     bool leverPulling;
     bool hasJumped; //Checks if player is waiting on jump delay
     public bool flipSprite;
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = false;
         }
-        if (!hasJumped)
+        if (!hasJumped && !onLadder)
         {
             yVelocity = rb.velocity.y;
         }
@@ -113,6 +113,20 @@ public class PlayerMovement : MonoBehaviour
             isFalling = true;
         }
         Animations();
+
+        //Ladder
+        if (onLadder)
+        {
+            if (Input.GetButton("Jump") || Input.GetButton("X"))
+            {
+                yVelocity = playerController.ladderSpeed;
+            }
+            else
+            {
+                yVelocity = -playerController.ladderDownSpeed;
+            }
+        }
+
     }
 
 
@@ -155,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         sfx.Jump();
 
         //Needed for animation and better feeling
-        yield return new WaitForSeconds(jumpDelay);
+        yield return new WaitForSeconds(playerController.jumpDelay);
         yVelocity = playerController.jumpForce;
         yVelocity -= temporaryJumpForce;
         rb.velocity = new Vector2(xVelocity, yVelocity);
@@ -180,6 +194,25 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Goal"))
         {
             playerController.Goal();
+        }
+    }
+
+    //Ladder
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            onLadder = true;
+            playerController.jumpEnabled = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            onLadder = false;
+            playerController.jumpEnabled = true;
         }
     }
 }
