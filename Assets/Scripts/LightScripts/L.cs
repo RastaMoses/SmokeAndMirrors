@@ -65,6 +65,7 @@ public class L : MonoBehaviour
                         childLight.lightColor = lightColor;
                         childLight.lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
+                        childLight.lm = lm;
                         FindObjectOfType<LC>().ls.Add(childLight);
                     }
                     else
@@ -88,6 +89,7 @@ public class L : MonoBehaviour
                         childLight.lightColor = lightColor;
                         childLight.lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
+                        childLight.lm = lm;
                         FindObjectOfType<LC>().ls.Add(childLight);
                     }
                     else

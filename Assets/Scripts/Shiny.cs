@@ -12,7 +12,11 @@ public class Shiny : MonoBehaviour
     void Awake()
     {
         mr = GetComponent<MeshRenderer>();
-        col = GetComponent<Collider2D>();
+        if (GetComponent<Collider2D>() != null)
+        {
+            col = GetComponent<Collider2D>();
+        }
+        
         Invisibilize();
     }
     // Start is called before the first frame update
@@ -29,13 +33,19 @@ public class Shiny : MonoBehaviour
 
     public void Visibilize()
     {
-        mr.material = vis;
-        col.isTrigger = false;
+        mr.material = vis; 
+        if (GetComponent<Collider2D>() != null)
+        {
+            col.isTrigger = false;
+        }
     }
 
     public void Invisibilize()
     {
         mr.material = invis;
-        col.isTrigger = true;
+        if (GetComponent<Collider2D>() != null)
+        {
+            col.isTrigger = true;
+        }
     }
 }

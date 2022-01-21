@@ -148,7 +148,7 @@ public class LC : MonoBehaviour
             m.childLight.lightRange = m.lightRange;
             m.childLight.lightColor = H.AddColor(m, n);
             m.childLight.lightMaterial = m.lightMaterial;
-
+            m.childLight.lm = m.lm;
             if (!ls.Contains(m.childLight)) ls.Add(m.childLight);
         }
     }
