@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -17,6 +18,7 @@ public class L : MonoBehaviour
     public Material lightMaterial;
     GameObject shinyObj;
     public RaycastHit2D rch;
+    public LayerMask lm;
 
     void Awake()
     {
@@ -46,7 +48,7 @@ public class L : MonoBehaviour
 
         if (spouseLight == null)
         {
-            rch = Physics2D.Raycast(transform.position, direction, lightRange);
+            rch = Physics2D.Raycast(transform.position, direction, lightRange, lm);
             if (rch)
             {
                 if (rch.collider.tag == "Mirror")
@@ -64,6 +66,7 @@ public class L : MonoBehaviour
                         childLight.lightColor = lightColor;
                         childLight.lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
+                        childLight.lm = lm;
                         FindObjectOfType<LC>().ls.Add(childLight);
                     }
                     else
@@ -87,6 +90,7 @@ public class L : MonoBehaviour
                         childLight.lightColor = lightColor;
                         childLight.lightMaterial = lightMaterial;
                         childLight.transform.parent = rch.collider.transform;
+                        childLight.lm = lm;
                         FindObjectOfType<LC>().ls.Add(childLight);
                     }
                     else
@@ -97,7 +101,7 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "ShinyParent")
                 {
-                    isParent = false;
+                    isParent = true;
                     if (shinyObj != rch.collider.gameObject)
                     {
                         if (shinyObj != null)
@@ -147,10 +151,6 @@ public class L : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
-    {
-        AddToSwap();
-    }
 
     public void AddToSwap()
     {
@@ -164,6 +164,15 @@ public class L : MonoBehaviour
         }
     }
 
+    public void CancelSwap()
+    {
+        LC lc = FindObjectOfType<LC>();
+        if (lc.swapCon.Contains(this))
+        {
+            lc.CancelSwap();
+        }
+    }
+
     void OnEnable()
     {
         lr.enabled = true;
@@ -171,6 +180,12 @@ public class L : MonoBehaviour
 
     void OnDisable()
     {
+        if (shinyObj != null)
+        {
+            shinyObj.GetComponent<ShinyParent>().MassDeact();
+            shinyObj = null;
+        }
         lr.enabled = false;
+
     }
 }

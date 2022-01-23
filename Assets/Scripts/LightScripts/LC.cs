@@ -35,7 +35,7 @@ public class LC : MonoBehaviour
                     Wedding(m, n);
                 }
 
-                if (H.IsIntersecting(m, n) && m.isParent && n.isParent && m.childLight == n.childLight)
+                if (H.IsIntersecting(m, n) && m.isParent && n.isParent && m.spouseLight == n && n.spouseLight == m)
                 {
                     MarriedLife(m, n);
                 }
@@ -72,6 +72,12 @@ public class LC : MonoBehaviour
             swapCon[0] = null;
             swapCon[1] = null;
         }
+    }
+
+    public void CancelSwap()
+    {
+        swapCon[0] = null;
+        swapCon[1] = null;
     }
 
     private void Affair(L m, L n)
@@ -148,7 +154,7 @@ public class LC : MonoBehaviour
             m.childLight.lightRange = m.lightRange;
             m.childLight.lightColor = H.AddColor(m, n);
             m.childLight.lightMaterial = m.lightMaterial;
-
+            m.childLight.lm = m.lm;
             if (!ls.Contains(m.childLight)) ls.Add(m.childLight);
         }
     }

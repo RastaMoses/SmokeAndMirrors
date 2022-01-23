@@ -10,7 +10,11 @@ public class ShinyParent : MonoBehaviour
     void Start()
     {
         shinies = GetComponentsInChildren<Shiny>();
-        GetComponent<Collider2D>().isTrigger = true;
+        if (GetComponent<Collider2D>() != null)
+        {
+            GetComponent<Collider2D>().isTrigger = true;
+        }
+        
     }
 
     // Update is called once per frame

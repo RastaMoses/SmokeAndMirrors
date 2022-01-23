@@ -99,7 +99,7 @@ public class TrackSwitch : MonoBehaviour
             if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
             {
                 //Animation Set Trigger
-                FindObjectOfType<PlayerMovement>().SetLeverPulling();
+                FindObjectOfType<PlayerMovement>().SetLeverPulling(transform.position.x);
                 sfx.Lever();
 
                 _on = !_on;

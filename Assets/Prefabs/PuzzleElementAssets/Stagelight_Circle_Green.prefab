@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791416101678581756}
-  - component: {fileID: 8782641889727042366}
+  - component: {fileID: 4211054377633086034}
   - component: {fileID: 60125478}
   - component: {fileID: 60125480}
   - component: {fileID: 60125479}
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8782641889727042366
+--- !u!114 &4211054377633086034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 121733996469280070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba74449fc46158742acfeef51f381c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: a897f50af2f66eb4381b08a0f0c13882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _selectionIndicator: {fileID: 4083733224661599277}
@@ -186,6 +186,9 @@ MonoBehaviour:
   lr: {fileID: 0}
   lightColor: {r: 0, g: 1, b: 0, a: 1}
   lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &671088716833004235
 GameObject:
   m_ObjectHideFlags: 0

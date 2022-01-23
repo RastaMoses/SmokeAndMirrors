@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectableObj: MonoBehaviour
+public abstract class SelectableObj: MonoBehaviour
 {
     [SerializeField] private GameObject _selectionIndicator;
     public bool Selected { get; private set; } = false;
@@ -13,7 +13,11 @@ public class SelectableObj: MonoBehaviour
     {
         Selected = false;
         _selectionIndicator.SetActive(false);
+
+        InitializeOnStart();
     }
+
+    protected abstract void InitializeOnStart();
 
     public float GetAngle(Transform trans)
     {
@@ -31,6 +35,17 @@ public class SelectableObj: MonoBehaviour
     {
         Selected = false;
         _selectionIndicator.SetActive(false);
+    }
+    public abstract void ProcessInput();
+
+    void OnMouseEnter()
+    {
+        Select();
+    }
+
+    void OnMouseExit()
+    {
+        DeSelect();
     }
 
 }
