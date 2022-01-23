@@ -21,6 +21,11 @@ public class LC : MonoBehaviour
         for (int i = 0; i < ls.Count; i++)
         {
             L m = ls[i];
+
+            if (!m.tm && m.spouseLight == null)
+            {
+                KillChildren(m);
+            }
             for (int j = 0; j < ls.Count; j++)
             {
                 if (i == j)
@@ -50,6 +55,7 @@ public class LC : MonoBehaviour
                     Affair(m, n);
                 }
             }
+            
         }
 
         if (swapCon[1] != null)
@@ -86,7 +92,7 @@ public class LC : MonoBehaviour
                 Wedding(m, n);
             }
         }
-        else
+        else if(m.rch)
         {
             if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.rch.collider.transform.position))
             {
@@ -95,7 +101,7 @@ public class LC : MonoBehaviour
         }
     }
 
-    private void Divorce(L m, L n)
+    public void Divorce(L m, L n)
     {
         KillChildren(m);
         KillChildren(n);
@@ -153,7 +159,7 @@ public class LC : MonoBehaviour
         }
     }
 
-    void KillChildren(L l)
+    public void KillChildren(L l)
     {
         if (l.childLight == null) return;
         KillChildren(l.childLight);

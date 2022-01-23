@@ -52,6 +52,7 @@ public class L : MonoBehaviour
             {
                 if (rch.collider.tag == "Mirror")
                 {
+                    tm = true;
                     isParent = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
@@ -60,7 +61,7 @@ public class L : MonoBehaviour
                         childLight = g.AddComponent<L>();
                         childLight.transform.position = rch.point;
                         childLight.isChild = true;
-                        childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
+                        childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal).normalized;
                         childLight.lightRange = lightRange;
                         childLight.lightColor = lightColor;
                         childLight.lightMaterial = lightMaterial;
@@ -71,11 +72,12 @@ public class L : MonoBehaviour
                     else
                     {
                         childLight.transform.position = rch.point;
-                        childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal);
+                        childLight.direction = Vector2.Reflect(rch.point - (Vector2)transform.position, rch.normal).normalized;
                     }
                 }
                 else if (rch.collider.tag == "Teleporter")
                 {
+                    tm = true;
                     isParent = true;
                     lr.SetPosition(1, rch.point);
                     if (childLight == null)
@@ -100,13 +102,11 @@ public class L : MonoBehaviour
                 }
                 else if (rch.collider.tag == "ShinyParent")
                 {
-                    isParent = true;
+                    tm = false;
+                    // isParent = true;
                     if (shinyObj != rch.collider.gameObject)
                     {
-                        if (shinyObj != null)
-                        {
-                            shinyObj.GetComponent<ShinyParent>().MassDeact();
-                        }
+                        if (shinyObj != null) shinyObj.GetComponent<ShinyParent>().MassDeact();
                         shinyObj = rch.collider.gameObject;
                     }
 
@@ -122,12 +122,14 @@ public class L : MonoBehaviour
                 }
                 else
                 {
+                    tm = false;
                     isParent = false;
                     lr.SetPosition(1, transform.position + direction * lightRange);
                 }
             }
             else
             {
+                tm = false;
                 lr.SetPosition(1, transform.position + direction * lightRange);
                 if (shinyObj != null)
                 {
@@ -145,7 +147,7 @@ public class L : MonoBehaviour
         }
         else
         {
-
+            tm = false;
             lr.SetPosition(1, childLight.transform.position);
         }
     }
@@ -157,14 +159,8 @@ public class L : MonoBehaviour
 
     public void AddToSwap()
     {
-        if (FindObjectOfType<LC>().swapCon[0] == null)
-        {
-            FindObjectOfType<LC>().swapCon[0] = this;
-        }
-        else
-        {
-            FindObjectOfType<LC>().swapCon[1] = this;
-        }
+        if (FindObjectOfType<LC>().swapCon[0] == null) FindObjectOfType<LC>().swapCon[0] = this;
+        else FindObjectOfType<LC>().swapCon[1] = this;
     }
 
     void OnEnable()
@@ -181,5 +177,16 @@ public class L : MonoBehaviour
         }
         lr.enabled = false;
 
+    }
+
+    void OnDestroy()
+    {
+        if (FindObjectOfType<LC>() != null)
+        {
+            if (spouseLight != null) FindObjectOfType<LC>().Divorce(this, spouseLight);
+            FindObjectOfType<LC>().KillChildren(this);
+        }
+
+        
     }
 }
