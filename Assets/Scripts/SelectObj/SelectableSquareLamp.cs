@@ -6,6 +6,7 @@ public class SelectableSquareLamp : SelectableObj
 {
     private L _light;
     private string _swapButton = "A";
+    private string _cancelButton = "B";
 
     protected override void InitializeOnStart()
     {
@@ -19,7 +20,15 @@ public class SelectableSquareLamp : SelectableObj
             _light.AddToSwap();
         }
     }
-  
+
+    void Update()
+    {
+        if(Input.GetButtonDown(_cancelButton) || Input.GetMouseButtonDown(1))
+        {
+            _light.CancelSwap();
+        }
+    }
+
 
     void OnMouseDown()
     {

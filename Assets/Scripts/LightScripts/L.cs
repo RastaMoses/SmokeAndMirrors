@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -160,6 +161,15 @@ public class L : MonoBehaviour
         else
         {
             FindObjectOfType<LC>().swapCon[1] = this;
+        }
+    }
+
+    public void CancelSwap()
+    {
+        LC lc = FindObjectOfType<LC>();
+        if (lc.swapCon.Contains(this))
+        {
+            lc.CancelSwap();
         }
     }
 

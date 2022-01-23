@@ -74,6 +74,12 @@ public class LC : MonoBehaviour
         }
     }
 
+    public void CancelSwap()
+    {
+        swapCon[0] = null;
+        swapCon[1] = null;
+    }
+
     private void Affair(L m, L n)
     {
         Vector2 o = H.O(m, n);

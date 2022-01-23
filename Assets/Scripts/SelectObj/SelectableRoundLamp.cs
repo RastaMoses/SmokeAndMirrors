@@ -6,6 +6,7 @@ public class SelectableRoundLamp : SelectableObj
 {
     private L _light;
     private string _swapButton = "A";
+    private string _cancelButton = "B";
 
     Vector2 _rightStick = Vector2.zero;
     Vector2 _vectorSensibility = new Vector2(0.02f, 0.02f);
@@ -38,6 +39,14 @@ public class SelectableRoundLamp : SelectableObj
             //alt: direct rotation without rotation movement
             transform.rotation = Quaternion.FromToRotation(Vector3.up, target);
 
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown(_cancelButton) || Input.GetMouseButtonDown(1))
+        {
+            _light.CancelSwap();
         }
     }
 
