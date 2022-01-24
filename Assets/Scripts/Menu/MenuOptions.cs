@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class MenuOptions : MonoBehaviour
 {
+    [SerializeField] private GameObject _optionScreen;
 
     public void ExitGame()
     {
@@ -24,5 +25,7 @@ public class MenuOptions : MonoBehaviour
     public void OpenOptionPanel()
     {
         Debug.Log("Options");
+        _optionScreen.SetActive(true);
+        StateManager.Pause();
     }
 }
