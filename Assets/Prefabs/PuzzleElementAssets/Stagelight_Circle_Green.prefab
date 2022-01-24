@@ -257,13 +257,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49072df4b10a9d758a41f2672e16f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  lightRange: 20
-  spouseLight: {fileID: 0}
-  childLight: {fileID: 0}
-  isParent: 0
-  isChild: 0
-  tm: 0
+  d: {x: 0, y: 0, z: 0}
+  lRng: 15
+  iR: 0
+  iB: 0
+  lC: {r: 0, g: 1, b: 0, a: 1}
+  sL: {fileID: 0}
+  cL: {fileID: 0}
+  sO: {fileID: 0}
   lr: {fileID: 0}
   lightColor: {r: 0, g: 1, b: 0, a: 1}
   lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
