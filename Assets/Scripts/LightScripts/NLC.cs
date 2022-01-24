@@ -115,10 +115,10 @@ public class NLC : MonoBehaviour
             sC[0].transform.Find("Bulb").GetComponent<MeshRenderer>().material = d;
             sC[1].transform.Find("Bulb").GetComponent<MeshRenderer>().material = c;
 
-            Mesh e = sC[0].transform.Find("Housing").GetComponent<MeshFilter>().mesh;
-            Mesh f = sC[1].transform.Find("Housing").GetComponent<MeshFilter>().mesh;
-            sC[0].transform.Find("Housing").GetComponent<MeshFilter>().mesh = f;
-            sC[1].transform.Find("Housing").GetComponent<MeshFilter>().mesh = e;
+            // Mesh e = sC[0].transform.Find("Housing").GetComponent<MeshFilter>().mesh;
+            // Mesh f = sC[1].transform.Find("Housing").GetComponent<MeshFilter>().mesh;
+            // sC[0].transform.Find("Housing").GetComponent<MeshFilter>().mesh = f;
+            // sC[1].transform.Find("Housing").GetComponent<MeshFilter>().mesh = e;
 
             Material g = sC[0].transform.Find("Housing").GetComponent<MeshRenderer>().material;
             Material h = sC[0].transform.Find("Housing").GetComponent<MeshRenderer>().material;
