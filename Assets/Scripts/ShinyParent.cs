@@ -6,6 +6,7 @@ public class ShinyParent : MonoBehaviour
 {
     Shiny[] shinies;
     public Color actColor;
+    public bool activated;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class ShinyParent : MonoBehaviour
         {
             s.Invisibilize();
         }
+        activated = false;
     }
 
     public void MassAct()
@@ -32,5 +34,6 @@ public class ShinyParent : MonoBehaviour
         {
             s.Visibilize();
         }
+        activated = true;
     }
 }

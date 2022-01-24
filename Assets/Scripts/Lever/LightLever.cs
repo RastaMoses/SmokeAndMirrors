@@ -5,11 +5,11 @@ using UnityEngine;
 public class LightLever : MonoBehaviour
 {
     private bool _enabled;
-    private L _light;
+    private NL _light;
     private SwitchCondition _switchCondition;
     private void Awake()
     {
-        _light = GetComponent<L>();
+        _light = GetComponent<NL>();
         _switchCondition = GetComponent<SwitchCondition>();
         _enabled = _switchCondition.on;
         _light.enabled = _enabled;
