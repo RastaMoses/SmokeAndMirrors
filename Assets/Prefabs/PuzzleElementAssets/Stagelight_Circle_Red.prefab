@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 5097983774597628445}
   - component: {fileID: 5097983774597628444}
   - component: {fileID: 5097983774597628434}
-  - component: {fileID: 5097983774597628435}
+  - component: {fileID: 1924354395219174955}
   m_Layer: 0
   m_Name: Stagelight_Circle_Red
   m_TagString: Untagged
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectionIndicator: {fileID: 5097983775123300273}
---- !u!114 &5097983774597628435
+--- !u!114 &1924354395219174955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,23 +336,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5367944317179920193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49072df4b10a9d758a41f2672e16f35, type: 3}
+  m_Script: {fileID: 11500000, guid: f932b33dfb7e2f948b0b04aaf50def91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  d: {x: 0, y: 0, z: 0}
   lRng: 15
+  lC: {r: 1, g: 0, b: 0, a: 1}
+  d: {x: 0, y: 0, z: 0}
   iR: 0
   iB: 0
-  lC: {r: 1, g: 0, b: 0, a: 1}
   sL: {fileID: 0}
   cL: {fileID: 0}
   sO: {fileID: 0}
   lr: {fileID: 0}
-  lightColor: {r: 1, g: 0, b: 0, a: 1}
-  lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &6814646697605299843
 GameObject:
   m_ObjectHideFlags: 0

@@ -173,20 +173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f932b33dfb7e2f948b0b04aaf50def91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  d: {x: 0, y: 0, z: 0}
   lRng: 15
+  lC: {r: 1, g: 0, b: 0, a: 1}
+  d: {x: 0, y: 0, z: 0}
   iR: 0
   iB: 0
-  lC: {r: 1, g: 0, b: 0, a: 1}
   sL: {fileID: 0}
   cL: {fileID: 0}
   sO: {fileID: 0}
   lr: {fileID: 0}
-  lightColor: {r: 1, g: 0, b: 0, a: 1}
-  lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &7982010202715966342
 MonoBehaviour:
   m_ObjectHideFlags: 0

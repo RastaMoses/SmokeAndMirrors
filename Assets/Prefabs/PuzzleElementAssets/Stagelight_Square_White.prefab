@@ -174,8 +174,8 @@ GameObject:
   - component: {fileID: 5184692172457000312}
   - component: {fileID: 4645748282389256855}
   - component: {fileID: 4645748282389256848}
-  - component: {fileID: 4645748282389256849}
   - component: {fileID: 4645748282389256853}
+  - component: {fileID: -3048101201368378243}
   m_Layer: 0
   m_Name: Stagelight_Square_White
   m_TagString: Untagged
@@ -324,31 +324,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &4645748282389256849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528285791777482690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49072df4b10a9d758a41f2672e16f35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  lightRange: 20
-  spouseLight: {fileID: 0}
-  childLight: {fileID: 0}
-  isParent: 0
-  isChild: 0
-  tm: 0
-  lr: {fileID: 0}
-  lightColor: {r: 1, g: 1, b: 1, a: 1}
-  lightMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &4645748282389256853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +337,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectionIndicator: {fileID: 4645748282967472012}
+--- !u!114 &-3048101201368378243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5528285791777482690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f932b33dfb7e2f948b0b04aaf50def91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lRng: 15
+  lC: {r: 1, g: 1, b: 1, a: 1}
+  d: {x: 0, y: 0, z: 0}
+  iR: 0
+  iB: 0
+  sL: {fileID: 0}
+  cL: {fileID: 0}
+  sO: {fileID: 0}
+  lr: {fileID: 0}
 --- !u!1 &6364944555349173760
 GameObject:
   m_ObjectHideFlags: 0
