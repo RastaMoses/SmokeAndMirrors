@@ -72,8 +72,13 @@ public class NLC : MonoBehaviour
                 }
                 if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor == m.lC)
                 {
+                    
                     m.sO = m.rch.collider.GetComponent<ShinyParent>();
                     m.sO.MassAct();
+                }
+                if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC)
+                {
+                    if (m.rch.collider.GetComponent<ShinyParent>().activated) m.rch.collider.GetComponent<ShinyParent>().MassDeact();
                 }
             }
 
@@ -109,6 +114,11 @@ public class NLC : MonoBehaviour
             Color b = sC[1].lC;
             sC[0].lC = b;
             sC[1].lC = a;
+            sC[0].lr.startColor = b;
+            sC[0].lr.endColor = b;
+            sC[1].lr.startColor = a;
+            sC[1].lr.endColor = a;
+
 
             Material c = sC[0].transform.Find("Bulb").GetComponent<MeshRenderer>().material;
             Material d = sC[1].transform.Find("Bulb").GetComponent<MeshRenderer>().material;
@@ -129,6 +139,11 @@ public class NLC : MonoBehaviour
             sC[1] = null;
         }
 
+    }
+    public void CSW()
+    {
+        sC[0] = null;
+        sC[1] = null;
     }
 
     public void ATS(NL l)
