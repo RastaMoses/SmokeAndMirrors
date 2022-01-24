@@ -70,12 +70,18 @@ public class NLC : MonoBehaviour
                         m.cL.d = d;
                     }
                 }
+                else
+                {
+                    CS(m);
+                }
                 if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor == m.lC)
                 {
-                    
+                    if (m.sO && m.rch.collider.GetComponent<ShinyParent>() != m.sO) m.sO.MassDeact();
                     m.sO = m.rch.collider.GetComponent<ShinyParent>();
                     m.sO.MassAct();
                 }
+                else if(m.sO) m.sO.MassDeact();
+
                 if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC)
                 {
                     if (m.rch.collider.GetComponent<ShinyParent>().activated) m.rch.collider.GetComponent<ShinyParent>().MassDeact();

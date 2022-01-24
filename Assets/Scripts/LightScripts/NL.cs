@@ -7,12 +7,12 @@ public class NL : MonoBehaviour
 {
     public float lRng;
     public Color lC;
-    [HideInInspector]public Vector3 d;
-    [HideInInspector]public bool iR, iB;
-    [HideInInspector]public NL sL, cL;
-    [HideInInspector]public RaycastHit2D rch;
-    [HideInInspector]public ShinyParent sO;
-    [HideInInspector]public LineRenderer lr;
+    public Vector3 d;
+    public bool iR, iB;
+    public NL sL, cL;
+    public RaycastHit2D rch;
+    public ShinyParent sO;
+    public LineRenderer lr;
     // Start is called before the first frame update
     void Awake()
     {
