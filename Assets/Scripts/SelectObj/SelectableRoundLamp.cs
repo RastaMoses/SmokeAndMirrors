@@ -8,6 +8,10 @@ public class SelectableRoundLamp : SelectableObj
     private string _swapButton = "A";
     private string _cancelButton = "B";
 
+    Quaternion lastFrameRotation;
+    bool playingSFX;
+    [SerializeField] float sfxUpdateSpeed = 0.8f;
+
     Vector2 _rightStick = Vector2.zero;
     Vector2 _vectorSensibility = new Vector2(0.02f, 0.02f);
     //public float rotationSpeed; // only needed if rotating and not setting rotation directly
@@ -41,6 +45,12 @@ public class SelectableRoundLamp : SelectableObj
 
         }
     }
+    private void Start()
+    {
+        lastFrameRotation = transform.rotation;
+        StartCoroutine(UpdateSFX());
+        playingSFX = false;
+    }
 
     void Update()
     {
@@ -48,6 +58,28 @@ public class SelectableRoundLamp : SelectableObj
         {
             FindObjectOfType<NLC>().CSW();
         }
+        
+    }
+
+    IEnumerator UpdateSFX()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(sfxUpdateSpeed);
+            if (lastFrameRotation != transform.rotation && !playingSFX)
+            {
+                GetComponent<SFX>().PlayRotating();
+                playingSFX = true;
+            }
+            if (lastFrameRotation == transform.rotation)
+            {
+                GetComponent<SFX>().PauseRotating();
+                playingSFX = false;
+            }
+
+            lastFrameRotation = transform.rotation;
+        }
+        
     }
 
     void OnMouseDown()
