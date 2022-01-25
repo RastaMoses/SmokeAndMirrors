@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     float yVelocity;
     float xVelocity;
 
+    [SerializeField] private float jumpSlowDown;
+    [SerializeField] private float delayJumpSlowDown;
+
     //Cached Component Reference
     Rigidbody2D rb;
     PlayerController playerController;
@@ -92,12 +95,12 @@ public class PlayerMovement : MonoBehaviour
             //Slows down jump during jump delay
             if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && hasJumped)
             {
-                temporaryJumpForce = playerController.jumpForce * 0.3f;
+                temporaryJumpForce = playerController.jumpForce * delayJumpSlowDown;
             }
             //slows down jump after liftoff
             if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("X")) && yVelocity > 0)
             {
-                yVelocity = playerController.jumpForce * 0.3f;
+                yVelocity -= playerController.jumpForce * jumpSlowDown;
             }
         }
         

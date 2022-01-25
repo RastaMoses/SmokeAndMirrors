@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectionIndicator: {fileID: 5052153313551136597}
+  _rotationSpeed: 1000
+  _acceleration: 10000
 --- !u!114 &5026220823621301225
 MonoBehaviour:
   m_ObjectHideFlags: 0
