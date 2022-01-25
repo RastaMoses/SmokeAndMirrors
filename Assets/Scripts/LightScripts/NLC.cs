@@ -258,7 +258,7 @@ public class NLC : MonoBehaviour
 
     private NL MB(NL m, NL n)
     {
-
+        if (CC(m,n)) return null;
         Vector2 o = H2.O(m, n);
         Vector2 d = H2.B(m.transform.position, n.transform.position, o);
         if (m.rch) if (Vector2.Distance(m.transform.position, m.rch.point) < Vector2.Distance(m.transform.position, o)) return null;
@@ -288,5 +288,13 @@ public class NLC : MonoBehaviour
         n.cL = cL;
 
         return cL;
+    }
+
+    private bool CC(NL m, NL n)
+    {
+        if (m.cL && m.cL.cL) CC(m.cL.cL, n);
+        if (n.cL && n.cL.cL) CC(n.cL.cL, m);
+        if((m.cL && m.cL == n) || (n.cL && n.cL == m)) return true;
+        return false;
     }
 }
