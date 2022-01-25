@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.033866644, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.6}
+  m_Size: {x: 2.541862, y: 0.6}
   m_EdgeRadius: 0
 --- !u!114 &2009264381979844306
 MonoBehaviour:
@@ -238,8 +238,11 @@ MonoBehaviour:
   footsteps: []
   footstepsVolume: 0.06
   jump: {fileID: 8300000, guid: 090747247b322f64dbd1d83148e02a66, type: 3}
+  jumpVolume: 0.06
   magicMode: {fileID: 8300000, guid: 45d012d97320062409165597ab5cc4aa, type: 3}
+  magicVolume: 0.06
   landing: {fileID: 8300000, guid: 21c937577f7d51e42a260165f7c48b64, type: 3}
+  landingVolume: 0.06
   lever: {fileID: 8300000, guid: 91d26447c380a9347b6d2858e85d47bb, type: 3}
   rails: {fileID: 8300000, guid: fd79c372fb376dc4d9348a9ce00c5949, type: 3}
   railsFadeTime: 0.4
