@@ -77,7 +77,8 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 3584
-  lM: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  lM: {fileID: 2100000, guid: c9ced179076c3666e9c406b057a001f3, type: 2}
+  sC: []
 --- !u!1 &8579785888974865587
 GameObject:
   m_ObjectHideFlags: 0
