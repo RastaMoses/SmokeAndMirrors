@@ -19,8 +19,8 @@ public class NL : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         lr.startColor = lC;
         lr.endColor = lC;
-        lr.startWidth = 0.2f;
-        lr.endWidth = 0.2f;
+        lr.startWidth = 0.5f;
+        lr.endWidth = 0.5f;
 
     }
     void Start()

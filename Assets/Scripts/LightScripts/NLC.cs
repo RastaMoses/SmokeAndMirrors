@@ -84,7 +84,8 @@ public class NLC : MonoBehaviour
 
                 if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC)
                 {
-                    if (m.rch.collider.GetComponent<ShinyParent>().activated) m.rch.collider.GetComponent<ShinyParent>().MassDeact();
+//                     if (m.rch.collider.GetComponent<ShinyParent>().activated) m.rch.collider.GetComponent<ShinyParent>().MassDeact();
+                    m.rch = new RaycastHit2D();
                 }
             }
 

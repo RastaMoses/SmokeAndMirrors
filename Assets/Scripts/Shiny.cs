@@ -44,7 +44,7 @@ public class Shiny : MonoBehaviour
         
         if (GetComponent<Collider2D>() != null)
         {
-            col.isTrigger = false;
+            col.enabled = true;
         }
         
     }
@@ -57,7 +57,7 @@ public class Shiny : MonoBehaviour
         }
         if (GetComponent<Collider2D>() != null)
         {
-            col.isTrigger = true;
+            col.enabled = false;
         }
     }
 }
