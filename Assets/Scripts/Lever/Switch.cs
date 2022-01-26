@@ -10,6 +10,8 @@ public class Switch : MonoBehaviour
     private string _buttonKey = "Fire1";
     private string _gamePadbuttonKey = "A";
 
+    [SerializeField] float resetTime = 0;
+
     [SerializeField] private List<SwitchCondition> _switchables;
     [SerializeField] HoldButton _switchButton;
 
@@ -85,20 +87,53 @@ public class Switch : MonoBehaviour
                 //Animation Set Trigger
                 FindObjectOfType<PlayerMovement>().SetLeverPulling(transform.position.x);
                 sfx.Lever();
-
-                _on = !_on;
-                //foreach switchable, notify 1 switch on/off
-                foreach (SwitchCondition switchable in _switchables)
-                {
-                    if (_on)
-                        switchable.AddOneTowardsTarget();
-                    else
-                        switchable.RemoveOneTowardsTarget();
-                }
-                SetVisualKeyForState();
+                TurnLever();
             }
         }
     }
+
+    void TurnLever()
+    {
+        _on = !_on;
+
+        //foreach switchable, notify 1 switch on/off
+        foreach (SwitchCondition switchable in _switchables)
+        {
+            if (_on)
+                switchable.AddOneTowardsTarget();
+            else
+                switchable.RemoveOneTowardsTarget();
+        }
+        SetVisualKeyForState();
+        if (resetTime != 0)
+        {
+            StartCoroutine(ResetTimer());
+        }
+    }
+    void TurnLeverWithoutReset()
+    {
+        _on = !_on;
+
+        //foreach switchable, notify 1 switch on/off
+        foreach (SwitchCondition switchable in _switchables)
+        {
+            if (_on)
+                switchable.AddOneTowardsTarget();
+            else
+                switchable.RemoveOneTowardsTarget();
+        }
+        SetVisualKeyForState();
+        
+    }
+
+    IEnumerator ResetTimer()
+    {
+        yield return new WaitForSeconds(resetTime);
+        TurnLeverWithoutReset();
+    }
+
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

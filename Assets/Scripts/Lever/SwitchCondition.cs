@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchCondition : Condition
 {
     //State
-    public bool on { get; private set; }
+    public bool on;
 
     protected override void OnFullfilled()
     {

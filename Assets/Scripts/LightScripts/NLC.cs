@@ -33,6 +33,7 @@ public class NLC : MonoBehaviour
             NL m = ls[i];
             if (!m.enabled)
             {
+                Debug.Log("Murdering Children for a game");
                 DL(m);
                 continue;
             }
