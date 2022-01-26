@@ -33,19 +33,7 @@ public class SelectableObjController : MonoBehaviour
         if (_allSelectableObjs.Count == 0)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            if (_inSelectionMode)
-            {
-                OnEndSelectMode();
-            }
-            else
-            {
-                OnStartSelectMode();
-            }
-        }
-
-        if(Input.GetAxis("Left Trigger") != 0)
+        if(Input.GetAxis("Left Trigger") != 0 || Input.GetKey(KeyCode.Tab))
         {
             if (!_inSelectionMode)
             {
@@ -67,7 +55,7 @@ public class SelectableObjController : MonoBehaviour
 
             _selectedObj.ProcessInput();
 
-            if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Left Bumper"))
+            if (Input.GetButtonDown("Left Bumper") || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 _selectedObj.DeSelect();
                 //select obj direction counter clockwise
@@ -77,7 +65,7 @@ public class SelectableObjController : MonoBehaviour
                 _selectedObj = _selectableObjs[nextIndex];
                 _selectedObj.Select();
             }
-            else if (Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("Right Bumper"))
+            else if (Input.GetButtonDown("Right Bumper") || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 _selectedObj.DeSelect();
                 //select obj direction clockwise
@@ -133,6 +121,7 @@ public class SelectableObjController : MonoBehaviour
         _inSelectionMode = false;
         _selectedObj.DeSelect();
         _selectedObj = null;
+        FindObjectOfType<NLC>().CSW();
     }
 
     Vector3 CalculateCentroid(List<SelectableObj> Objs)

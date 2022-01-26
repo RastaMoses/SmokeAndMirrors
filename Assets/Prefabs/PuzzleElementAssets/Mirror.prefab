@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4717517343965665543}
   - component: {fileID: 1963076348007288291}
   - component: {fileID: 923872225}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -35,6 +35,8 @@ public class PushAndPull : MonoBehaviour
         {
             if (Input.GetButton(_pushPullButton))
             {
+                if (!_playerController.SetInteractionWith(_moveable.gameObject))
+                    return;
 
                 xMovement = Input.GetAxisRaw("Horizontal");
                 if (xMovement != 0)
@@ -101,6 +103,8 @@ public class PushAndPull : MonoBehaviour
             }
             else if (Input.GetButtonUp(_pushPullButton))
             {
+                _playerController.StopInteractionWith(_moveable.gameObject);
+
                 EndDraggingObj();
                 _pushing = false;
                 _pulling = false;

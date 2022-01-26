@@ -16,6 +16,43 @@ public class PlayerController : MonoBehaviour
     public bool jumpEnabled = true;
     public bool movementEnabled = true;
 
+    private GameObject _interactingGameobject = null;
+
+    public bool canInteractWith(GameObject obj)
+    {
+        if(_interactingGameobject == null)
+        {
+            return true;
+        }
+        else if(_interactingGameobject == obj)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool SetInteractionWith(GameObject obj)
+    {
+        //try to set obj as the object interaction happens with, return true/false depending on if this worked
+        if(canInteractWith(obj))
+        {
+            _interactingGameobject = obj;
+            return true;
+        }
+        return false;
+    }
+
+    public bool StopInteractionWith(GameObject obj)
+    {
+        //stop interaction with obj, return true/false depending on if this worked
+        if (_interactingGameobject != null && _interactingGameobject == obj)
+        {
+            _interactingGameobject = null;
+            return true;
+        }
+        return false;
+    }
+
     //Cached Comp Reference
     Game game;
 
