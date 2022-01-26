@@ -23,14 +23,14 @@ public class NL : MonoBehaviour
         lr.endWidth = 0.5f;
 
     }
-    void Start()
+
+    private void OnEnable()
     {
-        
+        GetComponent<SFX>().LightsOn();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        GetComponent<SFX>().LightsOff();
     }
 }

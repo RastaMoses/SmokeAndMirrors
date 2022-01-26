@@ -182,7 +182,10 @@ public class SFX : MonoBehaviour
     }
     public void PauseRotating()
     {
-        StopCoroutine(rotatingCoroutine);
+        if(rotatingCoroutine != null)
+        {
+            StopCoroutine(rotatingCoroutine);
+        }
         audioSource.Pause();
         pausedRotating = true;
     }
