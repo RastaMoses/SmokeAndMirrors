@@ -26,6 +26,7 @@ public class ShinyParent : MonoBehaviour
             s.Invisibilize();
         }
         activated = false;
+        
     }
 
     public void MassAct()
@@ -35,5 +36,6 @@ public class ShinyParent : MonoBehaviour
             s.Visibilize();
         }
         activated = true;
+        GetComponent<SFX>().Shinies();
     }
 }

@@ -16,6 +16,7 @@ MonoImporter:
   - rotating: {fileID: 8300000, guid: 9ac6ec40f99533841a66a9d2ba67f02d, type: 3}
   - selectBulb: {fileID: 8300000, guid: 59002edf58a20ac46a858153cc770f34, type: 3}
   - switchBulb: {fileID: 8300000, guid: 1fbff186e334f0c4a9a4038fddc2407e, type: 3}
+  - cancelSelect: {fileID: 8300000, guid: 1fbff186e334f0c4a9a4038fddc2407e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

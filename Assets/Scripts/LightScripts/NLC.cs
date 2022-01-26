@@ -10,6 +10,7 @@ public class NLC : MonoBehaviour
     public LayerMask lm;
     public Material lM;
     public NL[] sC;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +79,7 @@ public class NLC : MonoBehaviour
                 {
                     if (m.sO && m.rch.collider.GetComponent<ShinyParent>() != m.sO) m.sO.MassDeact();
                     m.sO = m.rch.collider.GetComponent<ShinyParent>();
-                    m.sO.MassAct();
+                    if(!m.sO.activated) m.sO.MassAct();
                 }
                 else if(m.sO) m.sO.MassDeact();
 
@@ -114,7 +115,7 @@ public class NLC : MonoBehaviour
 
             nl.lr.enabled = nl.enabled;
         }
-
+        //Swap
         if (sC[0] && sC[1])
         {
             Color a = sC[0].lC;
@@ -144,6 +145,9 @@ public class NLC : MonoBehaviour
 
             sC[0] = null;
             sC[1] = null;
+            Debug.Log("Swap");
+            GetComponent<SFX>().SwitchBulb();
+
         }
 
     }
@@ -151,12 +155,16 @@ public class NLC : MonoBehaviour
     {
         sC[0] = null;
         sC[1] = null;
+
+        GetComponent<SFX>().CancelSelect();
+        Debug.Log("Cancel Swap");
     }
 
     public void ATS(NL l)
     {
         if (!sC[0]) sC[0] = l;
-        else sC[1] = l;
+        else if (sC[0] != l) sC[1] = l;
+        GetComponent<SFX>().SelectBulb();
     }
 
     private void SR(NL m)
