@@ -79,7 +79,7 @@ public class NLC : MonoBehaviour
                 {
                     if (m.sO && m.rch.collider.GetComponent<ShinyParent>() != m.sO) m.sO.MassDeact();
                     m.sO = m.rch.collider.GetComponent<ShinyParent>();
-                    m.sO.MassAct();
+                    if(!m.sO.activated) m.sO.MassAct();
                 }
                 else if(m.sO) m.sO.MassDeact();
 
