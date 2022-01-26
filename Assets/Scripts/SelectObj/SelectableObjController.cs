@@ -25,6 +25,10 @@ public class SelectableObjController : MonoBehaviour
         _allSelectableObjs = selectables.ToList();
     }
 
+    public void ResetObjectList(List<SelectableObj> newList)
+    {
+        _allSelectableObjs = newList;
+    }
 
     // Update is called once per frame
     void Update()

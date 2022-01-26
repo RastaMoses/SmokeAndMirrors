@@ -44,7 +44,13 @@ public class Shiny : MonoBehaviour
         
         if (GetComponent<Collider2D>() != null)
         {
+            if (gameObject.tag == "Ladder")
+            {
+                col.enabled = true;
+                return;
+            }
             col.isTrigger = false;
+            
         }
         
     }
@@ -58,6 +64,10 @@ public class Shiny : MonoBehaviour
         if (GetComponent<Collider2D>() != null)
         {
             col.isTrigger = true;
+            if(gameObject.tag == "Ladder")
+            {
+                col.enabled = false;
+            }
         }
     }
 }
