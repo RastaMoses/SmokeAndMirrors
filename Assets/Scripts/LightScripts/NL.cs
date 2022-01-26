@@ -26,11 +26,11 @@ public class NL : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<SFX>().LightsOn();
+        if (iR) GetComponent<SFX>().LightsOn();
     }
 
     private void OnDisable()
     {
-        GetComponent<SFX>().LightsOff();
+        if(iR) GetComponent<SFX>().LightsOff();
     }
 }

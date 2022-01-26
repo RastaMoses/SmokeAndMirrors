@@ -30,6 +30,7 @@ public class SFX : MonoBehaviour
     [SerializeField] float rotatingFadeTime = 0.2f;
     [SerializeField] AudioClip selectBulb;
     [SerializeField] AudioClip switchBulb;
+    [SerializeField] AudioClip cancelSelect;
 
     //State
 
@@ -197,6 +198,11 @@ public class SFX : MonoBehaviour
     public void SwitchBulb()
     {
         audioSource.clip = switchBulb;
+        audioSource.Play();
+    }
+    public void CancelSelect()
+    {
+        audioSource.clip = cancelSelect;
         audioSource.Play();
     }
     #endregion

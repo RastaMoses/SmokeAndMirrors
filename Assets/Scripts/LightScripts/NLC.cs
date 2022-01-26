@@ -145,7 +145,7 @@ public class NLC : MonoBehaviour
 
             sC[0] = null;
             sC[1] = null;
-
+            Debug.Log("Swap");
             GetComponent<SFX>().SwitchBulb();
 
         }
@@ -155,13 +155,15 @@ public class NLC : MonoBehaviour
     {
         sC[0] = null;
         sC[1] = null;
+
+        GetComponent<SFX>().CancelSelect();
+        Debug.Log("Cancel Swap");
     }
 
     public void ATS(NL l)
     {
         if (!sC[0]) sC[0] = l;
-        else sC[1] = l;
-
+        else if (sC[0] != l) sC[1] = l;
         GetComponent<SFX>().SelectBulb();
     }
 

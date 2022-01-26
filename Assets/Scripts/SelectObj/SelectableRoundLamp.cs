@@ -20,6 +20,9 @@ public class SelectableRoundLamp : SelectableObj
     protected override void InitializeOnStart()
     {
         _light = GetComponent<NL>();
+        lastFrameRotation = transform.rotation;
+        StartCoroutine(UpdateSFX());
+        playingSFX = false;
     }
 
     public override void ProcessInput()
@@ -45,12 +48,7 @@ public class SelectableRoundLamp : SelectableObj
 
         }
     }
-    private void Start()
-    {
-        lastFrameRotation = transform.rotation;
-        StartCoroutine(UpdateSFX());
-        playingSFX = false;
-    }
+    
 
     void Update()
     {
