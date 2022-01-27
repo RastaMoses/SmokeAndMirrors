@@ -38,6 +38,8 @@ public class PushAndPull : MonoBehaviour
                 if (!_playerController.SetInteractionWith(_moveable.gameObject))
                     return;
 
+                _moveable.SetInteractionVisual(true);
+
                 xMovement = Input.GetAxisRaw("Horizontal");
                 if (xMovement != 0)
                 {
@@ -98,7 +100,7 @@ public class PushAndPull : MonoBehaviour
                     _pulling = false;
 
                     StopAnimation();
-
+                    _moveable.SetInteractionVisual(false);
                 }
             }
             else if (Input.GetButtonUp(_pushPullButton))

@@ -13,7 +13,7 @@ public class TrackSwitch : MonoBehaviour
     [SerializeField] private List<SwitchCondition> _leftTrackSwitchables;
     [SerializeField] private List<SwitchCondition> _rightTrackSwitchables;
 
-    [SerializeField] private HoldButton _switchButton;
+    [SerializeField] private AnimatedHoldButton _switchButton;
 
     [SerializeField] private GameObject _handle;
     private Vector3 _handleTargetRotation = new Vector3(0, 0, 30);

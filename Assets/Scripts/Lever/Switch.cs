@@ -13,7 +13,7 @@ public class Switch : MonoBehaviour
     [SerializeField] float resetTime = 0;
 
     [SerializeField] private List<SwitchCondition> _switchables;
-    [SerializeField] HoldButton _switchButton;
+    [SerializeField] AnimatedHoldButton _switchButton;
 
     [SerializeField] private GameObject _handle;
     private Vector3 _handleTargetRotation = new Vector3(0,0,30);

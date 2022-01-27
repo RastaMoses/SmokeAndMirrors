@@ -19,11 +19,9 @@ public class StateManager : MonoBehaviour
         if (GamePaused)
         {
             Time.timeScale = 0f;
-            _playerController.Freeze(GamePaused);
         }
         else{
             Time.timeScale = 1f;
-            _playerController.Freeze(GamePaused);
         }
     }
 }
