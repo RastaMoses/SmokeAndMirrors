@@ -155,7 +155,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 5a6da26596ff26e4ca041891079a1e9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectionIndicator: {fileID: 8661511344343085568}
+  _rotationSpeed: 1000
+  _acceleration: 10000
   sfxUpdateSpeed: 1
 --- !u!114 &7788352006329825497
 MonoBehaviour:

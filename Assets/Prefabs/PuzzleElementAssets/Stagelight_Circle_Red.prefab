@@ -330,6 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectionIndicator: {fileID: 5097983775123300273}
   sfxUpdateSpeed: 1
+  _rotationSpeed: 1000
+  _acceleration: 10000
 --- !u!114 &1924354395219174955
 MonoBehaviour:
   m_ObjectHideFlags: 0

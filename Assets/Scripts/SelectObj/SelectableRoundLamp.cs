@@ -13,9 +13,13 @@ public class SelectableRoundLamp : SelectableObj
     [SerializeField] float sfxUpdateSpeed = 0.8f;
 
     Vector2 _rightStick = Vector2.zero;
-    Vector2 _vectorSensibility = new Vector2(0.02f, 0.02f);
-    //public float rotationSpeed; // only needed if rotating and not setting rotation directly
+    //Vector2 _vectorSensibility = new Vector2(0.02f, 0.02f);
+    Vector2 _vectorSensibility = new Vector2(0.05f, 0.05f);
+    [SerializeField] private float _rotationSpeed; // only needed if rotating and not setting rotation directly
+    private float _currentRotationSpeed = 0f;
+    [SerializeField] private float _acceleration;
 
+    Vector3 target = Vector3.zero;
 
     protected override void InitializeOnStart()
     {
@@ -38,17 +42,56 @@ public class SelectableRoundLamp : SelectableObj
         //Rotate selected obj on input from right stick
         if (!SelectableObjController.VectorAproxEqual(Vector2.zero, _rightStick, _vectorSensibility))
         {
-            Vector3 target = new Vector3(_rightStick.x, _rightStick.y, 0);
+            target = new Vector3(_rightStick.x, _rightStick.y, 0);
             //alt: rotation with movement towards direction
             //Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, target);
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, target);
+            if (isApproximate(transform.rotation, targetRotation, 0.005f))
+            {
+                //deacelarate when input rotation approx lamp rotation
+                _currentRotationSpeed = Mathf.Max(_currentRotationSpeed - (_acceleration * Time.deltaTime), 0);
+            }
+            else if (isApproximate(transform.rotation, targetRotation, 0.1f) && _currentRotationSpeed > 90)
+            {
+                //when the lamp is turning and comes close to target rotation deaccalarete to max speed of 90
+                _currentRotationSpeed = Mathf.Max(_currentRotationSpeed - (_acceleration * Time.deltaTime), 90);
+            }
+            else
+            {
+                _currentRotationSpeed = Mathf.Min(_rotationSpeed, _currentRotationSpeed + (_acceleration * Time.deltaTime));
+            }
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _currentRotationSpeed * Time.deltaTime);
 
             //alt: direct rotation without rotation movement
-            transform.rotation = Quaternion.FromToRotation(Vector3.up, target);
+            //transform.rotation = Quaternion.FromToRotation(Vector3.up, target);
 
+        }
+        else if(_currentRotationSpeed != 0 && target != Vector3.zero)
+        {
+            //Nachschwingen
+            Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, target);
+            _currentRotationSpeed = Mathf.Max(_currentRotationSpeed - (_acceleration* 1.5f * Time.deltaTime), 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _currentRotationSpeed * Time.deltaTime);
+            if (isApproximate(transform.rotation, targetRotation, 0.005f))
+            {
+                target = Vector3.zero;
+            }
+        }
+        else
+        {
+            _currentRotationSpeed = 0;
         }
     }
     
+
+    public static bool isApproximate(Quaternion q1, Quaternion q2, float precision)
+    {
+        //ABS returns positive value, quaternion dot ranges from -1 to 1 where -1 and 1 arr both the same angle (0° and 360°)
+        return Mathf.Abs(Quaternion.Dot(q1, q2)) >= 1 - precision;
+    }
+
 
     void Update()
     {
