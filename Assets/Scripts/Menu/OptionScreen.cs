@@ -5,6 +5,7 @@ using UnityEngine;
 public class OptionScreen : MonoBehaviour
 {
     [SerializeField] private GameObject _optionScreen;
+    [SerializeField] private GameObject _optionTriggerZone;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class OptionScreen : MonoBehaviour
     public void Close()
     {
         StateManager.Pause();
+        _optionTriggerZone.SetActive(true);
         _optionScreen.SetActive(false);
     }
 }

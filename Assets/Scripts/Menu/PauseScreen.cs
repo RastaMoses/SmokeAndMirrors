@@ -24,6 +24,8 @@ public class PauseScreen : MonoBehaviour
             //Open pause screen
             _pauseScreen.SetActive(true);
             StateManager.Pause();
+
+            //TODO end any interaction the player controller currently has
         }
     }
 

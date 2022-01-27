@@ -5,7 +5,7 @@ using UnityEngine;
 public class MenuOptionUITrigger : MonoBehaviour
 {
     public GameObject Spotlight;
-    public UIOverlayHoldButton[] OptionButton;
+    public UIAnimatedHoldButton[] OptionButton;
 
     private bool _interactable;
 
