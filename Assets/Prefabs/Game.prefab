@@ -79,7 +79,21 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 3584
-  lM: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  lM: {fileID: 2100000, guid: c9ced179076c3666e9c406b057a001f3, type: 2}
+  cF:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 3584
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   sC: []
 --- !u!82 &4963877472491220848
 AudioSource:
@@ -208,6 +222,7 @@ MonoBehaviour:
   rotatingFadeTime: 0.2
   selectBulb: {fileID: 8300000, guid: 59002edf58a20ac46a858153cc770f34, type: 3}
   switchBulb: {fileID: 8300000, guid: 1fbff186e334f0c4a9a4038fddc2407e, type: 3}
+  cancelSelect: {fileID: 0}
 --- !u!1 &8579785888974865587
 GameObject:
   m_ObjectHideFlags: 0
