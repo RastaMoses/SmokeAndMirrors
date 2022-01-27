@@ -64,12 +64,13 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         game = FindObjectOfType<Game>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+ 
     }
 
     // Update is called once per frame
