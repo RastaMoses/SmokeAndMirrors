@@ -9,6 +9,7 @@ public class NLC : MonoBehaviour
     public List<NL> ls;
     public LayerMask lm;
     public Material lM;
+    public ContactFilter2D cF;
     public NL[] sC;
 
     // Start is called before the first frame update
@@ -83,12 +84,6 @@ public class NLC : MonoBehaviour
                     if(!m.sO.activated) m.sO.MassAct();
                 }
                 else if(m.sO) m.sO.MassDeact();
-
-                if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC)
-                {
-//                     if (m.rch.collider.GetComponent<ShinyParent>().activated) m.rch.collider.GetComponent<ShinyParent>().MassDeact();
-                    m.rch = new RaycastHit2D();
-                }
             }
 
             if (!m.sL && !m.rch)
@@ -170,8 +165,12 @@ public class NLC : MonoBehaviour
 
     private void SR(NL m)
     {
-        m.rch = Physics2D.Raycast(m.transform.position, m.d, m.lRng, lm);
-        if (m.rch && m.rch.collider.tag == "ShinyParent" && !m.rch.collider.GetComponent<ShinyParent>().activated && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC) m.rch = new RaycastHit2D();
+        Physics2D.Raycast(m.transform.position, m.d, cF, m.rchl, m.lRng);
+        if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "ShinyParent" && !m.rchl[0].collider.GetComponent<ShinyParent>().activated && m.rchl[0].collider.GetComponent<ShinyParent>().actColor != m.lC) m.rchl.Remove(m.rchl[0]);
+        if(m.rchl.Count > 0) m.rch = m.rchl[0];
+        else m.rch = new RaycastHit2D();
+
+
     }
 
     private void DL(NL m)
