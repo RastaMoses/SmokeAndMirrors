@@ -11,6 +11,7 @@ public class NLC : MonoBehaviour
     public Material lM;
     public ContactFilter2D cF;
     public NL[] sC;
+    [Range(0,1)]public float dS;
 
     // Start is called before the first frame update
     void Start()
