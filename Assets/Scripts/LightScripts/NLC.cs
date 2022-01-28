@@ -168,6 +168,8 @@ public class NLC : MonoBehaviour
     {
         Physics2D.Raycast(m.transform.position, m.d, cF, m.rchl, m.lRng);
         if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "ShinyParent" && !m.rchl[0].collider.GetComponent<ShinyParent>().activated && m.rchl[0].collider.GetComponent<ShinyParent>().actColor != m.lC) m.rchl.Remove(m.rchl[0]);
+        if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "Glass") m.rchl.Remove(m.rchl[0]);
+        
         if(m.rchl.Count > 0) m.rch = m.rchl[0];
         else m.rch = new RaycastHit2D();
 
