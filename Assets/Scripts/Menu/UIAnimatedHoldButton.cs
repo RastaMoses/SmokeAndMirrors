@@ -54,9 +54,9 @@ public class UIAnimatedHoldButton: MonoBehaviour, IPointerDownHandler, IPointerU
     {
         //prolong the visual feedback of input completion before actually invoking the function the button triggers
         _processingInputFeedback = true;
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.35f);
         _buttonImage.sprite = _buttonImageNoInteraction;
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.3f);
         _processingInputFeedback = false;
         _onButtonInput.Invoke();
     }

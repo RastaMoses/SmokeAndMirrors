@@ -6,6 +6,7 @@ public class Switch : MonoBehaviour
 {
     [SerializeField] private bool _onAtStart;
     private bool _on;
+    private bool _playerInReach;
     private bool _turnable;
     private string _buttonKey = "Fire1";
     private string _gamePadbuttonKey = "A";
@@ -39,18 +40,79 @@ public class Switch : MonoBehaviour
 
         _switchButton.gameObject.SetActive(false);
 
-        SetVisualKeyForState(true);
+        _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
 
-    private void SetVisualKeyForState(bool immediate = false)
+    
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (_playerInReach)
+        {
+            if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
+            {
+                //Animation Set Trigger
+                FindObjectOfType<PlayerMovement>().SetLeverPulling(transform.position.x);
+                sfx.Lever();
+                TurnLever();
+            }
+        }
+    }
+
+    void TurnLever(bool resetPossible = true)
+    {
+        _on = !_on;
+
+        PerformSwitch();
+        if (resetTime != 0 && resetPossible)
+        {
+            StartCoroutine(ResetTimer());
+        }
+    }
+
+    IEnumerator ResetTimer()
+    {
+        yield return new WaitForSeconds(resetTime);
+        TurnLever(false);
+    }
+
+    private void PerformSwitch(bool immediate = false)
     {
         if (immediate)
         {
             _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
+            TriggerSwitchInSwitchables();
         }
         else
         {
+            SetTurnable(false);
             StartCoroutine(TurnHandleAnimation());
+        }
+    }
+
+    private void TriggerSwitchInSwitchables()
+    {
+        //foreach switchable, notify 1 switch on/off
+        foreach (SwitchCondition switchable in _switchables)
+        {
+            if (_on)
+                switchable.AddOneTowardsTarget();
+            else
+                switchable.RemoveOneTowardsTarget();
+        }
+    }
+
+    private void SetTurnable(bool turnable)
+    {
+        _turnable = turnable;
+        if (!_turnable)
+        {
+            _switchButton.Deactivate();
+        }
+        else if (_playerInReach)
+        {
+            _switchButton.Activate(_gamePadbuttonKey);
         }
     }
 
@@ -75,64 +137,10 @@ public class Switch : MonoBehaviour
                 yield return null;
             }
         }
+        TriggerSwitchInSwitchables();
+        yield return new WaitForSeconds(0.4f); //wait until player pull animation is finished
+        SetTurnable(true);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_turnable)
-        {
-            if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
-            {
-                //Animation Set Trigger
-                FindObjectOfType<PlayerMovement>().SetLeverPulling(transform.position.x);
-                sfx.Lever();
-                TurnLever();
-            }
-        }
-    }
-
-    void TurnLever()
-    {
-        _on = !_on;
-
-        //foreach switchable, notify 1 switch on/off
-        foreach (SwitchCondition switchable in _switchables)
-        {
-            if (_on)
-                switchable.AddOneTowardsTarget();
-            else
-                switchable.RemoveOneTowardsTarget();
-        }
-        SetVisualKeyForState();
-        if (resetTime != 0)
-        {
-            StartCoroutine(ResetTimer());
-        }
-    }
-    void TurnLeverWithoutReset()
-    {
-        _on = !_on;
-
-        //foreach switchable, notify 1 switch on/off
-        foreach (SwitchCondition switchable in _switchables)
-        {
-            if (_on)
-                switchable.AddOneTowardsTarget();
-            else
-                switchable.RemoveOneTowardsTarget();
-        }
-        SetVisualKeyForState();
-        
-    }
-
-    IEnumerator ResetTimer()
-    {
-        yield return new WaitForSeconds(resetTime);
-        TurnLeverWithoutReset();
-    }
-
-
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -143,7 +151,7 @@ public class Switch : MonoBehaviour
         //show button to use
         _switchButton.gameObject.SetActive(true);
         //check for input
-        _turnable = true;
+        _playerInReach = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -154,6 +162,6 @@ public class Switch : MonoBehaviour
         //stop show button to use
         _switchButton.gameObject.SetActive(false);
         //stop check for input
-        _turnable = false;
+        _playerInReach = false;
     }
 }

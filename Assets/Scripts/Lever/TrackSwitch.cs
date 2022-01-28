@@ -6,6 +6,7 @@ public class TrackSwitch : MonoBehaviour
 {
     [SerializeField] private bool _onAtStart;
     private bool _on; //on is "right", off "left"
+    private bool _playerInReach;
     private bool _turnable;
     private string _buttonKey = "Fire1";
     private string _gamePadbuttonKey = "A";
@@ -52,18 +53,81 @@ public class TrackSwitch : MonoBehaviour
 
         _switchButton.gameObject.SetActive(false);
 
-        SetVisualKeyForState(true);
+        _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
 
-    private void SetVisualKeyForState(bool immediate = false)
+   
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (_playerInReach)
+        {
+            if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
+            {
+                //Animation Set Trigger
+                FindObjectOfType<PlayerMovement>().SetLeverPulling(transform.position.x);
+                sfx.Lever();
+
+                _on = !_on;
+                
+                PerformSwitch();
+            }
+        }
+    }
+
+    private void PerformSwitch(bool immediate = false)
     {
         if (immediate)
         {
             _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
+            TriggerSwitchInSwitchables();
         }
         else
         {
+            SetTurnable(false);
             StartCoroutine(TurnHandleAnimation());
+        }
+    }
+
+    private void TriggerSwitchInSwitchables()
+    {
+        //turn "right" side on and "left" off
+        if (_on)
+        {
+            foreach (SwitchCondition switchable in _rightTrackSwitchables)
+            {
+                switchable.AddOneTowardsTarget();
+            }
+            foreach (SwitchCondition switchable in _leftTrackSwitchables)
+            {
+                switchable.RemoveOneTowardsTarget();
+            }
+        }
+        //turn "left" side on and "right" off
+        else
+        {
+            foreach (SwitchCondition switchable in _leftTrackSwitchables)
+            {
+                switchable.AddOneTowardsTarget();
+            }
+            foreach (SwitchCondition switchable in _rightTrackSwitchables)
+            {
+                switchable.RemoveOneTowardsTarget();
+            }
+        }
+    }
+
+    private void SetTurnable(bool turnable)
+    {
+        _turnable = turnable;
+        if (!_turnable)
+        {
+            _switchButton.Deactivate();
+        }
+        else if (_playerInReach)
+        {
+            _switchButton.Activate(_gamePadbuttonKey);
         }
     }
 
@@ -88,48 +152,10 @@ public class TrackSwitch : MonoBehaviour
                 yield return null;
             }
         }
+        TriggerSwitchInSwitchables();
+        yield return new WaitForSeconds(0.4f); //wait until player pull animation is finished
+        SetTurnable(true);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_turnable)
-        {
-            if (_switchButton.CheckInput(_buttonKey) || _switchButton.CheckInput(_gamePadbuttonKey))
-            {
-                //Animation Set Trigger
-                FindObjectOfType<PlayerMovement>().SetLeverPulling(transform.position.x);
-                sfx.Lever();
-
-                _on = !_on;
-                //turn "right" side on and "left" off
-                if (_on)
-                {
-                    foreach (SwitchCondition switchable in _rightTrackSwitchables)
-                    {
-                        switchable.AddOneTowardsTarget();
-                    }
-                    foreach (SwitchCondition switchable in _leftTrackSwitchables)
-                    {
-                        switchable.RemoveOneTowardsTarget();
-                    }
-                }
-                //turn "left" side on and "right" off
-                else
-                {
-                    foreach (SwitchCondition switchable in _leftTrackSwitchables)
-                    {
-                        switchable.AddOneTowardsTarget();
-                    }
-                    foreach (SwitchCondition switchable in _rightTrackSwitchables)
-                    {
-                        switchable.RemoveOneTowardsTarget();
-                    }
-                }
-                SetVisualKeyForState();
-            }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -140,7 +166,7 @@ public class TrackSwitch : MonoBehaviour
         //show button to use
         _switchButton.gameObject.SetActive(true);
         //check for input
-        _turnable = true;
+        _playerInReach = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -151,6 +177,6 @@ public class TrackSwitch : MonoBehaviour
         //stop show button to use
         _switchButton.gameObject.SetActive(false);
         //stop check for input
-        _turnable = false;
+        _playerInReach = false;
     }
 }

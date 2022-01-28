@@ -58,10 +58,33 @@ public class AnimatedHoldButton : MonoBehaviour
     {
         //prolong the visual feedback of input completion
         _processingInputFeedback = true;
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.35f);
         _buttonImage.sprite = _buttonImageNoInteraction;
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.3f);
         _processingInputFeedback = false;
+    }
+
+    public void Activate(string buttonName)
+    {
+        this.gameObject.SetActive(true);
+        //if the button was deactivated only shortly for visual feedback, it needs to check if it needs to reset because interaction stopped
+        if (!Input.GetButton(buttonName))
+            Reset();
+    }
+
+    public void Deactivate()
+    {
+        StartCoroutine(DeactivateAfterInputFeedback());
+    }
+
+    private IEnumerator DeactivateAfterInputFeedback()
+    {
+        while (_processingInputFeedback)
+        {
+            yield return null;
+        }
+       // Reset();
+        this.gameObject.SetActive(false);
     }
 
     private void Reset()
