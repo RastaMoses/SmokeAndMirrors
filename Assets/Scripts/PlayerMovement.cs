@@ -199,11 +199,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerController.Respawn();
         }
-
-        if (collision.gameObject.CompareTag("Goal"))
-        {
-            playerController.Goal();
-        }
     }
 
     //Ladder

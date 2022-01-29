@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.27
   jumpForce: 10
-  jumpDelay: 0
+  jumpDelay: 0.1
   ladderSpeed: 4.08
   ladderDownSpeed: 2.21
   jumpEnabled: 1
@@ -392,6 +392,7 @@ MonoBehaviour:
   rotatingFadeTime: 0.2
   selectBulb: {fileID: 8300000, guid: 59002edf58a20ac46a858153cc770f34, type: 3}
   switchBulb: {fileID: 8300000, guid: 1fbff186e334f0c4a9a4038fddc2407e, type: 3}
+  cancelSelect: {fileID: 0}
 --- !u!1 &2841053401383026476
 GameObject:
   m_ObjectHideFlags: 0
