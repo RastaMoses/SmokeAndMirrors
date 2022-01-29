@@ -95,7 +95,7 @@ public class SelectableRoundLamp : SelectableObj
 
     void Update()
     {
-        if (Input.GetButtonDown(_cancelButton) || Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown(_cancelButton))
         {
             FindObjectOfType<NLC>().CSW();
         }
@@ -121,11 +121,6 @@ public class SelectableRoundLamp : SelectableObj
             lastFrameRotation = transform.rotation;
         }
         
-    }
-
-    void OnMouseDown()
-    {
-        FindObjectOfType<NLC>().ATS(_light);
     }
 
 }

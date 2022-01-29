@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1823282, g: 0.22803587, b: 0.30732104, a: 1}
+  m_IndirectSpecularColor: {r: 0.1823278, g: 0.22803514, b: 0.30732, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exact: 0
+  on: 0
 --- !u!114 &65235252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,8 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invis: {fileID: 2100000, guid: 8a567809c9addfd4c8827ad61fad3831, type: 2}
-  vis: {fileID: 2100000, guid: cc9e34e5a3ffee7468ea7fd98480d0d1, type: 2}
+  mat: {fileID: 0}
 --- !u!61 &248037349
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -521,8 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invis: {fileID: 2100000, guid: 8a567809c9addfd4c8827ad61fad3831, type: 2}
-  vis: {fileID: 2100000, guid: cc9e34e5a3ffee7468ea7fd98480d0d1, type: 2}
+  mat: {fileID: 0}
 --- !u!61 &295379105
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -689,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exact: 0
+  on: 0
 --- !u!114 &391773120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,22 +1631,22 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7372b396be5057748adfa18fb03761e5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1376c159cacd1654f833c9226296dccc, type: 3}
---- !u!4 &1390840410 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7740168252552335028, guid: 7f9ee625f47add84bbc8049876a381b8, type: 3}
-  m_PrefabInstance: {fileID: 524540058}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1490887833 stripped
+--- !u!114 &1374412455 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 770603283323238958, guid: ca26267b819c0a844b35698fab396341, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1655479372473209035, guid: ca26267b819c0a844b35698fab396341, type: 3}
   m_PrefabInstance: {fileID: 1931560630}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90cad36d741adb54abbf355400299123, type: 3}
+  m_Script: {fileID: 11500000, guid: 422b989ce19bccd469e11b7eea3d16ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1390840410 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7740168252552335028, guid: 7f9ee625f47add84bbc8049876a381b8, type: 3}
+  m_PrefabInstance: {fileID: 524540058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1548743415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6069270498343068517, guid: 0df7c53e044e3554182a61c73a592e54, type: 3}
@@ -2067,7 +2067,7 @@ PrefabInstance:
     - target: {fileID: 770603281571588120, guid: ca26267b819c0a844b35698fab396341, type: 3}
       propertyPath: _switchButton
       value: 
-      objectReference: {fileID: 1490887833}
+      objectReference: {fileID: 1374412455}
     - target: {fileID: 770603281571588120, guid: ca26267b819c0a844b35698fab396341, type: 3}
       propertyPath: Switchables.Array.size
       value: 1

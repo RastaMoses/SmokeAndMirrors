@@ -37,15 +37,4 @@ public abstract class SelectableObj: MonoBehaviour
         _selectionIndicator.SetActive(false);
     }
     public abstract void ProcessInput();
-
-    void OnMouseEnter()
-    {
-        Select();
-    }
-
-    void OnMouseExit()
-    {
-        DeSelect();
-    }
-
 }

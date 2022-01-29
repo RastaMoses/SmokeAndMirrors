@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1085,11 +1085,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
---- !u!1 &909613333 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2841053401173293805, guid: d84910e1a99a3a647ac3cb9660d665ad, type: 3}
-  m_PrefabInstance: {fileID: 1767677528}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &981092778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8426999598466061040, guid: aebfd03024900604dac5ef55ab1b2704, type: 3}
@@ -1713,18 +1708,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 754151688443362357, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
-      propertyPath: Camera
-      value: 
-      objectReference: {fileID: 1075410182}
-    - target: {fileID: 754151688443362357, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 909613333}
     - target: {fileID: 754151688443362359, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
       propertyPath: m_Name
       value: SelectableObjController
       objectReference: {fileID: 0}
+    - target: {fileID: 6617890755253682217, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617890755253682217, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c1fbb285a15f0c4ba07a1094bdc6474, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
 --- !u!1 &1970354025

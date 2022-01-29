@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
 public class SelectableObjController : MonoBehaviour
 {
     private Camera _camera;
     private GameObject _player;
+    private LineRenderer _lineRenderer;
 
     private List<SelectableObj> _allSelectableObjs;
     private List<SelectableObj> _selectableObjs = new List<SelectableObj>();
@@ -21,6 +23,7 @@ public class SelectableObjController : MonoBehaviour
     {
         _camera = Camera.main;
         _player = GameObject.FindGameObjectWithTag("Player");
+        _lineRenderer = GetComponent<LineRenderer>();
         var selectables = GameObject.FindObjectsOfType(typeof(SelectableObj)) as SelectableObj[];
         _allSelectableObjs = selectables.ToList();
     }
@@ -54,8 +57,10 @@ public class SelectableObjController : MonoBehaviour
 
         if (_inSelectionMode)
         {
-            //TODO cast "spellray" from player to selected obj
-            Debug.DrawLine(_player.transform.position, _selectedObj.transform.position, Color.blue);
+            //Draw magical line ("spellray") from player to selected obj
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, _player.transform.position);
+            _lineRenderer.SetPosition(1, _selectedObj.transform.position);
 
             _selectedObj.ProcessInput();
 
@@ -78,9 +83,7 @@ public class SelectableObjController : MonoBehaviour
                     nextIndex = 0;
                 _selectedObj = _selectableObjs[nextIndex];
                 _selectedObj.Select();
-            }
-
-            
+            }  
 
         }
     }
@@ -122,6 +125,7 @@ public class SelectableObjController : MonoBehaviour
 
     private void OnEndSelectMode()
     {
+        _lineRenderer.enabled = false;
         _inSelectionMode = false;
         _selectedObj.DeSelect();
         _selectedObj = null;

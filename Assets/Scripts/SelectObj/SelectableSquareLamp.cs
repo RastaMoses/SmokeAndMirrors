@@ -23,15 +23,10 @@ public class SelectableSquareLamp : SelectableObj
 
     void Update()
     {
-        if(Input.GetButtonDown(_cancelButton) || Input.GetMouseButtonDown(1))
+        if(Input.GetButtonDown(_cancelButton))
         {
             FindObjectOfType<NLC>().CSW();
         }
     }
 
-
-    void OnMouseDown()
-    {
-        FindObjectOfType<NLC>().ATS(_light);
-    }
 }
