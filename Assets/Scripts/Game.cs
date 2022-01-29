@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     [SerializeField] Animator curtainOpen;
     [SerializeField] Animator curtainClose;
     [SerializeField] bool playCurtain;
+    public int lastLevel;
 
     SceneLoader sceneLoader;
 
@@ -19,6 +20,7 @@ public class Game : MonoBehaviour
     }
     private void Start()
     {
+        if (PlayerPrefs.GetInt("HighestLevel") <= lastLevel) PlayerPrefs.SetInt("HighestLevel", lastLevel);
         //Set Player Startposition
         FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
 
@@ -33,6 +35,11 @@ public class Game : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ResetProgress()
+    {
+        PlayerPrefs.SetInt("HighestLevel", 1);
     }
 
     
