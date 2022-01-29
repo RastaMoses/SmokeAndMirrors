@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public float transitionTime = 1f;
-    public Animator transition;
+    
 
     public void ReloadLevel()
     {
@@ -27,14 +26,7 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
-    IEnumerator LoadLevelTransition(int levelIndex)
-    {
-        transition.SetTrigger("Start");
-
-        yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadScene(levelIndex);
-    }
+    
 
     static public void LoadMainMenu()
     {
