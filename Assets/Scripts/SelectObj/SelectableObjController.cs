@@ -13,7 +13,7 @@ public class SelectableObjController : MonoBehaviour
     private List<SelectableObj> _allSelectableObjs;
     private List<SelectableObj> _selectableObjs = new List<SelectableObj>();
 
-    private bool _inSelectionMode = false;
+    public bool _inSelectionMode = false;
     private SelectableObj _selectedObj;
     private Vector3 _selectableObjsCenter = Vector3.zero;
 

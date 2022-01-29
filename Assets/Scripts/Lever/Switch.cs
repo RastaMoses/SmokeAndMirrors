@@ -18,7 +18,7 @@ public class Switch : MonoBehaviour
     [SerializeField] AnimatedHoldButton _switchButton;
 
     [SerializeField] private GameObject _handle;
-    private Vector3 _handleTargetRotation = new Vector3(0,0,30);
+    private Vector3 _handleTargetRotation = new Vector3(0, 0, 30);
     private float _turnSpeed = 150;
 
     //Cached Comp Configuration
@@ -45,7 +45,7 @@ public class Switch : MonoBehaviour
         _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -152,11 +152,19 @@ public class Switch : MonoBehaviour
 
         //show button to use
         _switchButton.gameObject.SetActive(true);
-        foreach (GameObject g in _switchableOutlines) g.SetActive(true);
+
         //check for input
         _playerInReach = true;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _switchableOutlines) g.SetActive(true);
+        if (FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _switchableOutlines) g.SetActive(false);
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Player"))
