@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
 
     //TODO influence movement speed when pushing/pulling
 
-    //TODO don't allow interaction with an object if already interacting with one
-
 
     private void Awake()
     {
@@ -78,25 +76,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void Goal()
-    {
-        movementEnabled = false;
-        game.LevelComplete();
-    }
-
-
-
     public void Respawn()
     {
         transform.position = game.respawnPoint.position;
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Goal"))
-        {
-            Goal();
-        }
     }
 }
