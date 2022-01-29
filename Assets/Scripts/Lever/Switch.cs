@@ -14,6 +14,7 @@ public class Switch : MonoBehaviour
     [SerializeField] float resetTime = 0;
 
     [SerializeField] private List<SwitchCondition> _switchables;
+    [SerializeField] private List<GameObject> _switchableOutlines;
     [SerializeField] AnimatedHoldButton _switchButton;
 
     [SerializeField] private GameObject _handle;
@@ -39,6 +40,7 @@ public class Switch : MonoBehaviour
         }
 
         _switchButton.gameObject.SetActive(false);
+        foreach (GameObject g in _switchableOutlines) g.SetActive(false);
 
         _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
@@ -150,6 +152,7 @@ public class Switch : MonoBehaviour
 
         //show button to use
         _switchButton.gameObject.SetActive(true);
+        foreach (GameObject g in _switchableOutlines) g.SetActive(true);
         //check for input
         _playerInReach = true;
     }
@@ -161,6 +164,8 @@ public class Switch : MonoBehaviour
 
         //stop show button to use
         _switchButton.gameObject.SetActive(false);
+        foreach (GameObject g in _switchableOutlines) g.SetActive(false);
+
         //stop check for input
         _playerInReach = false;
     }
