@@ -939,6 +939,7 @@ MonoBehaviour:
   transitionTime: 2.5
   curtainOpen: {fileID: 8378712535192194637}
   curtainClose: {fileID: 5276506894025138889}
+  playCurtain: 1
 --- !u!114 &-6244279215370298458
 MonoBehaviour:
   m_ObjectHideFlags: 0
