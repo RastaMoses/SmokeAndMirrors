@@ -8,6 +8,7 @@ public class Game : MonoBehaviour
     public float transitionTime = 3f;
     [SerializeField] Animator curtainOpen;
     [SerializeField] Animator curtainClose;
+    [SerializeField] bool playCurtain;
 
     SceneLoader sceneLoader;
 
@@ -21,7 +22,10 @@ public class Game : MonoBehaviour
         //Set Player Startposition
         FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
 
-        StartCoroutine(CurtainOpen());
+        if (playCurtain)
+        {
+            StartCoroutine(CurtainOpen());
+        }
     }
 
 
@@ -34,7 +38,10 @@ public class Game : MonoBehaviour
     
     public void LevelComplete()
     {
-        StartCoroutine(CurtainClose());
+        if (playCurtain)
+        {
+            StartCoroutine(CurtainClose());
+        }
     }
 
     public IEnumerator CurtainOpen()
