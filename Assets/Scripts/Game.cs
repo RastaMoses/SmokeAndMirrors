@@ -61,6 +61,5 @@ public class Game : MonoBehaviour
         curtainClose.SetTrigger("curtainClose");
         yield return new WaitForSeconds(transitionTime);
         sceneLoader.LoadNextLevel();
-
     }
 }
