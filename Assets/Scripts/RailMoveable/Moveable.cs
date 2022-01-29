@@ -5,6 +5,7 @@ using UnityEngine;
 public class Moveable : MonoBehaviour
 {
     [SerializeField] private GameObject _buttonUI;
+    [SerializeField] private GameObject _buttonUIActive;
     public GameObject _colliderObj;
 
     public Vector3 edgeWidhtOffset { get; private set; }
@@ -23,6 +24,7 @@ public class Moveable : MonoBehaviour
         _colliderObj.SetActive(false);
 
         _buttonUI.SetActive(false);
+        _buttonUIActive.SetActive(false);
         _startPos = transform.position;
 
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
@@ -50,6 +52,12 @@ public class Moveable : MonoBehaviour
         transform.position = new Vector3(transform.position.x, _startPos.y, 0);
     }
 
+    public void SetInteractionVisual(bool interacting)
+    {
+        _buttonUI.SetActive(!interacting);
+        _buttonUIActive.SetActive(interacting);
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Player"))
@@ -75,6 +83,7 @@ public class Moveable : MonoBehaviour
 
         //stop show button to use
         _buttonUI.SetActive(false);
+        _buttonUIActive.SetActive(false);
         //deactivate collider that will collide with rail ends
         collision.gameObject.GetComponent<PushAndPull>().SetMoveable(this, false);
     }

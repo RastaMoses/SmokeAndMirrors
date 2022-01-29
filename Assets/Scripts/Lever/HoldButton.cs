@@ -10,6 +10,7 @@ public class HoldButton : MonoBehaviour
     [SerializeField]  private Image _progressImage;
 
     private bool _takesInput = true;
+    private bool _processingInputFeedback = false;
     private PlayerController _playerController;
 
     private void Awake()
@@ -38,6 +39,7 @@ public class HoldButton : MonoBehaviour
             {
                 _takesInput = false;
                 _progressImage.fillAmount = 1;
+                StartCoroutine(ReceivedCompleteInput());
                 //input completed
                 return true;
             }
@@ -47,11 +49,29 @@ public class HoldButton : MonoBehaviour
             _playerController.StopInteractionWith(this.gameObject);
 
             //input canceled
-            _currentTime = 0;
-            _progressImage.fillAmount = 0;
-            _takesInput = true;
+            Reset();
         }
         return false;
+    }
+
+    IEnumerator ReceivedCompleteInput()
+    {
+        //prolong the visual feedback of input completion
+        _processingInputFeedback = true;
+        yield return new WaitForSecondsRealtime(0.1f);
+        _progressImage.fillAmount = 0;
+        yield return new WaitForSecondsRealtime(0.1f);
+        _processingInputFeedback = false;
+    }
+
+    private void Reset()
+    {
+        if (_processingInputFeedback)
+            return;
+        //input canceled
+        _currentTime = 0;
+        _progressImage.fillAmount = 0;
+        _takesInput = true;
     }
 
 }

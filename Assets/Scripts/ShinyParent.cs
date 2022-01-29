@@ -15,7 +15,7 @@ public class ShinyParent : MonoBehaviour
         {
             GetComponent<Collider2D>().isTrigger = true;
         }
-        
+
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class ShinyParent : MonoBehaviour
             s.Invisibilize();
         }
         activated = false;
-        
+
     }
 
     public void MassAct()
@@ -36,6 +36,7 @@ public class ShinyParent : MonoBehaviour
             s.Visibilize();
         }
         activated = true;
-        GetComponent<SFX>().Shinies();
+        if (GetComponent<SFX>()) GetComponent<SFX>().Shinies();
+
     }
 }

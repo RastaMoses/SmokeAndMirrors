@@ -9,7 +9,9 @@ public class NLC : MonoBehaviour
     public List<NL> ls;
     public LayerMask lm;
     public Material lM;
+    public ContactFilter2D cF;
     public NL[] sC;
+    [Range(0, 1)] public float dS;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,8 @@ public class NLC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (NL l in ls) if (l.iR) if (l.GetComponent<SwitchCondition>()) l.enabled = l.GetComponent<SwitchCondition>().on;
+
         //Set root directions to up
         foreach (NL nl in ls) if (nl.iR) nl.d = nl.transform.up;
 
@@ -80,15 +84,9 @@ public class NLC : MonoBehaviour
                 {
                     if (m.sO && m.rch.collider.GetComponent<ShinyParent>() != m.sO) m.sO.MassDeact();
                     m.sO = m.rch.collider.GetComponent<ShinyParent>();
-                    if(!m.sO.activated) m.sO.MassAct();
+                    if (!m.sO.activated) m.sO.MassAct();
                 }
-                else if(m.sO) m.sO.MassDeact();
-
-                if (m.rch.collider.tag == "ShinyParent" && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC)
-                {
-//                     if (m.rch.collider.GetComponent<ShinyParent>().activated) m.rch.collider.GetComponent<ShinyParent>().MassDeact();
-                    m.rch = new RaycastHit2D();
-                }
+                else if (m.sO) m.sO.MassDeact();
             }
 
             if (!m.sL && !m.rch)
@@ -170,8 +168,14 @@ public class NLC : MonoBehaviour
 
     private void SR(NL m)
     {
-        m.rch = Physics2D.Raycast(m.transform.position, m.d, m.lRng, lm);
-        if (m.rch && m.rch.collider.tag == "ShinyParent" && !m.rch.collider.GetComponent<ShinyParent>().activated && m.rch.collider.GetComponent<ShinyParent>().actColor != m.lC) m.rch = new RaycastHit2D();
+        Physics2D.Raycast(m.transform.position, m.d, cF, m.rchl, m.lRng);
+        if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "ShinyParent" && !m.rchl[0].collider.GetComponent<ShinyParent>().activated && m.rchl[0].collider.GetComponent<ShinyParent>().actColor != m.lC) m.rchl.Remove(m.rchl[0]);
+        if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "Glass") m.rchl.Remove(m.rchl[0]);
+
+        if (m.rchl.Count > 0) m.rch = m.rchl[0];
+        else m.rch = new RaycastHit2D();
+
+
     }
 
     private void DL(NL m)
@@ -267,12 +271,12 @@ public class NLC : MonoBehaviour
 
     private NL MB(NL m, NL n)
     {
-        if (CC(m,n)) return null;
+        if (CC(m, n)) return null;
         Vector2 o = H2.O(m, n);
         Vector2 d = H2.B(m.transform.position, n.transform.position, o);
         if (m.rch) if (Vector2.Distance(m.transform.position, m.rch.point) < Vector2.Distance(m.transform.position, o)) return null;
         if (n.rch) if (Vector2.Distance(n.transform.position, n.rch.point) < Vector2.Distance(n.transform.position, o)) return null;
-        
+
         if (m.sO) m.sO.MassDeact();
         if (n.sO) n.sO.MassDeact();
         m.sO = null;
@@ -303,7 +307,7 @@ public class NLC : MonoBehaviour
     {
         if (m.cL && m.cL.cL) CC(m.cL.cL, n);
         if (n.cL && n.cL.cL) CC(n.cL.cL, m);
-        if((m.cL && m.cL == n) || (n.cL && n.cL == m)) return true;
+        if ((m.cL && m.cL == n) || (n.cL && n.cL == m)) return true;
         return false;
     }
 }
