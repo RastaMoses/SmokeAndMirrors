@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class Game : MonoBehaviour
     [SerializeField] Animator curtainOpen;
     [SerializeField] Animator curtainClose;
     [SerializeField] bool playCurtain;
-    public int lastLevel;
 
     SceneLoader sceneLoader;
 
@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
     }
     private void Start()
     {
-        if (PlayerPrefs.GetInt("HighestLevel") <= lastLevel) PlayerPrefs.SetInt("HighestLevel", lastLevel);
+        if (PlayerPrefs.GetInt("HighestLevel") <= SceneManager.GetActiveScene().buildIndex) PlayerPrefs.SetInt("HighestLevel", SceneManager.GetActiveScene().buildIndex);
         //Set Player Startposition
         FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
 
@@ -39,7 +39,7 @@ public class Game : MonoBehaviour
 
     public void ResetProgress()
     {
-        PlayerPrefs.SetInt("HighestLevel", 1);
+        PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
     }
 
     
