@@ -249,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 5680726483778671375, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 05bad5c654b8aa141b6192c808502622, type: 2}
+      objectReference: {fileID: 2100000, guid: edeafddffaf2b554e8cb1ad25583e00e, type: 2}
     - target: {fileID: 6184852771031200474, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Name
       value: Platform_Box_02 (1)

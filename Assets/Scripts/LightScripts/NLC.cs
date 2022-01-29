@@ -37,7 +37,7 @@ public class NLC : MonoBehaviour
             NL m = ls[i];
             if (!m.enabled)
             {
-                Debug.Log("Murdering Children for a game");
+                
                 DL(m);
                 continue;
             }
@@ -241,6 +241,7 @@ public class NLC : MonoBehaviour
             l.cL.sL.sL = null;
         }
 
+        if (l.cL.sO) l.cL.sO.MassDeact();
         if (ls.Contains(l.cL)) ls.Remove(l.cL);
         if (l.cL.gameObject) Destroy(l.cL.gameObject);
         l.cL = null;
