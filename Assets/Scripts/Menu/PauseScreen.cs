@@ -39,5 +39,6 @@ public class PauseScreen : MonoBehaviour
     {
         Debug.Log("return to main");
         //SceneLoader.LoadMainMenu();
+        SceneLoader.LoadMainMenu();
     }
 }
