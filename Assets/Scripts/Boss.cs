@@ -29,12 +29,16 @@ public class Boss : MonoBehaviour
     [SerializeField] GameObject ladder;
     [SerializeField] GameObject smoke;
     [SerializeField] GameObject lever;
-
+    [SerializeField] GameObject oldTruss;
+    [SerializeField] GameObject dummyLever;
+    [SerializeField] GameObject dummyTruss;
+    [SerializeField] GameObject dummyWheels;
 
 
     //State
     public int stage;
     bool inbetweenStages;
+    bool waitForLights = true;
     private void Start()
     {
         stage = 1;
@@ -62,13 +66,23 @@ public class Boss : MonoBehaviour
         //Stage 3
         if (!shinyCables.activated && stage == 3)
         {
+            stage++;
             //Animation for falling light
-            LightFall();
+            StartCoroutine(Stage3());
         }
 
-        if(shinyWall.activated && stage == 3)
+        if(shinyWall.activated)
         {
             GetComponent<Game>().LevelComplete();
+        }
+
+
+        if(stage == 4 && !waitForLights)
+        {
+            if (!shinyCables.activated)
+            {
+                StartCoroutine(LightFall());
+            }
         }
 
     }
@@ -125,6 +139,8 @@ public class Boss : MonoBehaviour
         FindObjectOfType<PlayerController>().movementEnabled = false;
 
         //Animations
+        oldTruss.SetActive(false);
+
         sqrLightRed.enabled = false;
         sqrLightRed.gameObject.SetActive(false);
         sqrLightGreen.gameObject.SetActive(true);
@@ -133,6 +149,7 @@ public class Boss : MonoBehaviour
 
         MoveGreenLightDown();
         LeverFlyAway();
+        SmokeRise();
         yield return new WaitForSeconds(timeBetweenStages);
 
         shinyWall.gameObject.SetActive(true);
@@ -153,9 +170,9 @@ public class Boss : MonoBehaviour
         rndLightRed.transform.rotation = rndLightBlue.transform.rotation;
 
 
-        GetComponent<NLC>().ls.Add(wheelLightGreen);
-        GetComponent<NLC>().ls.Add(rndLightBlue);
-        GetComponent<NLC>().ls.Add(sqrLightRed);
+        GetComponent<NLC>().ls.Add(sqrLightGreen);
+        GetComponent<NLC>().ls.Add(wheelLightBlue);
+        GetComponent<NLC>().ls.Add(rndLightRed);
 
         wheelLightBlue.lr.material = GetComponent<NLC>().lM;
         rndLightRed.lr.material = GetComponent<NLC>().lM;
@@ -167,6 +184,8 @@ public class Boss : MonoBehaviour
         List<SelectableObj> selectableObjs = new List<SelectableObj> { wheelLightBlue.GetComponent<SelectableObj>(), rndLightRed.GetComponent<SelectableObj>(), sqrLightGreen.GetComponent<SelectableObj>() };
         FindObjectOfType<SelectableObjController>().ResetObjectList(selectableObjs);
         FindObjectOfType<PlayerController>().movementEnabled = true;
+        dummyTruss.SetActive(false);
+        StartCoroutine(WaitUntilLightsStage3());
     }
 
 
@@ -176,9 +195,11 @@ public class Boss : MonoBehaviour
         sqrLightGreen.GetComponent<Animator>().SetTrigger("Move");
     }
 
-    void LightFall()
+    IEnumerator LightFall()
     {
         sqrLightGreen.GetComponent<Animator>().SetTrigger("Fall");
+        yield return new WaitForSeconds(1f);
+        DummyWheels();
     }
     void LadderFall()
     {
@@ -187,11 +208,33 @@ public class Boss : MonoBehaviour
     }
     void LeverFlyAway()
     {
-        lever.GetComponent<Animator>().SetTrigger("FlyAway");
+
+        lever.SetActive(false);
+        Debug.Log("Dummy Lever");
+        dummyLever.SetActive(true);
+        dummyLever.GetComponent<Animator>().SetBool("flyAway", true);
     }
     void SmokeRise()
     {
+        smoke.SetActive(true);
+        smoke.GetComponent<Animator>().SetTrigger("smoke");
+    }
 
+    IEnumerator WaitUntilLightsStage3()
+    {
+        yield return new WaitForSeconds(2);
+        waitForLights = false;
+    }
+
+    public void DummyWheels()
+    {
+        GetComponent<NLC>().ls.Remove(sqrLightGreen);
+        sqrLightGreen.gameObject.SetActive(false);
+        dummyWheels.SetActive(true);
+        var dummyLight = dummyWheels.GetComponentInChildren<NL>();
+        dummyLight.lr.material = GetComponent<NLC>().lM;
+        GetComponent<NLC>().ls.Add(dummyLight);
+        dummyLight.iR = true;
     }
 
     #endregion
