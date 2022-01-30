@@ -13,6 +13,8 @@ public class NLC : MonoBehaviour
     public NL[] sC;
     [Range(0, 1)] public float dS;
 
+    private SelectableObjController _selectableObjController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class NLC : MonoBehaviour
         foreach (NL nl in ls) nl.iR = true;
         foreach (NL nl in ls) nl.lr.material = lM;
 
+        _selectableObjController = FindObjectOfType<SelectableObjController>();
     }
 
     // Update is called once per frame
@@ -155,14 +158,27 @@ public class NLC : MonoBehaviour
         sC[0] = null;
         sC[1] = null;
 
+        if (_selectableObjController != null)
+            _selectableObjController.ActivateLightBulbIcon(false, Color.white);
+
         GetComponent<SFX>().CancelSelect();
         Debug.Log("Cancel Swap");
     }
 
     public void ATS(NL l)
     {
-        if (!sC[0]) sC[0] = l;
-        else if (sC[0] != l) sC[1] = l;
+        if (!sC[0])
+        {
+            sC[0] = l;
+            if (_selectableObjController != null)
+                _selectableObjController.ActivateLightBulbIcon(true, l.lC);
+        }
+        else if (sC[0] != l)
+        {
+            sC[1] = l;
+            if (_selectableObjController != null)
+                _selectableObjController.ActivateLightBulbIcon(false, l.lC);
+        }
         GetComponent<SFX>().SelectBulb();
     }
 

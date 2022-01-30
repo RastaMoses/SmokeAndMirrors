@@ -33,7 +33,8 @@ public class SelectableRoundLamp : SelectableObj
     {
         if (Input.GetButtonDown(_swapButton))
         {
-            FindObjectOfType<NLC>().ATS(_light);
+            if(_light.enabled)
+                FindObjectOfType<NLC>().ATS(_light);
         }
 
         float ry = Input.GetAxis("Right Stick Y");
