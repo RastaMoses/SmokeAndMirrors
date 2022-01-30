@@ -39,7 +39,7 @@ public class Game : MonoBehaviour
 
     public void ResetProgress()
     {
-        PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
+        PlayerPrefs.SetInt("HighestLevel", 1);
     }
 
     

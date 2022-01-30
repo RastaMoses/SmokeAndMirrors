@@ -7,7 +7,6 @@ using System;
 public class NLC : MonoBehaviour
 {
     public List<NL> ls;
-    public LayerMask lm;
     public Material lM;
     public ContactFilter2D cF;
     public NL[] sC;
