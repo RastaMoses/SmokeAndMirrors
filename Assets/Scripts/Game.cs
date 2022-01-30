@@ -37,10 +37,11 @@ public class Game : MonoBehaviour
         
     }
 
-    public void ResetProgress()
-    {
-        PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
-    }
+    //public void ResetProgress()
+    //{
+    //    PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
+    //    // put 1 here if level build indxes are in sequences and 0 is main menu
+    //}
 
     
     public void LevelComplete()
@@ -67,6 +68,13 @@ public class Game : MonoBehaviour
         FindObjectOfType<PlayerController>().movementEnabled = false;
         curtainClose.SetTrigger("curtainClose");
         yield return new WaitForSeconds(transitionTime);
-        sceneLoader.LoadNextLevel();
+        if(PlayerPrefs.GetInt("HighestLevel") == SceneManager.GetActiveScene().buildIndex){
+            SceneLoader.LoadMainMenu();
+        }
+        else
+        {
+            sceneLoader.LoadNextLevel();
+        }
+
     }
 }
