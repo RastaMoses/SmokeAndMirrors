@@ -38,7 +38,8 @@ public class PauseScreen : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Debug.Log("return to main");
-        //SceneLoader.LoadMainMenu();
+        StateManager.Pause();
+        _pauseScreen.SetActive(false);
         SceneLoader.LoadMainMenu();
     }
 }

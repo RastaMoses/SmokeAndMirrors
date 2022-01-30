@@ -80,9 +80,9 @@ public class Shiny : MonoBehaviour
 
     public IEnumerator IS()
     {
-        while (mr.material.GetFloat("DissolveAmt") >= 0.3)
+        while (mr.material.GetFloat("DissolveAmt") >= 0.2f)
         {
-            mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 0.3f, FindObjectOfType<NLC>().dS));
+            mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 0.2f, FindObjectOfType<NLC>().dS));
             yield return null;
         }
         yield return null;
