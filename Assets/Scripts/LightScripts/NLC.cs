@@ -11,7 +11,7 @@ public class NLC : MonoBehaviour
     public Material lM;
     public ContactFilter2D cF;
     public NL[] sC;
-    [Range(0, 1)] public float dS;
+    [Range(0, 0.1f)] public float dS;
 
     private SelectableObjController _selectableObjController;
 

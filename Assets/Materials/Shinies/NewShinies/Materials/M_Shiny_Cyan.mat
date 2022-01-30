@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Shiny_Cyan
-  m_Shader: {fileID: -6465566751694194690, guid: cda809232cb6d3c5eb2f1442ee465d1a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d21a736746b59694199fe0c7d1c402d0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -36,8 +36,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - DissolveAmt: 0.862
+    - DissolveAmt: 0.3
     - Vector1_1: 1
+    - Vector1_1180feeea0fc4d6daadbb82f66584949: 1
     - Vector1_77092abcb94f4e1a8a96b17670cd9bcc: 8.64
     - Vector1_8d57f17bc0ec4b958b145f9aa43b60a9: 2.89
     - Vector1_91bcee82a10444dba1ab293f86e429c0: 0.02

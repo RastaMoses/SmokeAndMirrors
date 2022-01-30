@@ -119,6 +119,8 @@ public class SelectableObjController : MonoBehaviour
 
         //Animation
         FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetTrigger("magicMode");
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 1);
+
 
 
         //order selectables in a circle
@@ -147,6 +149,7 @@ public class SelectableObjController : MonoBehaviour
         _selectedObj.DeSelect();
         _selectedObj = null;
         FindObjectOfType<NLC>().CSW();
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 0);
     }
 
     Vector3 CalculateCentroid(List<SelectableObj> Objs)
