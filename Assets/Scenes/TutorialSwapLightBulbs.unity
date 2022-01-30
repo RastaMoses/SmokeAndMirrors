@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 213009871789696411, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 96d826e1c8493804c8fe53c34144577e, type: 2}
     - target: {fileID: 754151688443362356, guid: 342a38dcbe8f33b499dd45a7b0f61373, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -969,6 +973,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6244279215370298458, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: cF.layerMask.m_Bits
+      value: 3592
+      objectReference: {fileID: 0}
     - target: {fileID: 1621173039, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7

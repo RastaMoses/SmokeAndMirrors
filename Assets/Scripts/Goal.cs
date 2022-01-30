@@ -17,8 +17,7 @@ public class Goal : Condition
     {
         _player = FindObjectOfType<PlayerController>();
         _game = FindObjectOfType<Game>();
-        _button.gameObject.SetActive(false);
-        _spotLight.SetActive(false);
+        ActivateUI(false);
     }
 
     // Update is called once per frame
