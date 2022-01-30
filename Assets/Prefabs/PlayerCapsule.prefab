@@ -435,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightBulbIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 1154376736160941707, guid: efe709a454df5b64888485484cc1adef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1871417276347718549, guid: efe709a454df5b64888485484cc1adef, type: 3}
       propertyPath: m_Color.b
       value: 1

@@ -2938,7 +2938,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2783879923579449384, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_Name
-      value: UI_A_AnimatedButton (2)
+      value: UI_A_AnimatedButton
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449386, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: IgnoresGamePause
@@ -3014,11 +3014,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449387, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449387, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449387, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3050,11 +3050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449387, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449387, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 141
+      value: 148
       objectReference: {fileID: 0}
     - target: {fileID: 2783879923579449387, guid: 692e32b6f3e56e54190d4378c020b102, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

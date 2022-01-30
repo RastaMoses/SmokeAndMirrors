@@ -152,9 +152,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 309
-        height: 304
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +172,10 @@ TextureImporter:
       name: buttons_ menu A_1
       rect:
         serializedVersion: 2
-        x: 333
-        y: 1
-        width: 317
-        height: 304
+        x: 340
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: buttons_ menu A_2
       rect:
         serializedVersion: 2
-        x: 673
-        y: 1
-        width: 317
-        height: 304
+        x: 680
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,10 +214,10 @@ TextureImporter:
       name: buttons_ menu A_3
       rect:
         serializedVersion: 2
-        x: 1013
-        y: 1
-        width: 317
-        height: 304
+        x: 1020
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,10 +235,10 @@ TextureImporter:
       name: buttons_ menu A_4
       rect:
         serializedVersion: 2
-        x: 1353
-        y: 1
-        width: 317
-        height: 304
+        x: 1360
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +256,10 @@ TextureImporter:
       name: buttons_ menu A_5
       rect:
         serializedVersion: 2
-        x: 1693
-        y: 1
-        width: 317
-        height: 304
+        x: 1700
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,10 +277,10 @@ TextureImporter:
       name: buttons_ menu A_6
       rect:
         serializedVersion: 2
-        x: 2033
-        y: 1
-        width: 317
-        height: 304
+        x: 2040
+        y: 0
+        width: 340.14285
+        height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,7 +297,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d274d0ded728df8479987701924cb9ee
+    spriteID: 61086cd12baf32146a9ddd02b0739064
     internalID: 0
     vertices: []
     indices: 
