@@ -13,6 +13,9 @@ public class TrackSwitch : MonoBehaviour
 
     [SerializeField] private List<SwitchCondition> _leftTrackSwitchables;
     [SerializeField] private List<SwitchCondition> _rightTrackSwitchables;
+    [SerializeField] private List<GameObject> _leftOuts;
+    [SerializeField] private List<GameObject> _rightOuts;
+
 
     [SerializeField] private AnimatedHoldButton _switchButton;
 
@@ -52,11 +55,14 @@ public class TrackSwitch : MonoBehaviour
         }
 
         _switchButton.gameObject.SetActive(false);
+        foreach (GameObject g in _leftOuts) g.SetActive(false);
+        foreach (GameObject g in _rightOuts) g.SetActive(false);
+
 
         _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
 
-   
+
 
     // Update is called once per frame
     void Update()
@@ -70,7 +76,7 @@ public class TrackSwitch : MonoBehaviour
                 sfx.Lever();
 
                 _on = !_on;
-                
+
                 PerformSwitch();
             }
         }
@@ -165,8 +171,22 @@ public class TrackSwitch : MonoBehaviour
 
         //show button to use
         _switchButton.gameObject.SetActive(true);
+        foreach (GameObject g in _leftOuts) g.SetActive(false);
+        foreach (GameObject g in _rightOuts) g.SetActive(false);
         //check for input
         _playerInReach = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        if (FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _leftOuts) g.SetActive(false);
+        if (FindObjectOfType<SelectableObjController>()._inSelectionMode)foreach (GameObject g in _rightOuts) g.SetActive(false);
+
+        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _leftOuts) g.SetActive(true);
+        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode)foreach (GameObject g in _rightOuts) g.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -176,6 +196,8 @@ public class TrackSwitch : MonoBehaviour
 
         //stop show button to use
         _switchButton.gameObject.SetActive(false);
+        foreach (GameObject g in _leftOuts) g.SetActive(false);
+        foreach (GameObject g in _rightOuts) g.SetActive(false);
         //stop check for input
         _playerInReach = false;
     }
