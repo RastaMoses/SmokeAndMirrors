@@ -41,9 +41,12 @@ public class Shiny : MonoBehaviour
     {
         StopCoroutine("IS");
         StartCoroutine("VS");
-        
 
-        
+        if (GetComponent<Collider2D>() != null)
+        {
+            col.enabled = true;
+        }
+
 
     }
 
@@ -64,25 +67,22 @@ public class Shiny : MonoBehaviour
     {
         if (GetComponent<MeshRenderer>())
         {
-            while (mr.material.GetFloat("Dissolve") <= 1)
+            while (mr.material.GetFloat("DissolveAmt") <= 1)
             {
-                mr.material.SetFloat("Dissolve", Mathf.Lerp(mr.material.GetFloat("Dissolve"), 1, FindObjectOfType<NLC>().dS));
+                mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 1, FindObjectOfType<NLC>().dS));
                 yield return null;
             }
         }
-        if (GetComponent<Collider2D>() != null)
-        {
-            col.enabled = true;
-        }
+        
         yield return null;
 
     }
 
     public IEnumerator IS()
     {
-        while (mr.material.GetFloat("Dissolve") >= 0.3)
+        while (mr.material.GetFloat("DissolveAmt") >= 0.3)
         {
-            mr.material.SetFloat("Dissolve", Mathf.Lerp(mr.material.GetFloat("Dissolve"), 0.3f, FindObjectOfType<NLC>().dS * Time.deltaTime));
+            mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 0.3f, FindObjectOfType<NLC>().dS));
             yield return null;
         }
         yield return null;

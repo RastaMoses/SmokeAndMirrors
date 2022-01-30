@@ -3393,7 +3393,7 @@
     },
     "m_Name": "Dissolve",
     "m_DefaultReferenceName": "Vector1_bb67dda3967d43dcb9b2a755f912a3b8",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "DissolveAmt",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
