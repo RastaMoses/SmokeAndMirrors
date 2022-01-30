@@ -90,6 +90,12 @@ public class TrackSwitch : MonoBehaviour
         }
     }
 
+    public void SwitchSides()
+    {
+        _on = !_on;
+        TriggerSwitchInSwitchables();
+    }
+
     private void TriggerSwitchInSwitchables()
     {
         //turn "right" side on and "left" off
@@ -134,7 +140,8 @@ public class TrackSwitch : MonoBehaviour
     IEnumerator TurnHandleAnimation()
     {
         yield return new WaitForSeconds(0.4f); //wait until animation is at the handle pulling/pushing point
-        if (_on)
+        
+        if(_handle.transform.rotation != Quaternion.Euler(_handleTargetRotation))
         {
             while (_handle.transform.rotation != Quaternion.Euler(_handleTargetRotation))
             {
@@ -152,6 +159,25 @@ public class TrackSwitch : MonoBehaviour
                 yield return null;
             }
         }
+        
+        //if (_on)
+        //{
+        //    while (_handle.transform.rotation != Quaternion.Euler(_handleTargetRotation))
+        //    {
+        //        //turn the switch handle on the "On" side
+        //        _handle.transform.rotation = Quaternion.RotateTowards(_handle.transform.rotation, Quaternion.Euler(_handleTargetRotation), _turnSpeed * Time.deltaTime);
+        //        yield return null;
+        //    }
+        //}
+        //else
+        //{
+        //    while (_handle.transform.rotation != Quaternion.Euler(-_handleTargetRotation))
+        //    {
+        //        //turn the switch handle on the "Off" side
+        //        _handle.transform.rotation = Quaternion.RotateTowards(_handle.transform.rotation, Quaternion.Euler(-_handleTargetRotation), _turnSpeed * Time.deltaTime);
+        //        yield return null;
+        //    }
+        //}
         TriggerSwitchInSwitchables();
         yield return new WaitForSeconds(0.4f); //wait until player pull animation is finished
         SetTurnable(true);
