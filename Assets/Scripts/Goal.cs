@@ -9,12 +9,16 @@ public class Goal : Condition
 
     [SerializeField] private UIAnimatedHoldButton _button;
     [SerializeField] private GameObject _spotLight;
+    [SerializeField] float activationTime = 0.6f;
 
     private bool _playerInside = false;
+    bool playerStays;
+    float playerStaysTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerStaysTime = 0f;
         _player = FindObjectOfType<PlayerController>();
         _game = FindObjectOfType<Game>();
         ActivateUI(false);
@@ -23,7 +27,21 @@ public class Goal : Condition
     // Update is called once per frame
     void Update()
     {
-        
+        if (_playerInside && !playerStays)
+        {
+            playerStaysTime += Time.deltaTime;
+            if(playerStaysTime >= activationTime)
+            {
+                playerStays = true;
+                ActivateUI(true);
+            }
+            
+        }
+        else if (!_playerInside)
+        {
+            playerStaysTime = 0;
+            playerStays = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +54,7 @@ public class Goal : Condition
         if (!fullfilled)
             return;
 
-        ActivateUI(true);
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -76,4 +94,6 @@ public class Goal : Condition
         target = 0;
         base.InitializeValues(target, start);
     }
+
+    
 }
