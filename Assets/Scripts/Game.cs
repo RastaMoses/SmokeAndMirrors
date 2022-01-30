@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Game : MonoBehaviour
     }
     private void Start()
     {
+        if (PlayerPrefs.GetInt("HighestLevel") <= SceneManager.GetActiveScene().buildIndex) PlayerPrefs.SetInt("HighestLevel", SceneManager.GetActiveScene().buildIndex);
         //Set Player Startposition
         FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
 
@@ -33,6 +35,11 @@ public class Game : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ResetProgress()
+    {
+        PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
     }
 
     
@@ -61,6 +68,5 @@ public class Game : MonoBehaviour
         curtainClose.SetTrigger("curtainClose");
         yield return new WaitForSeconds(transitionTime);
         sceneLoader.LoadNextLevel();
-
     }
 }

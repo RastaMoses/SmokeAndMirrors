@@ -39,6 +39,7 @@ public class Shiny : MonoBehaviour
 
     public void Visibilize()
     {
+        Debug.Log("Vis" + name);
         if (GetComponent<MeshRenderer>())
         {
             StopCoroutine("IS");

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class MenuOptions : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class MenuOptions : MonoBehaviour
 
     public void EnterGame()
     {
+        SceneManager.LoadScene(PlayerPrefs.GetInt("HighestLevel"));
         Debug.Log("Enter");
     }
 
     public void NewGame()
     {
+        PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
+        SceneManager.LoadScene("Noobtorial");
         Debug.Log("New Game");
     }
 

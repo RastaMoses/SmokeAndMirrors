@@ -17,12 +17,16 @@ public class SelectableObjController : MonoBehaviour
     private SelectableObj _selectedObj;
     private Vector3 _selectableObjsCenter = Vector3.zero;
 
+    private GameObject _lightBulbIcon;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _camera = Camera.main;
         _player = GameObject.FindGameObjectWithTag("Player");
+        _lightBulbIcon = _player.gameObject.transform.Find("LightBulbIcon").gameObject;
+        ActivateLightBulbIcon(false, Color.white);
         _lineRenderer = GetComponent<LineRenderer>();
         var selectables = GameObject.FindObjectsOfType(typeof(SelectableObj)) as SelectableObj[];
         _allSelectableObjs = selectables.ToList();
@@ -31,6 +35,19 @@ public class SelectableObjController : MonoBehaviour
     public void ResetObjectList(List<SelectableObj> newList)
     {
         _allSelectableObjs = newList;
+    }
+
+    public void ActivateLightBulbIcon(bool activate, Color color)
+    {
+        if (activate)
+        {
+            _lightBulbIcon.transform.Find("white 1").GetComponent<SpriteRenderer>().color = color;
+            _lightBulbIcon.SetActive(true);
+        }
+        else
+        {
+            _lightBulbIcon.SetActive(false);
+        }
     }
 
     // Update is called once per frame
