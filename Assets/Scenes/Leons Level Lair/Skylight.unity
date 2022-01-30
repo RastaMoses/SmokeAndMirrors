@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 6a4dd5cb6d96730458ebbfe75c28581e, type: 2}
+  mat: {fileID: 2100000, guid: 871fa58b783279200ae3d59d77d5921e, type: 2}
 --- !u!1001 &44553128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,6 +153,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6244279215370298458, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: dS
+      value: 0.0082
+      objectReference: {fileID: 0}
     - target: {fileID: 1621173038, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -164,6 +168,10 @@ PrefabInstance:
     - target: {fileID: 1621173039, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 2103036633, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: playCurtain
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1150223046050968842, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
@@ -240,12 +248,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1447200476029477112, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5680726483778671375, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d292307b546bdf74bb0db95e0a031ed1, type: 2}
+      objectReference: {fileID: 2100000, guid: 871fa58b783279200ae3d59d77d5921e, type: 2}
     - target: {fileID: 6184852771031200474, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Name
       value: Platform_Box_02 (1)
@@ -322,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: f680c5707d280114aae672ec38150610, type: 2}
+  mat: {fileID: 2100000, guid: edeafddffaf2b554e8cb1ad25583e00e, type: 2}
 --- !u!1001 &144135663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,10 +341,10 @@ PrefabInstance:
     - target: {fileID: 179576731598796426, guid: 58e90cc83d3f9424085c9cea97c2cd5a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8f2785313b6faad4994b615d30080018, type: 2}
+      objectReference: {fileID: 2100000, guid: 7130fa123f88cd240b46e17d55d35cc4, type: 2}
     - target: {fileID: 831306575088029562, guid: 58e90cc83d3f9424085c9cea97c2cd5a, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1312465910325366245, guid: 58e90cc83d3f9424085c9cea97c2cd5a, type: 3}
       propertyPath: m_RootOrder
@@ -414,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 352e4bcfa4b646840a3c9b5156f01047, type: 2}
+  mat: {fileID: 2100000, guid: 7130fa123f88cd240b46e17d55d35cc4, type: 2}
 --- !u!1 &182131430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,12 +1118,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1447200476029477112, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5680726483778671375, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 947fccc9591afe34686d3d47a66612f3, type: 2}
+      objectReference: {fileID: 2100000, guid: e13fa8f065732c748b38cecae61158c6, type: 2}
     - target: {fileID: 6184852771031200474, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Name
       value: Platform_Box_02 (1)
@@ -1192,7 +1200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 92c1efaa4b341794e835fcf07078b7f2, type: 2}
+  mat: {fileID: 2100000, guid: e13fa8f065732c748b38cecae61158c6, type: 2}
 --- !u!1001 &1418341496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1259,12 +1267,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1447200476029477112, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5680726483778671375, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cc9e34e5a3ffee7468ea7fd98480d0d1, type: 2}
+      objectReference: {fileID: 2100000, guid: b11a79e855027a53fb6b9350a81905ea, type: 2}
     - target: {fileID: 6184852771031200474, guid: d87020ad6718b2345ac0185632b8e5fa, type: 3}
       propertyPath: m_Name
       value: Platform_Box_02 (1)
@@ -1326,9 +1334,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1834252796}
     m_Modifications:
+    - target: {fileID: 179576731598796426, guid: 58e90cc83d3f9424085c9cea97c2cd5a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: edeafddffaf2b554e8cb1ad25583e00e, type: 2}
     - target: {fileID: 831306575088029562, guid: 58e90cc83d3f9424085c9cea97c2cd5a, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1312465910325366245, guid: 58e90cc83d3f9424085c9cea97c2cd5a, type: 3}
       propertyPath: m_RootOrder
@@ -1552,7 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 8a567809c9addfd4c8827ad61fad3831, type: 2}
+  mat: {fileID: 2100000, guid: b11a79e855027a53fb6b9350a81905ea, type: 2}
 --- !u!1 &1906961385
 GameObject:
   m_ObjectHideFlags: 0
