@@ -65,7 +65,20 @@ public class Switch : MonoBehaviour
     void TurnLever(bool resetPossible = true)
     {
         _on = !_on;
+        if (GetComponent<SwitchCombination>())
+        {
+            GetComponent<SwitchCombination>().otherSwitch.GetComponent<Switch>().OtherTurnLever();
+        }
+        PerformSwitch();
+        if (resetTime != 0 && resetPossible)
+        {
+            StartCoroutine(ResetTimer());
+        }
+    }
 
+    public void OtherTurnLever(bool resetPossible = true)
+    {
+        _on = !_on;
         PerformSwitch();
         if (resetTime != 0 && resetPossible)
         {
