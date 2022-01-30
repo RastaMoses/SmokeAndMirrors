@@ -40,7 +40,7 @@ public class NLC : MonoBehaviour
             NL m = ls[i];
             if (!m.enabled)
             {
-                
+
                 DL(m);
                 continue;
             }
@@ -225,6 +225,8 @@ public class NLC : MonoBehaviour
 
     private void A(NL m, NL n)
     {
+        if (CC(m, n)) return;
+
         Vector2 o = H2.O(m, n);
         Vector2 d = H2.B(m.transform.position, n.transform.position, o);
 
@@ -322,8 +324,8 @@ public class NLC : MonoBehaviour
 
     private bool CC(NL m, NL n)
     {
-        if (m.cL && m.cL.cL) CC(m.cL.cL, n);
-        if (n.cL && n.cL.cL) CC(n.cL.cL, m);
+        if (m.cL && m.cL.cL) return CC(m.cL, n);
+        if (n.cL && n.cL.cL) return CC(n.cL, m);
         if ((m.cL && m.cL == n) || (n.cL && n.cL == m)) return true;
         return false;
     }
