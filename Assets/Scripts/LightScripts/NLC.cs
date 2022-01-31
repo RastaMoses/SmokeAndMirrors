@@ -324,8 +324,8 @@ public class NLC : MonoBehaviour
 
     private bool CC(NL m, NL n)
     {
-        if (m.cL && m.cL.cL) CC(m.cL.cL, n);
-        if (n.cL && n.cL.cL) CC(n.cL.cL, m);
+        if (m.cL && m.cL.cL) return CC(m.cL, n);
+        if (n.cL && n.cL.cL) return CC(n.cL, m);
         if ((m.cL && m.cL == n) || (n.cL && n.cL == m)) return true;
         return false;
     }

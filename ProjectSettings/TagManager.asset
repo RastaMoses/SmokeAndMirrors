@@ -12,6 +12,7 @@ TagManager:
   - Death
   - Goal
   - Ladder
+  - Outline
   layers:
   - Default
   - TransparentFX
