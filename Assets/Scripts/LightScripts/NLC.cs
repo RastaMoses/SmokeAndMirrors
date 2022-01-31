@@ -40,7 +40,6 @@ public class NLC : MonoBehaviour
             NL m = ls[i];
             if (!m.enabled)
             {
-
                 DL(m);
                 continue;
             }
@@ -185,8 +184,12 @@ public class NLC : MonoBehaviour
     private void SR(NL m)
     {
         Physics2D.Raycast(m.transform.position, m.d, cF, m.rchl, m.lRng);
-        if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "ShinyParent" && !m.rchl[0].collider.GetComponent<ShinyParent>().activated && m.rchl[0].collider.GetComponent<ShinyParent>().actColor != m.lC) m.rchl.Remove(m.rchl[0]);
-        if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "Glass") m.rchl.Remove(m.rchl[0]);
+        int c = m.rchl.Count;
+        if (m.rchl.Count > 0) for (int i = 0; i < c; i++)
+            {
+                if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "ShinyParent" && !m.rchl[0].collider.GetComponent<ShinyParent>().activated && m.rchl[0].collider.GetComponent<ShinyParent>().actColor != m.lC) m.rchl.Remove(m.rchl[0]);
+                if (m.rchl.Count > 0 && m.rchl[0].collider.tag == "Glass") m.rchl.Remove(m.rchl[0]);
+            }
 
         if (m.rchl.Count > 0) m.rch = m.rchl[0];
         else m.rch = new RaycastHit2D();
@@ -225,6 +228,7 @@ public class NLC : MonoBehaviour
 
     private void A(NL m, NL n)
     {
+        print("Affair");
         if (CC(m, n)) return;
 
         Vector2 o = H2.O(m, n);
@@ -232,8 +236,16 @@ public class NLC : MonoBehaviour
 
         if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.cL.transform.position))
         {
-            D(m, m.sL);
-            W(m, n);
+            if (!n.cL)
+            {
+                D(m, m.sL);
+                W(m, n);
+            }
+            else if (Vector2.Distance(n.transform.position, o) < Vector2.Distance(n.transform.position, n.cL.transform.position))
+            {
+                D(m, m.sL);
+                W(m, n);
+            }
         }
     }
 
@@ -248,7 +260,7 @@ public class NLC : MonoBehaviour
     }
 
     //Child slaughter
-    private void CS(NL l)
+    public void CS(NL l)
     {
         if (!l.cL) return;
         CS(l.cL);
@@ -324,6 +336,7 @@ public class NLC : MonoBehaviour
 
     private bool CC(NL m, NL n)
     {
+        print("CC");
         if (m.cL && m.cL.cL) return CC(m.cL, n);
         if (n.cL && n.cL.cL) return CC(n.cL, m);
         if ((m.cL && m.cL == n) || (n.cL && n.cL == m)) return true;
