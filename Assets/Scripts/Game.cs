@@ -10,6 +10,8 @@ public class Game : MonoBehaviour
     [SerializeField] Animator curtainOpen;
     [SerializeField] Animator curtainClose;
     [SerializeField] bool playCurtain;
+    [SerializeField] public bool unlockedMagic;
+    [SerializeField] public bool unlockedSwap;
 
     SceneLoader sceneLoader;
 
@@ -28,6 +30,15 @@ public class Game : MonoBehaviour
         {
             StartCoroutine(CurtainOpen());
         }
+        if (unlockedMagic)
+        {
+            FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 1);
+        }
+        else
+        {
+
+            FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 0);
+        }
     }
 
 
@@ -41,6 +52,7 @@ public class Game : MonoBehaviour
     {
         PlayerPrefs.SetInt("HighestLevel", 1);
     }
+
 
     
     public void LevelComplete()

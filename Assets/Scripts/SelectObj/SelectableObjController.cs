@@ -20,6 +20,7 @@ public class SelectableObjController : MonoBehaviour
     private GameObject _lightBulbIcon;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +109,10 @@ public class SelectableObjController : MonoBehaviour
 
     private void OnStartSelectMode()
     {
+        if (!FindObjectOfType<Game>().unlockedMagic)
+        {
+            return;
+        }
         //Only visible objects are selectable
         _selectableObjs = _allSelectableObjs.Where(s => IsWithinBounds(new Rect(0, 0, 1, 1), _camera.WorldToViewportPoint(s.transform.position))).ToList();
 
@@ -119,7 +124,7 @@ public class SelectableObjController : MonoBehaviour
 
         //Animation
         FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetTrigger("magicMode");
-        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 1);
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 2);
 
 
 
@@ -149,7 +154,7 @@ public class SelectableObjController : MonoBehaviour
         _selectedObj.DeSelect();
         _selectedObj = null;
         FindObjectOfType<NLC>().CSW();
-        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 0);
+        FindObjectOfType<PlayerController>().gameObject.GetComponent<Animator>().SetFloat("magic", 1);
     }
 
     Vector3 CalculateCentroid(List<SelectableObj> Objs)

@@ -1,0 +1,336 @@
+fileFormatVersion: 2
+guid: 7117349eec340a6b1ab962f49fe882e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4570909827950440829
+    second: walking -magic_0
+  - first:
+      213: -6849392310653742529
+    second: walking -magic_1
+  - first:
+      213: 5054417822636968558
+    second: walking -magic_2
+  - first:
+      213: -3034127815593826566
+    second: walking -magic_3
+  - first:
+      213: -2125638253423900546
+    second: walking -magic_4
+  - first:
+      213: -8448560866795653896
+    second: walking -magic_5
+  - first:
+      213: 355895333820775593
+    second: walking -magic_6
+  - first:
+      213: -8434518871404146320
+    second: walking -magic_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1050
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: walking -magic_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 129
+        width: 1768
+        height: 2307
+      alignment: 9
+      pivot: {x: 0.3634847, y: 0.43159443}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71f35355422f6f30800000000000000
+      internalID: 4570909827950440829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_1
+      rect:
+        serializedVersion: 2
+        x: 2183
+        y: 78
+        width: 1712
+        height: 2247
+      alignment: 9
+      pivot: {x: 0.3264852, y: 0.42150527}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32113cabf112f0a0800000000000000
+      internalID: -6849392310653742529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_2
+      rect:
+        serializedVersion: 2
+        x: 4195
+        y: 78
+        width: 1712
+        height: 2187
+      alignment: 9
+      pivot: {x: 0.31564045, y: 0.40661812}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6a0ea0fa36e42640800000000000000
+      internalID: 5054417822636968558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_3
+      rect:
+        serializedVersion: 2
+        x: 6160
+        y: 125
+        width: 1708
+        height: 2370
+      alignment: 9
+      pivot: {x: 0.30977356, y: 0.39032698}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af6e564c3dc94e5d0800000000000000
+      internalID: -3034127815593826566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_4
+      rect:
+        serializedVersion: 2
+        x: 8093
+        y: 144
+        width: 1751
+        height: 2235
+      alignment: 9
+      pivot: {x: 0.33034974, y: 0.4169302}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78cfa745473082e0800000000000000
+      internalID: -2125638253423900546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_5
+      rect:
+        serializedVersion: 2
+        x: 10115
+        y: 78
+        width: 1725
+        height: 2243
+      alignment: 9
+      pivot: {x: 0.3277921, y: 0.42964256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4f06f67aea0ca80800000000000000
+      internalID: -8448560866795653896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_6
+      rect:
+        serializedVersion: 2
+        x: 12112
+        y: 69
+        width: 1725
+        height: 2198
+      alignment: 9
+      pivot: {x: 0.31703013, y: 0.3901914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac3b95abe460f400800000000000000
+      internalID: 355895333820775593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking -magic_7
+      rect:
+        serializedVersion: 2
+        x: 14100
+        y: 78
+        width: 1711
+        height: 2338
+      alignment: 9
+      pivot: {x: 0.31553128, y: 0.4126487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07190a246c192fa80800000000000000
+      internalID: -8434518871404146320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 48c0d6412f6992a9282e0c7e6e409a2c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
