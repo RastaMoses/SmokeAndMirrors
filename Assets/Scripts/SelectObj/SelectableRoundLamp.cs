@@ -31,13 +31,13 @@ public class SelectableRoundLamp : SelectableObj
 
     public override void ProcessInput()
     {
-        if (!FindObjectOfType<Game>().unlockedSwap)
-        {
-            return;
-        }
         if (Input.GetButtonDown(_swapButton))
         {
-            if(_light.enabled)
+            if (!FindObjectOfType<Game>().unlockedSwap)
+            {
+                return;
+            }
+            if (_light.enabled)
                 FindObjectOfType<NLC>().ATS(_light);
         }
 

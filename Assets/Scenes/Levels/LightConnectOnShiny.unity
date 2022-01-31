@@ -565,6 +565,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2618468052629533034, guid: 40bdd118df70d194cb5b2eb3b389b80f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5154067270039562038, guid: 40bdd118df70d194cb5b2eb3b389b80f, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -2107,6 +2111,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4139669540934471490, guid: b68a2955fa178d84ba40b2d710c26c12, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7493648331772573248, guid: b68a2955fa178d84ba40b2d710c26c12, type: 3}
       propertyPath: m_Name
       value: Platform_Rock_04
