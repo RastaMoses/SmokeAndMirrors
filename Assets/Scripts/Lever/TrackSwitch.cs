@@ -13,9 +13,13 @@ public class TrackSwitch : MonoBehaviour
 
     [SerializeField] private List<SwitchCondition> _leftTrackSwitchables;
     [SerializeField] private List<SwitchCondition> _rightTrackSwitchables;
-    [SerializeField] private List<GameObject> _leftOuts;
-    [SerializeField] private List<GameObject> _rightOuts;
-
+    [SerializeField] private GameObject _leverOutline;
+    List<GameObject> _leftSwitchableOutlines = new List<GameObject>();
+    List<GameObject> _rightSwitchableOutlines = new List<GameObject>();
+    //[SerializeField] private List<GameObject> _leftOuts;
+    //[SerializeField] private List<GameObject> _rightOuts;
+    [SerializeField] private Material _leftOutlineMaterial;
+    [SerializeField] private Material _rightOutlineMaterial;
 
     [SerializeField] private AnimatedHoldButton _switchButton;
 
@@ -55,14 +59,65 @@ public class TrackSwitch : MonoBehaviour
         }
 
         _switchButton.gameObject.SetActive(false);
-        foreach (GameObject g in _leftOuts) g.SetActive(false);
-        foreach (GameObject g in _rightOuts) g.SetActive(false);
+        foreach (SwitchCondition switchable in _leftTrackSwitchables)
+        {
+            foreach (Transform child in switchable.transform)
+            {
+                if (child.CompareTag("Outline"))
+                    _leftSwitchableOutlines.Add(child.gameObject);
+            }
+        }
+        foreach (SwitchCondition switchable in _rightTrackSwitchables)
+        {
+            foreach (Transform child in switchable.transform)
+            {
+                if (child.CompareTag("Outline"))
+                    _rightSwitchableOutlines.Add(child.gameObject);
+            }
+        }
+        ActivateOutlines(false);
 
 
         _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
 
 
+    private void ActivateOutlines(bool activate)
+    {
+        if (activate)
+        {
+            if (_on)
+            {
+                _leverOutline.GetComponent<MeshRenderer>().material = _rightOutlineMaterial;
+                _leverOutline.SetActive(activate);
+                foreach (GameObject g in _rightSwitchableOutlines)
+                {
+                    g.GetComponent<MeshRenderer>().material = _rightOutlineMaterial;
+                    g.SetActive(activate);
+                }
+            }
+            else
+            {
+                _leverOutline.GetComponent<MeshRenderer>().material = _leftOutlineMaterial;
+                _leverOutline.SetActive(activate);
+                foreach (GameObject g in _leftSwitchableOutlines)
+                {
+                    g.GetComponent<MeshRenderer>().material = _leftOutlineMaterial;
+                    g.SetActive(activate);
+                }
+            }
+               
+            
+        }
+        else
+        {
+            _leverOutline.SetActive(activate);
+            foreach (GameObject g in _leftSwitchableOutlines)
+            {
+                g.SetActive(activate);
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -171,8 +226,7 @@ public class TrackSwitch : MonoBehaviour
 
         //show button to use
         _switchButton.gameObject.SetActive(true);
-        foreach (GameObject g in _leftOuts) g.SetActive(false);
-        foreach (GameObject g in _rightOuts) g.SetActive(false);
+        ActivateOutlines(false);
         //check for input
         _playerInReach = true;
     }
@@ -182,11 +236,9 @@ public class TrackSwitch : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
-        if (FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _leftOuts) g.SetActive(false);
-        if (FindObjectOfType<SelectableObjController>()._inSelectionMode)foreach (GameObject g in _rightOuts) g.SetActive(false);
+        if (FindObjectOfType<SelectableObjController>()._inSelectionMode) _leverOutline.SetActive(false);
 
-        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _leftOuts) g.SetActive(true);
-        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode)foreach (GameObject g in _rightOuts) g.SetActive(true);
+        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode) ActivateOutlines(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -196,8 +248,7 @@ public class TrackSwitch : MonoBehaviour
 
         //stop show button to use
         _switchButton.gameObject.SetActive(false);
-        foreach (GameObject g in _leftOuts) g.SetActive(false);
-        foreach (GameObject g in _rightOuts) g.SetActive(false);
+        ActivateOutlines(false);
         //stop check for input
         _playerInReach = false;
     }

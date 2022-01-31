@@ -14,7 +14,8 @@ public class Switch : MonoBehaviour
     [SerializeField] float resetTime = 0;
 
     [SerializeField] private List<SwitchCondition> _switchables;
-    [SerializeField] private List<GameObject> _switchableOutlines;
+    [SerializeField] private GameObject _leverOutline;
+    private List<GameObject> _switchableOutlines = new List<GameObject>();
     [SerializeField] AnimatedHoldButton _switchButton;
 
     [SerializeField] private GameObject _handle;
@@ -40,11 +41,28 @@ public class Switch : MonoBehaviour
         }
 
         _switchButton.gameObject.SetActive(false);
-        foreach (GameObject g in _switchableOutlines) g.SetActive(false);
+        foreach(SwitchCondition switchable in _switchables)
+        {
+            foreach (Transform child in switchable.transform)
+            {
+                if (child.CompareTag("Outline"))
+                    _switchableOutlines.Add(child.gameObject);
+            }
+        }
+        ActivateOutlines(false);
 
         _handle.transform.rotation = _on ? Quaternion.Euler(_handleTargetRotation) : Quaternion.Euler(-_handleTargetRotation);
     }
 
+    private void ActivateOutlines(bool activate)
+    {
+        _leverOutline.SetActive(activate);
+        foreach (GameObject g in _switchableOutlines) 
+        {
+            if(activate) g.GetComponent<MeshRenderer>().material = _leverOutline.GetComponent<MeshRenderer>().material;
+            g.SetActive(activate);
+        } 
+    }
 
 
     // Update is called once per frame
@@ -175,8 +193,8 @@ public class Switch : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
-        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _switchableOutlines) g.SetActive(true);
-        if (FindObjectOfType<SelectableObjController>()._inSelectionMode) foreach (GameObject g in _switchableOutlines) g.SetActive(false);
+        if (!FindObjectOfType<SelectableObjController>()._inSelectionMode) ActivateOutlines(true);
+        if (FindObjectOfType<SelectableObjController>()._inSelectionMode) _leverOutline.SetActive(false);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -185,7 +203,7 @@ public class Switch : MonoBehaviour
 
         //stop show button to use
         _switchButton.gameObject.SetActive(false);
-        foreach (GameObject g in _switchableOutlines) g.SetActive(false);
+        ActivateOutlines(false);
 
         //stop check for input
         _playerInReach = false;

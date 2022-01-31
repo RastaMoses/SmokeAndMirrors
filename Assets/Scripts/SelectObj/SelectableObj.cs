@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class SelectableObj: MonoBehaviour
 {
     [SerializeField] private GameObject _selectionIndicator;
+    private Material _magicSelectionMaterial;
     public bool Selected { get; private set; } = false;
 
 
@@ -13,6 +14,7 @@ public abstract class SelectableObj: MonoBehaviour
     {
         Selected = false;
         _selectionIndicator.SetActive(false);
+        _magicSelectionMaterial = _selectionIndicator.GetComponent<MeshRenderer>().material;
 
         InitializeOnStart();
     }
@@ -28,6 +30,7 @@ public abstract class SelectableObj: MonoBehaviour
     public void Select()
     {
         Selected = true;
+        _selectionIndicator.GetComponent<MeshRenderer>().material = _magicSelectionMaterial;
         _selectionIndicator.SetActive(true);
     }
 
