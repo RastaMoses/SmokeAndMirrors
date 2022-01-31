@@ -180,7 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2103036633, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: playCurtain
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 446559418006283065, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.18
       objectReference: {fileID: 0}
     - target: {fileID: 1150223046050968842, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
@@ -1592,6 +1596,10 @@ PrefabInstance:
     - target: {fileID: 1667245138466694014, guid: 380fed0e0a8de4146aebf742c8000477, type: 3}
       propertyPath: m_Name
       value: Wheels
+      objectReference: {fileID: 0}
+    - target: {fileID: 2009264382453676946, guid: 380fed0e0a8de4146aebf742c8000477, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.513
       objectReference: {fileID: 0}
     - target: {fileID: 2047147929918880196, guid: 380fed0e0a8de4146aebf742c8000477, type: 3}
       propertyPath: m_RootOrder

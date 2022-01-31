@@ -49,6 +49,7 @@ public class Game : MonoBehaviour
         {
             StartCoroutine(CurtainClose());
         }
+        else GetComponent<SceneLoader>().LoadNextLevel();
     }
 
     public IEnumerator CurtainOpen()
@@ -67,6 +68,6 @@ public class Game : MonoBehaviour
         FindObjectOfType<PlayerController>().movementEnabled = false;
         curtainClose.SetTrigger("curtainClose");
         yield return new WaitForSeconds(transitionTime);
-        sceneLoader.LoadNextLevel();
+        GetComponent<SceneLoader>().LoadNextLevel();
     }
 }

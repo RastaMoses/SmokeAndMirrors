@@ -68,6 +68,7 @@ public class Goal : Condition
 
     public void CompleteLevel()
     {
+        ActivateUI(false);
         _player.movementEnabled = false;
         _game.LevelComplete();
     }
