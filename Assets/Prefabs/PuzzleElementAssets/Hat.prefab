@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5640291710573122729}
   - component: {fileID: 7611822399714648163}
   - component: {fileID: 1464705383}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Hat
   m_TagString: Teleporter
   m_Icon: {fileID: 0}
