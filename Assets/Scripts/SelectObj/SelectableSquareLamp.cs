@@ -15,6 +15,10 @@ public class SelectableSquareLamp : SelectableObj
 
     public override void ProcessInput()
     {
+        if (!FindObjectOfType<Game>().unlockedSwap)
+        {
+            return;
+        }
         if (Input.GetButtonDown(_swapButton))
         {
             if (_light.enabled)
