@@ -227,6 +227,8 @@ public class NLC : MonoBehaviour
 
     private void A(NL m, NL n)
     {
+        if (CC(m, n)) return;
+
         Vector2 o = H2.O(m, n);
         Vector2 d = H2.B(m.transform.position, n.transform.position, o);
 
@@ -234,8 +236,16 @@ public class NLC : MonoBehaviour
         if (n.rch) if (Vector2.Distance(n.transform.position, n.rch.point) < Vector2.Distance(n.transform.position, o)) return;
         if (Vector2.Distance(m.transform.position, o) < Vector2.Distance(m.transform.position, m.cL.transform.position))
         {
-            D(m, m.sL);
-            W(m, n);
+            if (!n.cL)
+            {
+                D(m, m.sL);
+                W(m, n);
+            }
+            else if (Vector2.Distance(n.transform.position, o) < Vector2.Distance(n.transform.position, n.cL.transform.position))
+            {
+                D(m, m.sL);
+                W(m, n);
+            }
         }
     }
 
@@ -250,7 +260,7 @@ public class NLC : MonoBehaviour
     }
 
     //Child slaughter
-    private void CS(NL l)
+    public void CS(NL l)
     {
         if (!l.cL) return;
         CS(l.cL);
