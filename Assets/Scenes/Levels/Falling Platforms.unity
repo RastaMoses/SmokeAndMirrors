@@ -592,10 +592,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6244279215370298458, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
-      propertyPath: dS
-      value: 0.0193
-      objectReference: {fileID: 0}
     - target: {fileID: 634555567, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: respawnPoint
       value: 
@@ -646,7 +642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.15
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalPosition.z

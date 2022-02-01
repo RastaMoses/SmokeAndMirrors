@@ -975,7 +975,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   sC: []
-  dS: 0.01
+  dS: 2.52
 --- !u!82 &4963877472491220848
 AudioSource:
   m_ObjectHideFlags: 0

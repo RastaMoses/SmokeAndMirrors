@@ -66,7 +66,7 @@ public class Shiny : MonoBehaviour
         {
             while (mr.material.GetFloat("DissolveAmt") < 1)
             {
-                mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 1, FindObjectOfType<NLC>().dS));
+                mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 1, FindObjectOfType<NLC>().dS * Time.deltaTime));
                 if (mr.material.GetFloat("DissolveAmt") > 0.9f)
                 {
                     mr.material.SetFloat("DissolveAmt", 1);
@@ -94,7 +94,7 @@ public class Shiny : MonoBehaviour
     {
         while (mr.material.GetFloat("DissolveAmt") >= 0.2f)
         {
-            mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 0.2f, FindObjectOfType<NLC>().dS));
+            mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 0.2f, FindObjectOfType<NLC>().dS * Time.deltaTime));
             yield return null;
         }
         yield return null;
