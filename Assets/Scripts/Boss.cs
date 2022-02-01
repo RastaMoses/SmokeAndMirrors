@@ -39,6 +39,7 @@ public class Boss : MonoBehaviour
     public int stage;
     bool inbetweenStages;
     bool waitForLights = true;
+    bool lightsFallen;
     private void Start()
     {
         stage = 1;
@@ -79,9 +80,10 @@ public class Boss : MonoBehaviour
 
         if(stage == 4 && !waitForLights)
         {
-            if (!shinyCables.activated)
+            if (!shinyCables.activated && !lightsFallen)
             {
                 StartCoroutine(LightFall());
+                lightsFallen = true;
             }
         }
 
@@ -228,6 +230,7 @@ public class Boss : MonoBehaviour
 
     public void DummyWheels()
     {
+        Debug.Log("Dummy Wheels");
         GetComponent<NLC>().ls.Remove(sqrLightGreen);
         sqrLightGreen.gameObject.SetActive(false);
         dummyWheels.SetActive(true);
