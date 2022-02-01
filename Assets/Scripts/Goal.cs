@@ -9,7 +9,7 @@ public class Goal : Condition
 
     [SerializeField] private UIAnimatedHoldButton _button;
     [SerializeField] private GameObject _spotLight;
-    [SerializeField] float activationTime = 0.6f;
+    [SerializeField] private float activationTime = 0.3f;
 
     private bool _playerInside = false;
     bool playerStays;
@@ -33,7 +33,8 @@ public class Goal : Condition
             if(playerStaysTime >= activationTime)
             {
                 playerStays = true;
-                ActivateUI(true);
+                if (fullfilled)
+                    ActivateUI(true);
             }
             
         }
@@ -50,11 +51,6 @@ public class Goal : Condition
             return;
 
         _playerInside = true;
-
-        if (!fullfilled)
-            return;
-
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
