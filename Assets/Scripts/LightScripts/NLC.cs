@@ -74,6 +74,7 @@ public class NLC : MonoBehaviour
                     if (!m.cL) m.cL = MB(m, o, d);
                     else
                     {
+                        m.cL.lC = m.lC;
                         m.cL.transform.position = o;
                         m.cL.d = d;
                     }
@@ -119,6 +120,10 @@ public class NLC : MonoBehaviour
         //Swap
         if (sC[0] && sC[1])
         {
+            if (sC[0].sL) D(sC[0], sC[0].sL);
+            if (sC[1].sL) D(sC[1], sC[1].sL);
+            CS(sC[0]);
+            CS(sC[1]);
             Color a = sC[0].lC;
             Color b = sC[1].lC;
             sC[0].lC = b;
@@ -228,7 +233,7 @@ public class NLC : MonoBehaviour
     private void A(NL m, NL n)
     {
         if (CC(m, n)) return;
-
+        if (!m.cL) return;
         Vector2 o = H2.O(m, n);
         Vector2 d = H2.B(m.transform.position, n.transform.position, o);
 
@@ -279,6 +284,8 @@ public class NLC : MonoBehaviour
 
     private void BS(NL m, NL n)
     {
+        if (!m.cL || !n.cL) return;
+
         Vector2 o = H2.O(m, n);
         Vector2 d = H2.B(m.transform.position, n.transform.position, o);
 
