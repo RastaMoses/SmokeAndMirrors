@@ -74,7 +74,7 @@ public class AnimatedHoldButton : MonoBehaviour
 
     public void Deactivate()
     {
-        StartCoroutine(DeactivateAfterInputFeedback());
+        if(gameObject.activeSelf) StartCoroutine(DeactivateAfterInputFeedback());
     }
 
     private IEnumerator DeactivateAfterInputFeedback()
