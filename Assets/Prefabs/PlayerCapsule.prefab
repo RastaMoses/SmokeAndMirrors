@@ -381,7 +381,7 @@ MonoBehaviour:
   magicMode: {fileID: 8300000, guid: 45d012d97320062409165597ab5cc4aa, type: 3}
   magicVolume: 0.668
   landing: {fileID: 8300000, guid: c5eebb7ae0930c54fa77e50dc243aece, type: 3}
-  landingVolume: 0.499
+  landingVolume: 0
   lever: {fileID: 8300000, guid: 91d26447c380a9347b6d2858e85d47bb, type: 3}
   rails: {fileID: 8300000, guid: fd79c372fb376dc4d9348a9ce00c5949, type: 3}
   railsFadeTime: 0.2

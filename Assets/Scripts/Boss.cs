@@ -199,7 +199,7 @@ public class Boss : MonoBehaviour
     {
         sqrLightGreen.GetComponent<Animator>().SetTrigger("Fall");
         yield return new WaitForSeconds(1f);
-        DummyWheels();
+        DummyWheels(); 
     }
     void LadderFall()
     {
