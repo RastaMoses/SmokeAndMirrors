@@ -7,11 +7,17 @@ using UnityEngine.SceneManagement;
 public class MenuOptions : MonoBehaviour
 {
     [SerializeField] private GameObject _optionScreen;
+    [SerializeField] private GameObject _mainMenuScreen;
+
     [SerializeField] private GameObject _optionTriggerZone;
 
     public void ExitGame()
     {
         Debug.Log("Exit");
+        SceneLoader.QuitGame();
+        #if UNITY_EDITOR
+         UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 
     public void EnterGame()
@@ -31,8 +37,9 @@ public class MenuOptions : MonoBehaviour
     public void OpenOptionPanel()
     {
         Debug.Log("Options");
-        _optionTriggerZone.SetActive(false);
         _optionScreen.SetActive(true);
+        // _mainMenuScreen.SetActive(false);
+        _optionTriggerZone.SetActive(false);
         StateManager.Pause();
     }
 }
