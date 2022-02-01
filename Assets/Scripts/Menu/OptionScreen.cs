@@ -8,6 +8,7 @@ public class OptionScreen : MonoBehaviour
     [SerializeField] private GameObject _optionScreen;
     [SerializeField] private GameObject _optionTriggerZone;
     [SerializeField] private CustomSlider[] vols;
+    [SerializeField] float volumeSelectSpeed =1;
     CustomSlider selectedSlider;
     int selection;
 
@@ -25,7 +26,7 @@ public class OptionScreen : MonoBehaviour
         selection += -(int)Input.GetAxisRaw("Vertical");
         selection = Mathf.Clamp(selection, 0, 1);
         selectedSlider = vols[selection];
-        if (selectedSlider.f >= 0 || selectedSlider.f <= 1) selectedSlider.f += Input.GetAxis("Right Stick X") / 4;
+        if (selectedSlider.f >= 0 || selectedSlider.f <= 1) selectedSlider.f += Input.GetAxis("Right Stick X") * Time.unscaledDeltaTime * volumeSelectSpeed;
         selectedSlider.f = Mathf.Clamp(selectedSlider.f, 0, 1);
         
         foreach (CustomSlider c in vols)

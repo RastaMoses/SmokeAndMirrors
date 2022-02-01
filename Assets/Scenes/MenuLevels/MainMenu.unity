@@ -1293,6 +1293,7 @@ MonoBehaviour:
   vols:
   - {fileID: 1472271778}
   - {fileID: 1241973806}
+  volumeSelectSpeed: 10
 --- !u!1 &717305642
 GameObject:
   m_ObjectHideFlags: 0
