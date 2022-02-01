@@ -42,10 +42,7 @@ public class Shiny : MonoBehaviour
         StopCoroutine("IS");
         StartCoroutine("VS");
 
-        if (GetComponent<Collider2D>() != null)
-        {
-            col.enabled = true;
-        }
+        
 
 
     }
@@ -67,10 +64,25 @@ public class Shiny : MonoBehaviour
     {
         if (GetComponent<MeshRenderer>())
         {
-            while (mr.material.GetFloat("DissolveAmt") <= 1)
+            while (mr.material.GetFloat("DissolveAmt") < 1)
             {
                 mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 1, FindObjectOfType<NLC>().dS));
+                if (mr.material.GetFloat("DissolveAmt") > 0.9f)
+                {
+                    mr.material.SetFloat("DissolveAmt", 1);
+                }
                 yield return null;
+            }
+            if (GetComponent<Collider2D>() != null)
+            {
+                col.enabled = true;
+            }
+        }
+        else
+        {
+            if (GetComponent<Collider2D>() != null)
+            {
+                col.enabled = true;
             }
         }
         
