@@ -28,9 +28,9 @@ public class MenuOptions : MonoBehaviour
 
     public void NewGame()
     {
-        PlayerPrefs.SetInt("HighestLevel", SceneManager.GetSceneByName("Noobtorial").buildIndex);
+        PlayerPrefs.SetInt("HighestLevel", 1);
         // put 1 here if level build indxes are in sequences and 0 is main menu
-        SceneManager.LoadScene("Noobtorial");
+        SceneManager.LoadScene(1);
         Debug.Log("New Game");
     }
 

@@ -8,7 +8,7 @@ public class MoveByLever : MonoBehaviour
     [SerializeField] Transform endPoint;
     [SerializeField] bool lerpMovement;
     [SerializeField] float lerpSpeed = 0.5f;
-    [SerializeField] float time = 2f;
+    // [SerializeField] float time = 2f;
 
     //State
     Vector3 originalTransform;
