@@ -15,7 +15,7 @@ public class StartGameMenuOptionUITrigger : MenuOptionUITrigger
         }
         else
         {
-            OptionButton[1].gameObject.SetActive(interactable);
+            OptionButton[1].gameObject.SetActive(false);
         }
     }
 }
