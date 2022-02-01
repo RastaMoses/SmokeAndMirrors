@@ -44,6 +44,12 @@ public class MoveByLever : MonoBehaviour
         }
     }
 
+    public void MoveToOriginal()
+    {
+        goalTransform = endPoint.position;
+        canMove = true;
+    }
+
     
 
     

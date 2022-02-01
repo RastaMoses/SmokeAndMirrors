@@ -72,10 +72,7 @@ public class Boss : MonoBehaviour
             StartCoroutine(Stage3());
         }
 
-        if(shinyWall.activated)
-        {
-            GetComponent<Game>().LevelComplete();
-        }
+        
 
 
         if(stage == 4 && !waitForLights)
@@ -138,22 +135,23 @@ public class Boss : MonoBehaviour
 
     IEnumerator Stage3()
     {
+        FindObjectOfType<MoveByLever>().MoveToOriginal();
         FindObjectOfType<PlayerController>().movementEnabled = false;
-
+        yield return new WaitForSeconds(timeBetweenStages);
         //Animations
         oldTruss.SetActive(false);
-
         sqrLightRed.enabled = false;
         sqrLightRed.gameObject.SetActive(false);
         sqrLightGreen.gameObject.SetActive(true);
         sqrLightGreen.enabled = true;
 
 
-        MoveGreenLightDown();
+        
         LeverFlyAway();
         SmokeRise();
         yield return new WaitForSeconds(timeBetweenStages);
-
+        MoveGreenLightDown();
+        shinyActivator.gameObject.SetActive(false);
         shinyWall.gameObject.SetActive(true);
         smoke.SetActive(true);
 
