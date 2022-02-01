@@ -9,6 +9,8 @@ public class Game : MonoBehaviour
     public float transitionTime = 3f;
     [SerializeField] Animator curtainOpen;
     [SerializeField] Animator curtainClose;
+    [Header("Inputs")]
+    [SerializeField] bool creditsLevel;
     [SerializeField] bool playCurtain;
     [SerializeField] public bool unlockedMagic;
     [SerializeField] public bool unlockedSwap;
@@ -66,7 +68,11 @@ public class Game : MonoBehaviour
 
     public void LevelComplete()
     {
-        if (playCurtain)
+        if (creditsLevel)
+        {
+            StartCoroutine(PlayCurtainAndLevel(0));
+        }
+        else if (playCurtain)
         {
             StartCoroutine(CurtainClose());
         }
