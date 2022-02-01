@@ -33,7 +33,7 @@ public class Game : MonoBehaviour
         //Set Player Startposition
         FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
 
-        if (playCurtain)
+        if (playCurtain && curtainOpen != null)
         {
             StartCoroutine(CurtainOpen());
         }
@@ -88,7 +88,14 @@ public class Game : MonoBehaviour
         curtainClose.gameObject.SetActive(true);
         FindObjectOfType<PlayerController>().movementEnabled = false;
         curtainClose.SetTrigger("curtainClose");
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSeconds(transitionTime + 2);
         GetComponent<SceneLoader>().LoadNextLevel();
+    }
+
+    public IEnumerator PlayCurtainAndLevel(int bS)
+    {
+        StartCoroutine(CurtainClose());
+        yield return new WaitForSeconds(transitionTime+2);
+        SceneLoader.LoadLevel(bS);
     }
 }

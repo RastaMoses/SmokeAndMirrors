@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed95bbc5bd0281752af213b3f406342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: b11a79e855027a53fb6b9350a81905ea, type: 2}
+  mat: {fileID: 2100000, guid: 3558d6ab72bd21e4da1fed61c094ca50, type: 2}
 --- !u!61 &923252219
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b11a79e855027a53fb6b9350a81905ea, type: 2}
+  - {fileID: 2100000, guid: 3558d6ab72bd21e4da1fed61c094ca50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -876,6 +876,18 @@ PrefabInstance:
     - target: {fileID: 1150223046050968842, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9076
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9076
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9076
       objectReference: {fileID: 0}
     - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1064,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b26e4bd14cfd751991d84823da16381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actColor: {r: 1, g: 0, b: 0, a: 1}
+  actColor: {r: 1, g: 0, b: 1, a: 1}
   activated: 0
 --- !u!4 &963133470
 Transform:

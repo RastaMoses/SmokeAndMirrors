@@ -22,7 +22,7 @@ public class MenuOptions : MonoBehaviour
 
     public void EnterGame()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("HighestLevel"));
+        StartCoroutine(FindObjectOfType<Game>().PlayCurtainAndLevel(Mathf.Max(PlayerPrefs.GetInt("HighestLevel"), 1)));
         Debug.Log("Enter");
     }
 
@@ -30,7 +30,7 @@ public class MenuOptions : MonoBehaviour
     {
         PlayerPrefs.SetInt("HighestLevel", 1);
         // put 1 here if level build indxes are in sequences and 0 is main menu
-        SceneManager.LoadScene(1);
+        StartCoroutine(FindObjectOfType<Game>().PlayCurtainAndLevel(1));
         Debug.Log("New Game");
     }
 

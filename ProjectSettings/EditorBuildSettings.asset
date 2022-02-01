@@ -9,9 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuLevels/MainMenu.unity
     guid: 6c8905f977866904ea6dc160004ba916
   - enabled: 1
+    path: Assets/Scenes/Levels/Falling Platforms.unity
+    guid: 0ee17434cb2349041baf3fc96a73413c
+  - enabled: 1
     path: Assets/Scenes/Levels/LightConnectOnShiny.unity
     guid: 0dc239853cda8ca4194eeed0c99e6fd7
   - enabled: 1
+    path: Assets/Scenes/MenuLevels/TutorialMagicMode.unity
+    guid: 15c5fb737d668454a8dedcbde3fe6e41
+  - enabled: 1
     path: Assets/Scenes/Levels/Skylight.unity
     guid: ed198c63790484e4eada3bf57474fb24
+  - enabled: 1
+    path: Assets/Scenes/Levels/Glass.unity
+    guid: 8c8a8b7da28204f4ea16d7f54ead373f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Boss.unity
+    guid: b8f917c14bde2fc4aa6f1a36c4d5b5b7
+  - enabled: 1
+    path: Assets/Scenes/MenuLevels/TutorialSwapLightBulbs.unity
+    guid: 2637a8923007a954c9ac92d9f342755c
+  - enabled: 1
+    path: Assets/Scenes/MenuLevels/Credits.unity
+    guid: ca2c277ec2cccfe49837cbb8eb2d3ec2
   m_configObjects: {}

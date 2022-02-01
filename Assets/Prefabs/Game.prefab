@@ -937,10 +937,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 8579785888974865586}
-  transitionTime: 2.5
+  transitionTime: 2.99
   curtainOpen: {fileID: 8378712535192194637}
   curtainClose: {fileID: 5276506894025138889}
-  playCurtain: 0
+  playCurtain: 1
   unlockedMagic: 0
   unlockedSwap: 0
   am: {fileID: 24100000, guid: 2ff50392b5acd1f4c8889d6fe015b078, type: 2}
