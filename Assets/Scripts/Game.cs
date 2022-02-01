@@ -104,4 +104,16 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(transitionTime+2);
         SceneLoader.LoadLevel(bS);
     }
+
+    public IEnumerator QuitGame()
+    {
+        curtainClose.gameObject.SetActive(true);
+        FindObjectOfType<PlayerController>().movementEnabled = false;
+        curtainClose.SetTrigger("curtainClose");
+        yield return new WaitForSeconds(transitionTime + 2);
+        SceneLoader.QuitGame();
+        #if UNITY_EDITOR
+             UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }

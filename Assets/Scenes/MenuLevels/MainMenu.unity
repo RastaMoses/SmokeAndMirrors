@@ -5160,7 +5160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _optionScreen: {fileID: 701674768}
   _mainMenuScreen: {fileID: 994699990}
+  _exitTriggerZone: {fileID: 870694687}
   _optionTriggerZone: {fileID: 1819368949}
+  _enterTriggerZone: {fileID: 1852152948}
 --- !u!4 &1922296383
 Transform:
   m_ObjectHideFlags: 0
@@ -5839,7 +5841,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6183656351104656368, guid: 97fc1c6b9136b32449d8c0f30e571516, type: 3}
       propertyPath: _pressTime
-      value: 3.75
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6183656351104656368, guid: 97fc1c6b9136b32449d8c0f30e571516, type: 3}
       propertyPath: _onButtonInput.m_PersistentCalls.m_Calls.Array.data[0].m_Target
