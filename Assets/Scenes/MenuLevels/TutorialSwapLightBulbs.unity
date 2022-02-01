@@ -997,6 +997,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2103036633, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: unlockedSwap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2103036633, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: unlockedMagic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150223046050968842, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918179294241680978, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2855631540566019769, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.72221
@@ -1021,6 +1037,14 @@ PrefabInstance:
       propertyPath: _spotLight
       value: 
       objectReference: {fileID: 961809148}
+    - target: {fileID: 6340153545222493832, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767167433285980005, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8579785887184983672, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_Name
       value: Game
@@ -1079,7 +1103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579785888974865586, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9
+      value: -1.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}

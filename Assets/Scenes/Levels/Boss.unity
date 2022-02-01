@@ -1226,6 +1226,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.05
       objectReference: {fileID: 0}
+    - target: {fileID: 446559418006283065, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.2036
+      objectReference: {fileID: 0}
     - target: {fileID: 978266599711030011, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1235,8 +1239,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.70918626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.70918626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.70918626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648581819551906257, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.2034
       objectReference: {fileID: 0}
     - target: {fileID: 1918179294241680978, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_Mesh
@@ -1266,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5276506894025138889, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6ef5205276afe664eb50c8f735438014, type: 2}
     - target: {fileID: 6340153545222493832, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1278,6 +1302,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8378712535192194637, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 56af20a75f5ac434fa1f1439ab3d5e7d, type: 2}
     - target: {fileID: 8570163777926061810, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1634,6 +1662,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 874757082268713643, guid: 380fed0e0a8de4146aebf742c8000477, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa7482572292c634388625141fef650a, type: 2}
     - target: {fileID: 1667245138466694014, guid: 380fed0e0a8de4146aebf742c8000477, type: 3}
       propertyPath: m_Name
       value: Wheels
@@ -2208,7 +2240,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c95bbcbd65c5fca4c89a474835c205fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 44b42b4715a97344cb20cee819ee63a4, type: 2}
+      objectReference: {fileID: 2100000, guid: 52c6b6a510720ae44af054f3ab3e9e83, type: 2}
     - target: {fileID: 919132149155446097, guid: c95bbcbd65c5fca4c89a474835c205fe, type: 3}
       propertyPath: m_Name
       value: Ladder_01 (1)
@@ -3299,6 +3331,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 791747510809586166, guid: 5bf470f7769eb8c498d571ee0354d4ba, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 86dd7126d1e29c3439ab75cdfb3469e1, type: 2}
     - target: {fileID: 1295952963905603619, guid: 5bf470f7769eb8c498d571ee0354d4ba, type: 3}
       propertyPath: m_Name
       value: Rail
@@ -4167,7 +4203,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c95bbcbd65c5fca4c89a474835c205fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 44b42b4715a97344cb20cee819ee63a4, type: 2}
+      objectReference: {fileID: 2100000, guid: 52c6b6a510720ae44af054f3ab3e9e83, type: 2}
     - target: {fileID: 919132149155446097, guid: c95bbcbd65c5fca4c89a474835c205fe, type: 3}
       propertyPath: m_Name
       value: Ladder_01
@@ -5062,11 +5098,11 @@ PrefabInstance:
     - target: {fileID: 5972860231249273494, guid: ca26267b819c0a844b35698fab396341, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fa7482572292c634388625141fef650a, type: 2}
+      objectReference: {fileID: 2100000, guid: 080926c666ad6ed4fa0dfd94d7aae358, type: 2}
     - target: {fileID: 7335154720384652272, guid: ca26267b819c0a844b35698fab396341, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fa7482572292c634388625141fef650a, type: 2}
+      objectReference: {fileID: 2100000, guid: 86dd7126d1e29c3439ab75cdfb3469e1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca26267b819c0a844b35698fab396341, type: 3}
 --- !u!1 &1718827860 stripped
