@@ -112,6 +112,10 @@ public class H2
         Color b = n.lC;
 
         Color c = new Color(a.r + b.r, a.g + b.g, a.b + b.b, 1);
+        c.r = Mathf.Clamp(c.r, 0, 1);
+        c.g = Mathf.Clamp(c.g, 0, 1);
+        c.b = Mathf.Clamp(c.b, 0, 1);
+
 
         return c;
     }

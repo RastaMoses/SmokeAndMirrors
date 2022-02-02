@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuLevels/TutorialSwapLightBulbs.unity
     guid: 2637a8923007a954c9ac92d9f342755c
   - enabled: 1
+    path: Assets/Scenes/Levels/FlowerPot.unity
+    guid: 2e44fb4bc8a1ad44ba897f4697ed8f97
+  - enabled: 1
     path: Assets/Scenes/MenuLevels/Credits.unity
     guid: ca2c277ec2cccfe49837cbb8eb2d3ec2
   m_configObjects: {}
