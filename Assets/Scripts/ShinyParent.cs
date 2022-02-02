@@ -23,7 +23,9 @@ public class ShinyParent : MonoBehaviour
     {
         foreach (Shiny s in shinies)
         {
-            s.Invisibilize();
+            if(gameObject.activeSelf) s.Invisibilize();
+
+
         }
         activated = false;
 
@@ -33,7 +35,7 @@ public class ShinyParent : MonoBehaviour
     {
         foreach (Shiny s in shinies)
         {
-            s.Visibilize();
+            if (gameObject.activeSelf) s.Visibilize();
         }
         activated = true;
         if (GetComponent<SFX>()) GetComponent<SFX>().Shinies();

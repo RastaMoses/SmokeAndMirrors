@@ -1130,6 +1130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6244279215370298458, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
+      propertyPath: dS
+      value: 3.01
+      objectReference: {fileID: 0}
     - target: {fileID: 353281217, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: lever
       value: 
@@ -1212,7 +1216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2103036633, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: transitionTime
-      value: 2.49
+      value: 2.44
       objectReference: {fileID: 0}
     - target: {fileID: 446559418006283065, guid: ede1a5520e7d8ee479a174fa7b38f3c0, type: 3}
       propertyPath: m_LocalScale.x
@@ -3087,6 +3091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform_Truss_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7108229689992973090, guid: 1376c159cacd1654f833c9226296dccc, type: 3}
+      propertyPath: m_TagString
+      value: Shiny
+      objectReference: {fileID: 0}
     - target: {fileID: 7633128103519900056, guid: 1376c159cacd1654f833c9226296dccc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3251,6 +3259,10 @@ PrefabInstance:
     - target: {fileID: 7108229689992973090, guid: 1376c159cacd1654f833c9226296dccc, type: 3}
       propertyPath: m_Name
       value: Platform_Truss_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108229689992973090, guid: 1376c159cacd1654f833c9226296dccc, type: 3}
+      propertyPath: m_TagString
+      value: Shiny
       objectReference: {fileID: 0}
     - target: {fileID: 7633128103519900056, guid: 1376c159cacd1654f833c9226296dccc, type: 3}
       propertyPath: m_RootOrder

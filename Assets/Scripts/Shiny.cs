@@ -39,8 +39,12 @@ public class Shiny : MonoBehaviour
 
     public void Visibilize()
     {
-        StopCoroutine("IS");
-        StartCoroutine("VS");
+        if (gameObject.activeSelf)
+        {
+            StopCoroutine("IS");
+            StartCoroutine("VS");
+        }
+        
 
         
 
@@ -51,8 +55,11 @@ public class Shiny : MonoBehaviour
     {
         if (GetComponent<MeshRenderer>())
         {
-            StopCoroutine("VS");
-            StartCoroutine("IS");
+            if (gameObject.activeSelf)
+            {
+                StopCoroutine("VS");
+                StartCoroutine("IS");
+            }
         }
         if (GetComponent<Collider2D>() != null)
         {
@@ -64,7 +71,7 @@ public class Shiny : MonoBehaviour
     {
         if (GetComponent<MeshRenderer>())
         {
-            while (mr.material.GetFloat("DissolveAmt") < 1)
+            while (mr.material.GetFloat("DissolveAmt") < 1 )
             {
                 mr.material.SetFloat("DissolveAmt", Mathf.Lerp(mr.material.GetFloat("DissolveAmt"), 1, FindObjectOfType<NLC>().dS * Time.deltaTime));
                 if (mr.material.GetFloat("DissolveAmt") > 0.9f)
