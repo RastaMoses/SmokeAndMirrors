@@ -116,6 +116,7 @@ public class Boss : MonoBehaviour
 
         inbetweenStages = false;
 
+        FindObjectOfType<PlayerController>().movementEnabled = true;
 
         GetComponent<NLC>().ls.Add(wheelLightGreen);
         GetComponent<NLC>().ls.Add(rndLightBlue);
@@ -130,7 +131,6 @@ public class Boss : MonoBehaviour
 
         List<SelectableObj> selectableObjs = new List<SelectableObj>{wheelLightGreen.GetComponent<SelectableObj>(), rndLightBlue.GetComponent<SelectableObj>(),sqrLightRed.GetComponent<SelectableObj>() };
         FindObjectOfType<SelectableObjController>().ResetObjectList(selectableObjs);
-        FindObjectOfType<PlayerController>().movementEnabled = true;
     }
 
     IEnumerator Stage3()

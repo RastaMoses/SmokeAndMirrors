@@ -4805,7 +4805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endPoint: {fileID: 1786533504}
   lerpMovement: 1
-  lerpSpeed: 1.16
+  lerpSpeed: 1.86
 --- !u!61 &1574948478
 BoxCollider2D:
   m_ObjectHideFlags: 0
