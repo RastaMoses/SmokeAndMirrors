@@ -2463,6 +2463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 791747510809586166, guid: 5bf470f7769eb8c498d571ee0354d4ba, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 86dd7126d1e29c3439ab75cdfb3469e1, type: 2}
     - target: {fileID: 1295952963905603619, guid: 5bf470f7769eb8c498d571ee0354d4ba, type: 3}
       propertyPath: m_Name
       value: Rail
