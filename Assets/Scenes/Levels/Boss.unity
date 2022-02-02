@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28faf8718aa547b41b8f306ba5701424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenStages: 3
+  timeBetweenStages: 4.02
   shinyActivator: {fileID: 203277}
   shinyCables: {fileID: 593200555}
   shinyWall: {fileID: 539708086}
@@ -4805,7 +4805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endPoint: {fileID: 1786533504}
   lerpMovement: 1
-  lerpSpeed: 1.86
+  lerpSpeed: 1.81
 --- !u!61 &1574948478
 BoxCollider2D:
   m_ObjectHideFlags: 0
