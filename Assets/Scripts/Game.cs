@@ -14,23 +14,23 @@ public class Game : MonoBehaviour
     [SerializeField] bool playCurtain;
     [SerializeField] public bool unlockedMagic;
     [SerializeField] public bool unlockedSwap;
-    [SerializeField] public UnityEngine.Audio.AudioMixer am;
-    [Range(0, 1)] [SerializeField] public float sV;
-    [Range(0, 1)] [SerializeField] public float mV;
 
 
+   
 
     SceneLoader sceneLoader;
 
     private void Awake()
     {
+
         sceneLoader = GetComponent<SceneLoader>();
-        PlayerPrefs.SetFloat("musicVolume", mV);
-        PlayerPrefs.SetFloat("sfxVolume", sV);
+        
 
     }
     private void Start()
     {
+
+
         if (PlayerPrefs.GetInt("HighestLevel") <= SceneManager.GetActiveScene().buildIndex) PlayerPrefs.SetInt("HighestLevel", SceneManager.GetActiveScene().buildIndex);
         //Set Player Startposition
         FindObjectOfType<PlayerController>().transform.position = respawnPoint.position;
@@ -54,9 +54,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        am.SetFloat("SFX", PlayerPrefs.GetFloat("sfxVolume"));
-        am.SetFloat("Music", PlayerPrefs.GetFloat("musicVolume"));
-
+        
     }
 
     public void ResetProgress()
