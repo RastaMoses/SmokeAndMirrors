@@ -40,6 +40,7 @@ public class Boss : MonoBehaviour
     bool inbetweenStages;
     bool waitForLights = true;
     bool lightsFallen;
+    bool stage2;
     private void Start()
     {
         stage = 1;
@@ -49,7 +50,6 @@ public class Boss : MonoBehaviour
     {
         if (shinyActivator.activated && !inbetweenStages)
         {
-            Debug.Log("Stage Change");
             if (stage == 1)
             {
                 inbetweenStages = true;
@@ -57,7 +57,7 @@ public class Boss : MonoBehaviour
                 StartCoroutine(Stage2());
 
             }
-            else if (stage == 2)
+            else if (stage == 2 && stage2)
             {
                 stage++;
             }
@@ -114,7 +114,7 @@ public class Boss : MonoBehaviour
         sqrLightRed.transform.position = sqrLightBlue.transform.position;
         sqrLightRed.transform.rotation = sqrLightBlue.transform.rotation;
 
-        inbetweenStages = false;
+        
 
         FindObjectOfType<PlayerController>().movementEnabled = true;
 
@@ -131,6 +131,9 @@ public class Boss : MonoBehaviour
 
         List<SelectableObj> selectableObjs = new List<SelectableObj>{wheelLightGreen.GetComponent<SelectableObj>(), rndLightBlue.GetComponent<SelectableObj>(),sqrLightRed.GetComponent<SelectableObj>() };
         FindObjectOfType<SelectableObjController>().ResetObjectList(selectableObjs);
+        yield return new WaitForSeconds(1f);
+        stage2 = true;
+        inbetweenStages = false;
     }
 
     IEnumerator Stage3()

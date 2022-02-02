@@ -1413,6 +1413,7 @@ MonoBehaviour:
   dummyLever: {fileID: 144824931}
   dummyTruss: {fileID: 2056944065}
   dummyWheels: {fileID: 695052871}
+  blocker: {fileID: 1574948475}
   stage: 0
 --- !u!1 &359852595
 GameObject:
