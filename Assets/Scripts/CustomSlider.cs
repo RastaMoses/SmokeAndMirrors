@@ -13,13 +13,16 @@ public class CustomSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        f = PlayerPrefs.GetFloat(v);
+        f = Map(-80,0,1,0,PlayerPrefs.GetFloat(v));
+        // print(Map(-80,0,1,0,f));
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<UnityEngine.UI.Image>().sprite = s[(int)(Map(-80,0,0,1,f) * 8) % s.Length];
+        print(Map(-80,0,1,0,f));
+        GetComponent<UnityEngine.UI.Image>().sprite = s[(int)(f * 8) % s.Length];
         PlayerPrefs.SetFloat(v, Map(0,1,-80,0,f));
     }
 
