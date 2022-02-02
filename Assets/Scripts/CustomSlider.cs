@@ -19,11 +19,11 @@ public class CustomSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<UnityEngine.UI.Image>().sprite = s[(int)(f * 8) % s.Length];
+        GetComponent<UnityEngine.UI.Image>().sprite = s[(int)(Map(-80,0,0,1,f) * 8) % s.Length];
         PlayerPrefs.SetFloat(v, Map(0,1,-80,0,f));
     }
 
-    float Map(float a, float b, float x, float y, float m)
+    public static float Map(float a, float b, float x, float y, float m)
     {
         return ((b-m)*(x-y))/(b-a);
     }
